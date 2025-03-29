@@ -273,10 +273,10 @@ Un **arbre enraciné** est un arbre (connexe et acyclique) dont on a distinguer 
 
 -> Ex:
 
-![image](/ressources/graph_ex1_III_3.png)
+![image](ressources/graph_ex1_III_3.png)
 est un arbre et si on l'enracine en 0 on a :
 
-![image](/ressources/arbre%20enraciné%20en%200.png)
+![image](ressources/arbre%20enraciné%20en%200.png)
 
 -> **Def**: un **arbre couvrant** est un graphe $G = (S,A)$ est un sous-graphe $\tilde G = (\tilde S, \tilde A)$ tel que $\tilde S = S$ (même sommets) et $\tilde A \subset A$ tel que $\tilde G $ est un arbre (connnexe acyclique).
 
