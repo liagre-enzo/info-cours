@@ -236,7 +236,7 @@ Un __graphe hamiltonien__ est un graphe qui possède un cycle hamiltonien.
 
 On peut redéfinir une notion "d'arbre" dans le voc de la théorie des graphes. Un arbres est un graphe __connexe__ est __acyclique__ (i.e. pas de cycles).
 
-/!\ On ne retrouve pas les arbres définis inductivement.
+⚠️ On ne retrouve pas les arbres définis inductivement.
 
 - __GNO acyclyques__:
 
