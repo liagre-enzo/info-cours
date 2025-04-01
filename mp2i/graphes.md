@@ -1,6 +1,7 @@
 # Chapitre 11 : les Graphes
 
--> structure ralationnelle
+-> structure ralationnelle crée pour résoudre le pb du pont de konigsberg. 
+![image](ressources/ponts_konigsberg.png)
 
 ## I. Définitions
 
@@ -10,6 +11,8 @@ __Def__ : un graphe est un couple $(S, A)$:
 
 - $S$ est un enseble non vide do$s_1$ est accessible depuis $s_2$ nt les élément sont appelés sommets.
 - $A$ est un enseble de paires non ordonnées $\{s_1, s_2\}$ avec $s_1 \in S$ et $s_2 \in S$ et $s_1 \neq s_2$, dont les éléments sont appelés arrêtes.
+
+Ex : ![image](ressources/non_oriente.png)
 
 On peut adapter cette définition.
 -> multi-arrête
@@ -27,6 +30,8 @@ __Def__ : un graphe est un couple $(S, A)$:
 
 - $S$ est un enseble non vide dont les élément sont appelés sommets.
 - $A$ est un enseble de couples ordonnées $(s_1, s_2)$ avec $s_1 \in S$ et $s_2 \in S$ et $s_1 \neq s_2$, dont les éléments sont appelés arcs
+
+Ex : ![image](ressources/oriente.png)
 
 On peut adapter cette définition.
 -> multi-arcs
@@ -72,6 +77,8 @@ $G' = (S', A')$ est un sous graphe de G si:
 
 $G'$ est un sous-graphe __induit__ de $G$ si en plus $A'$ est l'intégralité des arrêtes / arcs reliant deux sommets de $S'$ dans $G$.
 
+Exemple (à gauche, un sous graphe (sommets noirs et arêtes pleines) ; à droite, un sous-graphe induit): ![image](ressources/sous_graphe.png)
+
 Prop : un graphe $G = (S, A)$ possède $2^{card(S)}-1$ sous graphes induits.
 
 ### 3. Isomorphisme
@@ -79,6 +86,8 @@ Prop : un graphe $G = (S, A)$ possède $2^{card(S)}-1$ sous graphes induits.
 Un isomorphisme entre 2 graphes $G = (S, A)$ et $\tilde{G} = (\tilde{S}, \tilde{A})$ est une bijection $\varphi : S \to \tilde{S}$ telle que $\forall (s_1, s_2) \in S, \{s_1, s_2\} \in A \implies \{\varphi (s_1), \varphi (s_2)\} \in \tilde{A}$
 
 Autrement dit, en renommant les sommets, les deux graphes ont exactement les mêmes ensembles d'arcs/arrêtes.
+
+Exemple : ![image](ressources/isomorphes.png)
 
 ### 4. Chemins
 
@@ -140,6 +149,8 @@ Un GO est dit __faiblement connexe__ si, l'oublie de l'orientation donne un grap
 
 Un GO est dit __fortement connexe__ si, pour tout sommet $s_1$ et $s_2$ d graphe, il existe un chemin reliant $s_1$ à $s_2$ ou un chemin reliant $s_2$ à $s_1$.
 
+Exemples (un graphe fortement connexe et un non fortement connexe (sommet noir non accessible depuis le sommet gris)) : ![image](ressources/forte_connexite.png)
+
 La relation $R$ définie sur les GO par:
 
 - $s_1 R s_2 \iff$ ($s_1$ est accessible depuis $s_2$ et $s_2$ est accessible depuis $s_1$)
@@ -164,7 +175,7 @@ Le __nombre chromatique__ d'un graphe $G$, noté $\chi(G)$, est le plus petit en
 
 Les problème d'ordonnancement se traduisent par un problème de coloration de graphe d'intervalles correspondants.
 
-*ex: sélection d'activité, plus petit sommets possible dans la même couleur.
+*ex: sélection d'activité, plus petit sommets possible dans la même couleur : ![image](ressources/intervalles.png)
 
 ## III. Graphes particuliers
 
@@ -324,3 +335,145 @@ On étend usuéellement $\omega$ pour que $s_1-s_2 \notin A \implies \omega(s_1-
 -> __Def__: On définit le poids d'un chemin $s_1, s_2, \dots, s_n$ dans un graphe pondéé comme $\sum_{i=1}^{n-1}\omega (s_i-s_{i+1})$.
 
 Un pb classique sur les graphes pondérés consiste à trouver le plus petit poids entes deux sommets.
+
+## 4. Representation des graphes
+
+### 1. Matrice d'adjacence
+
+-> Sommets sont numérotés $0, 1, 2, \dots, |S|-1$.
+
+Les matrices d'adjacence d'un graphe $G = (S, A)$ est une matrice de dimension $|S| \times |S|$ telle que le coeff lige i colonne j vaut 
+$$
+\begin{cases}
+  1 \space \text{si il y a une arrête / arc} \\
+  0 \space \text{sinon}
+\end{cases}
+$$
+
+Ex: ![image](ressources/matrice_adjacence.png)
+
+Prop 1 : La matrice d'adjacence d'un GNO est symétrique.
+
+Prop 2 : La diagonale d'une matrice d'adjacence est remplie de 0 (sauf si les boucles sont autorisées).
+
+Prop 3 : Si $M$ est la mat d'adjacence d'un graphe. Soit $k \in \N$. $M^k$ donne la ligne $i$ colonne $j$, le nombre de chemins de longueur $k$ allant de $i$ à $j$.
+
+-> Preuve par récurrence sur $k$.
+
+- *Initialisation* : 
+  - Pour $k = 0$, $M⁰$ est l'identité, ce qui est correct car les seulrs chemins de longueur $0$ sont seux reliant un sommet à lui même.
+  - Pour $k = 1$, $M¹ = M$ ce qui est correct par définition de la matrice d'adjacence.
+- *Heredité* : Mqntrons le résultat vrai pour $M^{k+1}$. Un chemin de longueur $k+1$  reliant $i$ à $j$ est un chemin de longueur $1$ de $i$ jusqu'un certain sommet $s$ concaténé à un chemin de longueur $k$ de $s$ à $j$. Par hypothèse de récurrence le nb de chemins de cette forme est $M_{i,s}¹ \times M_{s,j}^k$. Donc au totale le nb de chemins de $i$ à $j$ est :
+
+$$
+\sum_{s \in S}M_{i,s} \times M_{s,j}^k = M_{i,j}^{k+1}
+$$
+
+__Avantages / Inconvénients__ :
+
+-> Complexité Spatiale : $O(|S|²)$.
+Pour les graphes denses, c'est adapté mais pour les graphes creux, cette repr est pas idéale.
+
+-> Complexité temporelle des op principesles :
+
+- 2 sommets sont-ils $\begin{cases} \text{voisins} \\ \text{précedent/successeurs} \end{cases}$. On est en $O(1)$, un seul coeff à regarder.
+- récupérer tous les $\begin{cases} \text{voisins} \\ \text{successeurs} \end{cases}$ d'un sommet. O(|S|), on regarde toute la ligne.
+- pour les GO, récupérer les prédécesseurs est en $O(|S|)$ car on regarde toutes lec colonnes.
+- ajouter/enlever $\begin{cases} \text{une arrête} \\ \text{un arc} \end{cases}$. $O(1)$, un seul coeff à modifier dans la matrice.
+
+__En OCaml__ :
+
+```OCaml
+type mat_adj = int array array
+```
+
+__En C__ :
+
+```c
+tyoedef int mat[100]; //10 sommets max dans la matrice.
+struct mat_adj_s {
+  int nb_sommets;     //compris entre 1 et 10
+  mat matrice;
+};
+```
+
+### 2. Liste d'adjacence
+
+Pour chaque sommet on lui associe la liste de ses $\begin{cases} \text{voisins} \\ \text{successeurs} \end{cases}$.
+
+
+__Avantages / Inconvénients__ :
+
+-> Complexité spatiale : $O(|S| + |A|)$. Très adapté pour les graphes creux.
+
+-> Complexité temporelle des opérations principales :
+
+- Tester si 2 sommets $i$ et $j$ sont $\begin{cases} \text{voisins} \\ \text{predecesseurs/successeurs} \end{cases}$. $O(d_+(i))$
+- Récupérer les $\begin{cases} \text{voisins} \\ \text{successeurs} \end{cases}$ d'un sommet. $O(1)$.
+- Pour les GO, récupérer les prédecesseurs. $O(|S| + |A|)$ car on regarde tout.
+- ajouter/supprimer $\begin{cases} \text{une arrête} \\ \text{un arc} \end{cases}$ :
+  - ajouter en tête d'une liste : $O(1)$
+  - enlever $\begin{cases} \text{arc} \space i \to j : O(d_+(i)) \\ \text{une arrête} \space i-j: O(d(i) + d(j))  \end{cases}$
+
+__En OCaml__ :
+
+```OCaml
+type list_adj = int list array
+```
+
+__En C__ : Les listes seront implémentés par des tableaux avec:
+
+- Soit le degré stocké dans la première case
+- Soit une sentinnelle $-1$ pour marquer la fin des voisins
+
+```C
+typedef int list[10][10];
+struct list_asj_s {
+  int nb_sommets ;
+  list liste;
+};
+```
+
+### 3. Autre représentations
+
+Quand les sommets ne sont pas dans $\N$.
+
+-> On associe ) chaque sommet un entier unique entre $0$ et $|S| - 1$ en stockant les correspondances dans un tableaux puis on utilise liste/matrice d'adjacence comme avant.
+
+-> pour une liste d'adj on peut la stocjer dans un tableau sssociatif dont les clés sont les sommets et les valeurs les listes de $\begin{cases} \text{successeurs} \\ \text{voisins} \end{cases}$.
+
+⚠️ impose que les noms de sommets appartiennent à un ensemble totalement ordonné.
+
+```OCAML
+type lst = ('a, 'a list) Hashtbl.t
+```
+
+- Serialisation des graphes :
+
+Première ligne ) nombre de sommets.
+Lignes suivantes : $i, j$ telles que $i-j \in A$. Avec cette methode les arrêtes $i-j$ apparaissent sur 2 lignes : $i-j$ et $j-i$.
+
+Si les sommets ne sont pas numérotés, on stocke leurs noms dans le fichier après la première ligne (avant les arc/arrêtes)
+
+$$
+\usepackage{tikz}
+\begin{figure}[!ht]
+  \centering
+  \resizebox{1\textwidth}{!}{%
+    \begin{circuitikz}
+      \tikzstyle{every node}=[font=\LARGE]
+      \draw  (11,17) circle (0cm);  
+      \node [font=\LARGE] at (11.75,16.75) {A};
+      \node [font=\LARGE] at (16.25,12.25) {B};
+      \node [font=\LARGE] at (12.5,9.75) {C};
+      \node [font=\LARGE] at (9.5,12) {D};
+      \draw [short] (12.25,16.25) -- (15.75,12.75);
+      \draw [short] (15.75,11.75) -- (13.25,10);
+      \draw [short] (15.25,12.5) -- (10.25,12.25);
+      \draw [short] (12,10.25) -- (10,11.75);
+      \draw [short] (12.5,10.5) -- (11.75,16);
+    \end{circuitikz}
+  }%
+  \label{fig:my_label}
+\end{figure}
+$$
