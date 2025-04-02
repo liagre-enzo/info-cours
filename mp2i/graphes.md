@@ -1,6 +1,6 @@
 # Chapitre 11 : les Graphes
 
--> structure ralationnelle crée pour résoudre le pb du pont de konigsberg. 
+-> structure ralationnelle crée pour résoudre le pb du pont de konigsberg.
 ![image](ressources/ponts_konigsberg.png)
 
 ## I. Définitions
@@ -342,7 +342,7 @@ Un pb classique sur les graphes pondérés consiste à trouver le plus petit poi
 
 -> Sommets sont numérotés $0, 1, 2, \dots, |S|-1$.
 
-Les matrices d'adjacence d'un graphe $G = (S, A)$ est une matrice de dimension $|S| \times |S|$ telle que le coeff lige i colonne j vaut 
+Les matrices d'adjacence d'un graphe $G = (S, A)$ est une matrice de dimension $|S| \times |S|$ telle que le coeff lige i colonne j vaut
 $$
 \begin{cases}
   1 \space \text{si il y a une arrête / arc} \\
@@ -360,7 +360,7 @@ Prop 3 : Si $M$ est la mat d'adjacence d'un graphe. Soit $k \in \N$. $M^k$ donne
 
 -> Preuve par récurrence sur $k$.
 
-- *Initialisation* : 
+- *Initialisation* :
   - Pour $k = 0$, $M⁰$ est l'identité, ce qui est correct car les seulrs chemins de longueur $0$ sont seux reliant un sommet à lui même.
   - Pour $k = 1$, $M¹ = M$ ce qui est correct par définition de la matrice d'adjacence.
 - *Heredité* : Mqntrons le résultat vrai pour $M^{k+1}$. Un chemin de longueur $k+1$  reliant $i$ à $j$ est un chemin de longueur $1$ de $i$ jusqu'un certain sommet $s$ concaténé à un chemin de longueur $k$ de $s$ à $j$. Par hypothèse de récurrence le nb de chemins de cette forme est $M_{i,s}¹ \times M_{s,j}^k$. Donc au totale le nb de chemins de $i$ à $j$ est :
@@ -400,7 +400,6 @@ struct mat_adj_s {
 ### 2. Liste d'adjacence
 
 Pour chaque sommet on lui associe la liste de ses $\begin{cases} \text{voisins} \\ \text{successeurs} \end{cases}$.
-
 
 __Avantages / Inconvénients__ :
 
