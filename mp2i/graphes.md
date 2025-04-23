@@ -454,25 +454,181 @@ Lignes suivantes : $i, j$ telles que $i-j \in A$. Avec cette methode les arrête
 
 Si les sommets ne sont pas numérotés, on stocke leurs noms dans le fichier après la première ligne (avant les arc/arrêtes)
 
+## 5. Parcours de graphes
+
+On a le parcours en profondeur et le parcours en largeur.
+
+2 $\neq$ avec les parcours d'arbres:
+
+- On doit fixer un __sommet de départ__.
+- On doit se souvenit des sommets déjà traités.
+
+### 1. Parcours en profondeur
+
+```algo
+FONCTION parcours_profondeur(graĥe G, sommet dep)
+  vus <- {}
+  FONCTION explorer(sommet s)
+    SI s n'appartient pas vus ALORS
+      
+      traitement(s)
+      vus <- ajouter s
+      
+      POUR chaque voisin.successeur v de s dans G FAIRE
+        explorer(v)
+      FIN POUR
+    FIN SI
+  
+  FIN FONCTION
+  explorer(dep)
+FIN FONCTION
+```
+
+Ex : ![image](ressources/parcours_profondeur.png)
+
 $$
-\usepackage{tikz}
-\begin{figure}[!ht]
-  \centering
-  \resizebox{1\textwidth}{!}{%
-    \begin{circuitikz}
-      \tikzstyle{every node}=[font=\LARGE]
-      \draw  (11,17) circle (0cm);  
-      \node [font=\LARGE] at (11.75,16.75) {A};
-      \node [font=\LARGE] at (16.25,12.25) {B};
-      \node [font=\LARGE] at (12.5,9.75) {C};
-      \node [font=\LARGE] at (9.5,12) {D};
-      \draw [short] (12.25,16.25) -- (15.75,12.75);
-      \draw [short] (15.75,11.75) -- (13.25,10);
-      \draw [short] (15.25,12.5) -- (10.25,12.25);
-      \draw [short] (12,10.25) -- (10,11.75);
-      \draw [short] (12.5,10.5) -- (11.75,16);
-    \end{circuitikz}
-  }%
-  \label{fig:my_label}
-\end{figure}
+\begin{align*}
+  \text{vus} \space &| \space \text{Ordre de traitement} \\
+  \text{\{\}} \space &| \\
+  \{0\} \space &| \space 0 \\
+  \{0, 1\} \space &| \space 1 \\
+  \{0, 1 ,2\} \space &| \space 2 \\
+  \{0, 1, 2, 3\} \space &| \space 3 \\
+  \{0, 1, 2, 3, 7\} \space &| \space 7 \\
+  \{0, 1, 2, 3, 7, 8\} \space &| \space 8 \\
+  \{0, 1, 2, 3, 7, 8, 4\} \space &| \space 4
+
+\end{align*}
 $$
+
+__Arborescence__ du parcours de graphe tel que $(s_1,s_2) \in A$ si le traitrment de $s_2$ a été lancé pour sont voisin.predecesseur $s_1$. Les sommets sont ceux traités.
+
+sur l'ex : ![image](ressources/parcours_profondeur_arborescence.png)
+
+__Prop__ Le parcours en profondeur visite exactement les sommets accessible depuis le sommet de départ.
+
+### 2. Parcours en largeur
+
+```algo
+FONCTION parcours_largeur(graphe G, sommet dep)
+  a_traiter <- file vide
+  a_traiter <- enfiler dep
+  vus <- {dep}
+  TANT QUE a_traiter est non vide FAIRE
+    s <- defiler a_traiter
+    traitement(s)
+    POUR caque voisin.seccesseur v de s dans G Faire
+      SI v n'appartient pas vus ALORS
+        a_traiter <-  enfiler v
+        vus <- ajouter v
+      FIN SI
+    FIN POUR
+  FIN TANT QUE
+FIN FONCTION
+```
+
+Exemple (même graphe que la partie précédente) :
+
+$$
+\begin{align*}
+  \text{vus} \space &| \space \text{a\_traiter} \space &| \space \text{ordre} \\
+  \{\} \space &| \space \text{a\_traiter} \space &| \space  \\
+  \{\} \space &| \space \text{a\_traiter} \space &| \space 0 \\
+  \{\} \space &| \space \text{a\_traiter} \space &| \space 1 \\
+  \{\} \space &| \space \text{a\_traiter} \space &| \space 2 \\
+  \{\} \space &| \space \text{a\_traiter} \space &| \space 3 \\
+  \{\} \space &| \space \text{a\_traiter} \space &| \space 4 \\
+  \{\} \space &| \space \text{a\_traiter} \space &| \space 7 \\
+  \{\} \space &| \space \text{a\_traiter} \space &| \space 8
+\end{align*}
+$$
+On peut aussi faire l'arborescence pour le parcours en largeur.
+
+// j'abandonne.
+
+__Prop__ : Le parcours en latgeur visite exactement les sommets accessible depuis le sommet de départ.
+
+$\leadsto$ __Def :__ La distance d'un sommet $s_1$ à un sommet $s_2$ notée $\delta(s_1,s_2)$ est le nb minimal d'arcs.arrêtes d'un chemin reliant $s_1$ à $s_2$. Si $s_2$ est non accessible depuis $s_1$ on concidère que $\delta(s_1,s_2) = + \infty$.
+
+__Prop__ : Le parcours en largeur traite les sommets par distances croissantes par rapport au départ.
+
+Preuve : Par invariant du TQ : La file `a_traitrer` contient les sommets $\overline{\underline{s_1 s_2 \dots s_n}}$ tels que $\delta(dep, s_1) \leq \delta(dep, s_2) \leq \dots \leq \delta(dep, s_n) \leq \delta(dep, s_1) +1$.
+
+### 3. Algo générique
+
+Que se passe-t-il si on remplace la file par une pile dans le parcours en largeur ?
+
+```algo
+FONCTION parcours_generique(graphe G, sommet dep)
+  vus <- {}
+  a_traiter <- structure de données
+  a_traiter <- ajouter dep
+  TANT QUE a_traiter non vide 
+    s <- extraire a_traiter
+    SI s n'appartient pas vus ALORS
+      traitement(s)
+      vus <- ajouter s
+      POUR chaque voisin.successeur v de s dans G
+        a_traiter <- ajouter v
+      FIN POUR
+    FIN SI
+  FIN TANT QUE
+FIN FONCTION
+```
+
+Si `a_trater` est muni :
+
+- d'une stratégie FIFO, on retrouve l'ordre d'un parcours en largeur.
+- d'une stratégie LIFO, on retrouve le parcours en profondeur.
+- d'une stratégie aléatoire, parcours quelconque.
+
+__Complexités :__
+
+- Spatiale:
+  - vus est de taille $|S|$ au max.
+  - `a_traiter` est en $O(|A|)$ car chaque sommet $s$ peut se retrouver $d(s)$ fois dans `a_traiter`.
+  - Total $O(|S| + |A|)$
+
+- Temporelle :
+  - en supposant les op sur `a_traiter` sont en $O(1)$
+  - en supposant travailler avex la liste d'adjavence : la boucle `POUR` est en space $O(d(s)$
+  - Pour `vus`
+    - soir c'est un tab associatif implémenté par une table de hachage
+    - soit c'est un tableau de booléens.
+    - Dans les 2 cas, la création de vus est en $O(|S|)$ et l'ajout $+$ test d'appartenance sont en $0(1)$.
+  - Chaque sommet est traité au plus une fois (grâce à vu). Le traitement d'un sommet (entrée dans le `SI`) est en $O(d(s)) + O(1) = O(d(s))$
+  - Au totalla boucle tant que est en $\sum_{s \in S} O(d(s)) = O(|A|)$
+  - TOTAL : $O(|S|) + O(1) + O(|A|) = O(|S| + | A|)$
+  
+Remarque : on a les même complexité temporelle pour le parcours en profondeur et en largeur.
+
+### 4. Application des parcours
+
+- GNO et __connexité__
+  - n'importe lequel des 3 algos peut être adapté
+  - vérifier que tous les sommets sont dans `vus`
+
+- GNO: trouver les composantes connnexes
+  - avec n'importe quel algo on lance un parcours avec n'importe quel sommetde départ ce sommet de départ ce qui donne sa comp_connexe on recommance avec un sommet non vu, etc...
+
+- trouver les distances de départ à tous les autres sommets
+  - on adapte le parcours en __largeur__
+  - Avant le TQ, la seule distance sonnue est $\delta (dep,dep)=0$. Quand on enfile, le nouveau sommet v, le plus petit chemin jusque v a comme dernière arrête.arcs $s-v$ donc $\delta (dep, v) = \delta (dep, s) + 1$
+  
+- Determiner si un graphe est biparti
+  - On choisit un sommet de départ, on le place dans une partition. Quand on explore un sommet, on essaie de places ses voisins dans la partitin opposée. Si un des voisins avait d"jà été placé et que les partitions ne correspondent pas $\implies$ pas biparti.
+  - On repète ces étapes jusqu'à avoir vu tous les sommets.
+
+- Rechercher un cycle dont le départ fait partie.
+  - Si on retombe une seconde fois sur le sommet il est dans le cycle. On retient à chaque fois les sommet dont on vient (les prédécesseur dans l'aborescence) pour reconstruire le cycle.
+
+#### Tri topologique
+
+$\leadsto$ ne s'applique que sur les GO.
+
+__Def__ : 
+
+- Un *ordre topologique* est une relation d'ordre totale $\prec$ talle que si $s_1 \to s_2 \in A$ alors $s_1 \prec s_2$
+- Un *tri topologique* est une énumération de tous les sommets qui respecte l'ordre topologique.
+
+__Prop__ : 
