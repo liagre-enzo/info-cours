@@ -626,9 +626,21 @@ Remarque : on a les même complexité temporelle pour le parcours en profondeur 
 
 $\leadsto$ ne s'applique que sur les GO.
 
-__Def__ : 
+__Def__ :
 
 - Un *ordre topologique* est une relation d'ordre totale $\prec$ talle que si $s_1 \to s_2 \in A$ alors $s_1 \prec s_2$
 - Un *tri topologique* est une énumération de tous les sommets qui respecte l'ordre topologique.
 
-__Prop__ : 
+__Prop__ : Un graphe orienté admet un ordre topologique si et seulement s'il est acyclique.
+
+Preuve :
+
+- $\implies$ : Par l'absurde supposons que la graphe ait un cycle. Soient deux sommets $\neq s_1$ et $s_2$ dans ce cycle il y a un chemin de $s_1$ à $s_2$ donc $s_1 \prec s_2$ et il y a un chemin de $s_2$ à $s_1$ donc $s_2 \prec s_2$. Ceci est absurde par anti-cymétrie de la relation $\prec$
+- $\impliedby$ : Par récurrence sur le nb de sommets.
+  - Un graphe à 1 sommet : trivial
+  - Soit $G$ un graphe à $n > 1$ sommets acyclique. Soit $s$ un sommet du graphe $G$ tem que $d_-(s) = 0$ (existe nécessairement) le graphe induit par $S \backslash \{s\}$  est acyclique à $n-1$ sommets. Donc par H.R. admet un ordre topologique. Comme tous les arcs implquant s sont de la forme $s \to s'$ il suffit de considerer que $s$ est inférieur à tous les autres sommest selon l'ordre topologique.
+
+__Adaptation à faire :__
+
+- Parcours en profondeur
+- Le sommet dont l'exploration récursive termine en premier sera le dernier au tri topologique. Le sommet dont l'exploration fini en deuxième sera l'avant dernier au tri. etc.
