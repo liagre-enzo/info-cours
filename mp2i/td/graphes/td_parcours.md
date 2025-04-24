@@ -3,7 +3,7 @@
 ## Parcours à la main
 
 ### 1
- 
+
 $$
 \begin{pmatrix}
     0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
@@ -64,4 +64,3 @@ Avec un parcours en largeur. Complexité en $O(|S| + |A|)$
 Vérifier à l'aide d'un parcours en largeur que tous les sommets sont accessible à partir d'un autre. Si un sommet n'est pas accessible, le graphe n'est pas connexe.
 
 ## Résoudre une situation concrète à l'aide d'un graphe
-
