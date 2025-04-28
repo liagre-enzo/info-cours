@@ -41,7 +41,7 @@ __La suite du fichier donne la corréction de la plupart des exos du poly.__
 
 #### Exo 2
 
-![image](ressources/chap_12_graphe_ensemble_ordonnée.png)
+![image](ressources/chap_12/graphe_ensemble_ordonnée.png)
 
 #### Exo 4
 

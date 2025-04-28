@@ -2,7 +2,7 @@
 
 ## Parcours à la main
 
-### 1
+### q1
 
 $$
 \begin{pmatrix}
@@ -36,11 +36,11 @@ let adj = [|
 
 ## Accessibilité dans un graphe
 
-### 9
+### q9
 
 Si $p \in \N$, alors les matrices $M^p$ représentent les chemins de tailles $p$ dans la matrice.
 
-### 10
+### q10
 
 ```algo
 produit <- mat
@@ -55,12 +55,14 @@ RENVOYER Faux
 
 Complexité en $O(|S|³)$
 
-### 11
+### q11
 
 Avec un parcours en largeur. Complexité en $O(|S| + |A|)$
 
-### 12
+### q12
 
 Vérifier à l'aide d'un parcours en largeur que tous les sommets sont accessible à partir d'un autre. Si un sommet n'est pas accessible, le graphe n'est pas connexe.
 
 ## Résoudre une situation concrète à l'aide d'un graphe
+
+![image](td_parcours_graphes.jpg)

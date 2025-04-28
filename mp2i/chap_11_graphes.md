@@ -1,7 +1,7 @@
 # Chapitre 11 : les Graphes
 
 -> structure ralationnelle crée pour résoudre le pb du pont de konigsberg.
-![image](ressources/ponts_konigsberg.png)
+![image](ressources/chap_11/ponts_konigsberg.png)
 
 ## I. Définitions
 
@@ -12,7 +12,7 @@ __Def__ : un graphe est un couple $(S, A)$:
 - $S$ est un enseble non vide do$s_1$ est accessible depuis $s_2$ nt les élément sont appelés sommets.
 - $A$ est un enseble de paires non ordonnées $\{s_1, s_2\}$ avec $s_1 \in S$ et $s_2 \in S$ et $s_1 \neq s_2$, dont les éléments sont appelés arrêtes.
 
-Ex : ![image](ressources/non_oriente.png)
+Ex : ![image](ressources/chap_11/non_oriente.png)
 
 On peut adapter cette définition.
 -> multi-arrête
@@ -31,7 +31,7 @@ __Def__ : un graphe est un couple $(S, A)$:
 - $S$ est un enseble non vide dont les élément sont appelés sommets.
 - $A$ est un enseble de couples ordonnées $(s_1, s_2)$ avec $s_1 \in S$ et $s_2 \in S$ et $s_1 \neq s_2$, dont les éléments sont appelés arcs
 
-Ex : ![image](ressources/oriente.png)
+Ex : ![image](ressources/chap_11/oriente.png)
 
 On peut adapter cette définition.
 -> multi-arcs
@@ -77,7 +77,7 @@ $G' = (S', A')$ est un sous graphe de G si:
 
 $G'$ est un sous-graphe __induit__ de $G$ si en plus $A'$ est l'intégralité des arrêtes / arcs reliant deux sommets de $S'$ dans $G$.
 
-Exemple (à gauche, un sous graphe (sommets noirs et arêtes pleines) ; à droite, un sous-graphe induit): ![image](ressources/sous_graphe.png)
+Exemple (à gauche, un sous graphe (sommets noirs et arêtes pleines) ; à droite, un sous-graphe induit): ![image](ressources/chap_11/sous_graphe.png)
 
 Prop : un graphe $G = (S, A)$ possède $2^{card(S)}-1$ sous graphes induits.
 
@@ -87,7 +87,7 @@ Un isomorphisme entre 2 graphes $G = (S, A)$ et $\tilde{G} = (\tilde{S}, \tilde{
 
 Autrement dit, en renommant les sommets, les deux graphes ont exactement les mêmes ensembles d'arcs/arrêtes.
 
-Exemple : ![image](ressources/isomorphes.png)
+Exemple : ![image](ressources/chap_11/isomorphes.png)
 
 ### 4. Chemins
 
@@ -149,7 +149,7 @@ Un GO est dit __faiblement connexe__ si, l'oublie de l'orientation donne un grap
 
 Un GO est dit __fortement connexe__ si, pour tout sommet $s_1$ et $s_2$ d graphe, il existe un chemin reliant $s_1$ à $s_2$ ou un chemin reliant $s_2$ à $s_1$.
 
-Exemples (un graphe fortement connexe et un non fortement connexe (sommet noir non accessible depuis le sommet gris)) : ![image](ressources/forte_connexite.png)
+Exemples (un graphe fortement connexe et un non fortement connexe (sommet noir non accessible depuis le sommet gris)) : ![image](ressources/chap_11/forte_connexite.png)
 
 La relation $R$ définie sur les GO par:
 
@@ -175,7 +175,7 @@ Le __nombre chromatique__ d'un graphe $G$, noté $\chi(G)$, est le plus petit en
 
 Les problème d'ordonnancement se traduisent par un problème de coloration de graphe d'intervalles correspondants.
 
-*ex: sélection d'activité, plus petit sommets possible dans la même couleur : ![image](ressources/intervalles.png)
+*ex: sélection d'activité, plus petit sommets possible dans la même couleur : ![image](ressources/chap_11/intervalles.png)
 
 ## III. Graphes particuliers
 
@@ -301,10 +301,10 @@ Un __arbre enraciné__ est un arbre (connexe et acyclique) dont on a distinguer 
 
 -> Ex:
 
-![image](ressources/graph_ex1_III_3.png)
+![image](ressources/chap_11/graph_ex1_III_3.png)
 est un arbre et si on l'enracine en 0 on a :
 
-![image](ressources/arbre%20enraciné%20en%200.png)
+![image](ressources/chap_11/arbre%20enraciné%20en%200.png)
 
 -> __Def__: un __arbre couvrant__ est un graphe $G = (S,A)$ est un sous-graphe $\tilde G = (\tilde S, \tilde A)$ tel que $\tilde S = S$ (même sommets) et $\tilde A \subset A$ tel que $\tilde G $ est un arbre (connnexe acyclique).
 
@@ -350,7 +350,7 @@ $$
 \end{cases}
 $$
 
-Ex: ![image](ressources/matrice_adjacence.png)
+Ex: ![image](ressources/chap_11/matrice_adjacence.png)
 
 Prop 1 : La matrice d'adjacence d'un GNO est symétrique.
 
@@ -484,7 +484,7 @@ FONCTION parcours_profondeur(graĥe G, sommet dep)
 FIN FONCTION
 ```
 
-Ex : ![image](ressources/parcours_profondeur.png)
+Ex : ![image](ressources/chap_11/parcours_profondeur.png)
 
 $$
 \begin{align*}
@@ -503,7 +503,7 @@ $$
 
 __Arborescence__ du parcours de graphe tel que $(s_1,s_2) \in A$ si le traitrment de $s_2$ a été lancé pour sont voisin.predecesseur $s_1$. Les sommets sont ceux traités.
 
-sur l'ex : ![image](ressources/parcours_profondeur_arborescence.png)
+sur l'ex : ![image](ressources/chap_11/parcours_profondeur_arborescence.png)
 
 __Prop__ Le parcours en profondeur visite exactement les sommets accessible depuis le sommet de départ.
 
