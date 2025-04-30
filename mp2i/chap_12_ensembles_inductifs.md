@@ -24,6 +24,8 @@
   - Dessiner le graphe associé à un ensemble ordonné (p.4 du poly)
 - __Esembles inductifs:__
   - définir un ensemble inductivement
+  - preuves par induction structurelle
+  - définition d'une fonction sur les ensembles inductifs
 
 ### À savoir par coeur
 
@@ -32,6 +34,7 @@
   1. Munir chaque $\begin{cases} \text{variable de boucle} \\ \text{paramètre de la fonction récursive} \end{cases}$ d'un ordre bien fondé. Munir l'ensemble d'un ordre produit / lexicographique qui est par définition bien fondé.
   2. Montrer sa stricte décroissance $\begin{cases} \text{d'un appel rec au suivant} \\ \text{d'une itération à la suivante} \end{cases}$.
   3. citer le théorème ci dessus pour justifier que le nombre $\begin{cases} \text{d'appels réc} \\ \text{d'itérations} \end{cases}$ est bien fini puis vérifier la terminaison du reste des instruction.
+- Un ensemble inductif est toujours bien fondé.
 
 __La suite du fichier donne la corréction de la plupart des exos du poly.__
 
@@ -131,3 +134,49 @@ Q3. Voir chapitre sur les arbres.
 #### Exercice 2
 
 On note $S_1 = x \mapsto 2x$, $S_2 = x \mapsto 2x + 1$ et $S_3 = x \mapsto -x$. Alors $-14 = S_3(S_2(S_1(S_1(\mathbb(1)))))$
+
+#### Exercice 3
+
+1. Non ambigüe
+2. ambigüe
+3. ambigüe
+
+### P. 3
+
+#### E. 1
+
+L'addition sur deux entier naturels :
+
+- Pour $n \in \N$: $n + 0 = n$
+- Soit $n$ et $n_2 \in \N$. On note $S(n_2) = n_2 + 1$. On a $n + S(n_2) = S(n + n_2)$
+
+La multiplication deux deux entiers:
+
+- Pour $n \in \N$: $n \times 0 = 0$
+- Soit $m \in \N$, on note le $S(m)$ le suivant de $m$. Alors $n \times S(m) = n \times m + n$
+
+La factorielle:
+
+- Pour $n = 0$ : $0! = 1$
+- Soit $n \in \N$. $S(n)! = S(n) \times n!$
+
+#### E. 2
+
+```Ocaml
+type entier = Zero | S of entier
+
+let rec somme n m = 
+  match m with
+  | Zero-> n
+  | S m -> S (somme n m)
+  
+let rec produit n m =
+  match m with
+  | Zero -> Zero
+  | S m -> somme (produit n m) n
+
+let rec factorielle n =
+  match n with
+  | Zero -> S Zero
+  | S n -> produit (S n) (factorielle n)
+```
