@@ -117,7 +117,7 @@ Idée $=$ remplacer la variable à chaque endroit où la variable est présente 
 
 Objectif : pouvoir manipuler des objets qui ne sont pas justes "vrai ou faux".
 
-Exemple : $2 \leq x + 1 < 3y$.
+$\underline{Exemple}$ : $2 \leq x + 1 < 3y$.
 
 - __Def__ (domaine): un domaine est composé
   - d'un ensemble de variables $X$
@@ -138,7 +138,7 @@ Retour sur l'exemple : $2 \leq x + 1 < 3y$
   - $S_f⁰ = \{1, 2, 3\}$
   - $S_p¹ = \{\leq\}$
 
-Exemple 2 : "Tous les hommes sont mortels. Socrate est un homme. Donc Socrate est mortel." Pour transformer cette phrase il nous faut les quantificateur.
+$\underline{Exemple}$ 2 : "Tous les hommes sont mortels. Socrate est un homme. Donc Socrate est mortel." Pour transformer cette phrase il nous faut les quantificateur.
 
 - __Def__ (quantificateurs):
   - Le symbole $\forall$ désigne le quantificateur universel.
@@ -175,3 +175,117 @@ $\mapsto$ Les fonctions inductives sur l'ensemble des formules propositionnnelle
 Attention pour la substitution, on ne peut pas substituer les variables liées.
 
 ## II. Sémentique
+
+__Vocabulaire__ :
+
+- On appelle *variable de vérité* la valeur "vrai", noté $V$, et "faux", noté $F$.
+
+### 1. Valeur de vérité d'une formule
+
+- Une *fonction booléenne* associé à un connnecteur $\diamonds$ donne la valeur de vérité de $\psi \diamonds \varphi$ en fonction des valeurs de vérité de $\psi$ et $\varphi$.
+
+$\underline{Exemples}$ :
+
+- Soit $f_\neg$ la fonction booléénne qui associe au connecteur la négation on a:
+
+$$
+\begin{cases}
+  f_\neg(V) = F \\
+  f_\neg(F) = V
+\end{cases}
+$$
+
+- Soit $f_\land$ la fonction booléénne qui associe au connecteur la conjonction on a:
+
+$$
+\begin{cases}
+  f_\land(F,F) = F \\
+  f_\land(F,V) = F \\
+  f_\land(V,F) = F \\
+  f_\land(V,V) = V
+\end{cases}
+$$
+(On défnit de même les fonctions $f_\lor, f_\rightarrow, f_\leftrightarrow$.)
+
+- __Def:__ une *valuation* est une fonction associant à chaque variable propositionnnelle une valeur de vérité.
+
+- __Def:__ Evaluation d'une formule $\varphi$ par une valuation $v$, notée $[\![\varphi]\!]_v$
+  - Assertion:
+    - $\begin{cases} [\![\top]\!]_v = V \\ [\![\bot]\!]_v = F \\ [\![x]\!]_v = v(x) \space \text{avec} \space x \in \mathcal{V} \end{cases}$
+  - Règle d'inférence:
+    - $\begin{cases} [\![\neg \varphi]\!]_v = f_\neg ([\![\varphi]\!]_v) \\ [\![\varphi \diamonds \psi]\!]_v = f_\diamonds ([\![\varphi]\!]_v, [\![\psi]\!]_v) \end{cases}$
+
+$\underline{Exemple}$ : $\mathcal = \{x, y\}$ et $\varphi = ((x \rightarrow y) \lor (x \land \neg y)) \land (x \lor \neg y)$
+Soit $v$ la validation défnie par $\begin{cases} v(x) = F \\ v(y) = F \end{cases}$.
+
+Alors:
+$$
+\begin{align*}
+  [\![\varphi]\!]_v &= f_\land ([\![(x \rightarrow y) \lor (x \land \neg y)]\!]_v, [\![x \lor \neg y]\!]_v) \\
+    &= f_\land (f_\lor ([\![x \rightarrow y]\!]_v,[\![x \land \neg y]\!]_v) , f_\lor ([\![x, \neg y]\!]_v)) \\
+    & = f_\land (f_\lor (f_\rightarrow([\![x]\!]_v, [\![y]\!]_v),f_\land([\![x]\!]_v, f_\neg([\![y]\!]_v))) , f_\lor ([\![x]\!]_v, f_\neg( [\![y]\!]_v))) \\
+    &= f_\land (f_\lor (f_\rightarrow(F, F),f_\land(F, f_\neg(F))) , f_\lor (F, f_\neg(F))) \\
+    &= f_\land (f_\lor (V,f_\land(F, V)) , f_\lor (F, V)) \\
+    &= f_\land (f_\lor (V,F) , V) \\
+    &= f_\land (V , V) \\
+    &= V
+\end{align*}
+$$
+
+- Une *table de vérité* d'ube formule $\varphi$ permet de résumer $[\![\varphi]\!]_v$ pour chque valuation $v$ existante.
+
+$$
+\begin{vmatrix}
+  v(x) && v(y) && [\![(x \rightarrow y) \lor (x \land \neg y)]\!]_v && [\![x \lor \neg y]\!]_v && [\![\varphi]\!]_v \\ \hline
+  F && F && V && V && V \\
+  F && V && F && V && F \\
+  V && F && V && F && F \\
+  V && V && V && V && V
+\end{vmatrix}
+$$
+
+__Propriété :__
+
+- Si $\mathcal{V}$ contient $n$ variable prop. Une formule $\in \mathcal{P}_\mathcal{V}$ contient $2^n$ lignes pour une table de vérité (i.e. $2^n$ validations existantes).
+- Il y a $2^{2^n}$ tables de vérité existantes pour l'ensemble des formules à $n$ variables prop.
+
+__Vocabulaire :__
+
+- Un *modèle* d'une formule propostionnelle $\varphi$ est une validarion $v$ tq $[\![\varphi]\!]_v = V$. On dit que le modèle *satisfait* $\varphi$. on note $Mod(\varphi)$ l'ensemble des modèles de $\varphi$.
+- Une formule $\varphi$ est dite *satisfiable* si $Mod(\varphi) \neq \emptyset$
+- Une formule $\varphi$ est une *antilogie* si $Mod(\varphi) = \emptyset$
+- Une formule $\varphi$ est une *tautologie* si toute valuation est un modèle de $\varphi$. On note $\vDash \varphi$.
+
+$\to$ Pour étudier ces trois caractéristiques, on peut simplement dresser la table de vérité de la formule.
+
+$\underline{Remarque}$ $\top$ est une tautologie et $\bot$ est une antilogie.
+
+### 2. Equivalence et conséquence sémantique
+
+- __Def:__ Une formule $\psi$ est une conséquence sémantique d'une formule $\varphi$ quand toute valuation qui satisfait $\varphi$ satidfait $\psi$. Autrement dit quand $Mod(\varphi) \subset Mod(\psi)$. On note $\varphi \vDash \psi$
+
+$\underline{Généralisation}$ Une formule $\psi$ est une conséquence sémantique *d'un ensemble* de formules $\Gamma$ quand toute valuation qui satisfait toute formule de $\Gamma$ satisfait aussi $\psi$. On le note aussi $\Gamma \vDash \psi$.
+
+$\to$ Pour étudier la cons"quence sémantique on fait les tables de vérité de toutes les formules impliquées.
+
+$\underline{Exemple}$: $\mathcal{V} = \{x, y\}$. Montrer que $x \land y \vDash x \rightarrow y$
+
+$$
+\begin{vmatrix}
+  v(x) && v(y) && [\![x \land y]\!]_v && [\![x \rightarrow y]\!]_v \\ \hline
+  F && F && F && V \\
+  F && V && F && V \\
+  V && F && F && F \\
+  V && V && V && V
+\end{vmatrix}
+$$
+
+- __Def :__ Deux formules $\varphi$ et $\psi$ sont dites *sémantiquement équivalentes* si $Mod(\varphi) = Mod(\psi)$. On note $\varphi \equiv \psi$.
+
+__Propriétés :__
+
+- Si $\varphi \equiv \psi$ alors $\varphi \vDash \psi$ et $\psi \vDash \varphi$.
+- $\equiv$ est une relation d'équivalence. Ceci est immédiat du fait que $=$ est une relation d'équivalence.
+- (impact de la substitution) Si $\varphi \equiv \nu$. Soit $x \in \mathcal{V}$ et $\psi \in \mathcal{P}_\mathcal{V}$.
+  - $\varphi[\psi/x] \equiv \nu[\psi/x]$
+  - $\psi[\varphi/x] \equiv \psi[\nu/x]$ ces deux propriétés se montre par induction structurelle.
