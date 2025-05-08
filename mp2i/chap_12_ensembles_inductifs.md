@@ -2,7 +2,7 @@
 
 ## Partie 0: À savoir
 
-### Vocabulaire à connître
+### Vocabulaire à connaître
 
 - __Ensembles ordonnés:__
   - reflecive, transitive, symétrie, anti-symétrie

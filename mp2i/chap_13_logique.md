@@ -10,22 +10,22 @@ $\leadsto$ __Sémantique__: sens, interprétation des formules.
 
 ### 1. Formules propositionnelles
 
-__Def__: Une *variable propositionnelle* est une proposition élémentaire pouvant être vraie ou fausse.
+>__Def__: Une *variable propositionnelle* est une proposition élémentaire pouvant être vraie ou fausse.
+___
 
-__Def__: Les *constantes logiques* sont $\begin{cases} \top \space \text{désignant une proposition toujours vraie} \\ \bot \space \text{----- fausse.}  \end{cases}$
+>__Def__: Les *constantes logiques* sont $\begin{cases} \top \space \text{désignant une proposition toujours vraie} \\ \bot \space \text{----- fausse.}  \end{cases}$
+___
 
-__Def__: Soit $\mathcal{V}$ l'ensemble des variables propositionnnelles on définit uninductivemment l'ensemble $\mathcal{P}_\mathcal{V}$ des formules propositionnnelles.
-
-__Assetions__ :
-
-- une vatiable est une formule: $\mathcal{V} \subset \mathcal{P}_\mathcal{V}$.
-- les consantes logiques sont des formules i.e. $\top \in \mathcal{P}_\mathcal{V}$ et $\bot \in \mathcal{P}_\mathcal{V}$
-
-__Règles d'inférences__ :
-
-- Soit $\neg$ le connecteur de négation et $\varphi \in \mathcal{P}_\mathcal{V}$. Alors $\neg \varphi \in \mathcal{P}_\mathcal{V}$
-- Soit $\land$ le connecteur de conjonction et $\psi$ et $\varphi \in \mathcal{P}_\mathcal{V}$. Alors $(\psi \land \varphi) \in \mathcal{P}_\mathcal{V}$.
-- Soient $\lor$ le connecteur de disjonction, $\rightarrow$ le connecteur d'implication et $\leftrightarrow$ le connnecteur d'équivalence. Soient $\psi$ et $\varphi \in \mathcal{P}_\mathcal{V}$. Alors $(\psi \lor \varphi) \in \mathcal{P}_\mathcal{V}, (\psi \rightarrow \varphi) \in \mathcal{P}_\mathcal{V}$ et $(\psi \leftrightarrow \varphi) \in \mathcal{P}_\mathcal{V}$
+>__Def__: Soit $\mathcal{V}$ l'ensemble des variables propositionnnelles on définit uninductivemment l'ensemble $\mathcal{P}_\mathcal{V}$ des formules propositionnnelles.
+>
+>- __Assetions__ :
+>   - une vatiable est une formule: $\mathcal{V} \subset \mathcal{P}_\mathcal{V}$.
+>   - les consantes logiques sont des formules i.e. $\top \in \mathcal{P}_\mathcal{V}$ et $\bot \in \mathcal{P}_\mathcal{V}$
+>
+>- __Règles d'inférences__ :
+>   - Soit $\neg$ le connecteur de négation et $\varphi \in \mathcal{P}_\mathcal{V}$. Alors $\neg \varphi \in \mathcal{P}_\mathcal{V}$
+>   - Soit $\land$ le connecteur de conjonction et $\psi$ et $\varphi \in \mathcal{P}_\mathcal{V}$. Alors $(\psi \land \varphi) \in \mathcal{P}_\mathcal{V}$.
+>   - Soient $\lor$ le connecteur de disjonction, $\rightarrow$ le connecteur d'implication et $\leftrightarrow$ le connnecteur d'équivalence. Soient $\psi$ et $\varphi \in \mathcal{P}_\mathcal{V}$. Alors $(\psi \lor \varphi) \in \mathcal{P}_\mathcal{V}, (\psi \rightarrow \varphi) \in \mathcal{P}_\mathcal{V}$ et $(\psi \leftrightarrow \varphi) \in \mathcal{P}_\mathcal{V}$
 
 Pour simplifier les écritures on définit pour la suite du cours $\diamonds \in \{\lor, \land, \rightarrow, \leftrightarrow\}$ le connecteur générique.
 
@@ -36,12 +36,15 @@ Ex:
 - "Si j'ai cours de math ou si j'ai cours d'info alors je prends mon cahier." On pose $x$ la variable propositionnelle signifiant "j'ai cours de math", $y$ signifiant "j'ai cours d'info" et $z$ signifiant "je prends mon cahier". On a alors $((x \lor y) \rightarrow z)$
 
 __Représentation arborescente__ : Toute formule propositionnelle peut être représentée par un arbre. Dans un arbre $\top$ et $\bot$ sont des feuilles et
-$\diamonds \in \{\land, \lor, \rightarrow, \leftrightarrow\}$ en noeud interne.
+$\diamonds$ en noeud interne.
+___
 
-Propsitions:
+__Propsitions :__
 
 - Les représentations arborescentes des formules prop. sont des arbres binaires non stricts. Rmp: connecteurs $\neg$ est d'arité 1 et connnecters $\land, \lor, \rightarrow, \leftrightarrow$ sont d'arrité 2.
 - La syntaxe de la fomule se retrouve avec un parcours *infixe* de la repr arboresente.
+
+___
 
 $\leadsto$ Repr d'une formule en C / OCaml.
 
@@ -69,7 +72,7 @@ struct fp_s {
 
 ### 2. Fonctions sur les formules propositionnnelles
 
-$\leadsto$ __Taille__ d'une formule prop
+#### __Taille__ d'une formule prop
 
 Idée $=$ taille de l'arbre.
 
@@ -78,9 +81,11 @@ Idée $=$ taille de l'arbre.
 - Assertions : $\mathcal{T}(\top) = 1$ et $\mathcal{T}(\bot) = 1$. Soit $v \in \mathcal{V}$ alors $\mathcal{T}(v) = 1$
 - Règles d'inférence :
   - Soit $\varphi \in \mathcal{P}_\mathcal{V}$ alors $\mathcal{T}(\neg \varphi) = 1 + \mathcal{T}(\varphi)$.
-  - Soient $\varphi, \psi \in \mathcal{P}_\mathcal{V}$ et connecteur $\diamonds \in \{\lor, \land, \rightarrow, \leftrightarrow\}$ alors $\mathcal{T}(\varphi \diamonds \psi) = 1 + \mathcal{T}(\varphi) + \mathcal{T}(\psi)$
+  - Soient $\varphi, \psi \in \mathcal{P}_\mathcal{V}$ alors $\mathcal{T}(\varphi \diamonds \psi) = 1 + \mathcal{T}(\varphi) + \mathcal{T}(\psi)$
 
-$\leadsto$ __Hauteur__ d'une formule prop
+___
+
+#### __Hauteur__ d'une formule prop
 
 Idée $=$ hauteur de l'arbre.
 
@@ -89,9 +94,11 @@ Idée $=$ hauteur de l'arbre.
 - Assertions : $\mathcal{H}(\top) = 0$ et $\mathcal{H}(\bot) = 0$. Soit $v \in \mathcal{V}$ alors $\mathcal{H}(v) = 0$
 - Règles d'inférence :
   - Soit $\varphi \in \mathcal{P}_\mathcal{V}$ alors $\mathcal{H}(\neg \varphi) = 1 + \mathcal{H}(\varphi)$.
-  - Soient $\varphi, \psi \in \mathcal{P}_\mathcal{V}$ et connecteur $\diamonds \in \{\lor, \land, \rightarrow, \leftrightarrow\}$ alors $\mathcal{H}(\varphi \diamonds \psi) = 1 + max(\mathcal{H}(\varphi), \mathcal{H}(\psi))$
+  - Soient $\varphi, \psi \in \mathcal{P}_\mathcal{V}$ alors $\mathcal{H}(\varphi \diamonds \psi) = 1 + max(\mathcal{H}(\varphi), \mathcal{H}(\psi))$
 
-$\leadsto$ __Sous-formule__ d'une formule prop
+___
+
+#### __Sous-formule__ d'une formule prop
 
 Idée $=$ une sous-formule est une partie de la formule qui est syntaciquement une formule prop.
 
@@ -100,9 +107,11 @@ Idée $=$ une sous-formule est une partie de la formule qui est syntaciquement u
 - Assertions : $\mathcal{S_F}(\top) = \top$ et $\mathcal{S_F}(\bot) = \bot$. Soit $v \in \mathcal{V}$ alors $\mathcal{S_F}(v) = \{v\}$
 - Règles d'inférence :
   - Soit $\varphi \in \mathcal{P}_\mathcal{V}$ alors $\mathcal{S_F}(\neg \varphi) = \{\neg \varphi\} \cup \mathcal{S_F}(\varphi)$.
-  - Soient $\varphi, \psi \in \mathcal{P}_\mathcal{V}$ et connecteur $\diamonds \in \{\lor, \land, \rightarrow, \leftrightarrow\}$ alors $\mathcal{S_F}(\varphi \diamonds \psi) = \{\varphi \diamonds \psi\} \cup \mathcal{S_F}(\varphi) \cup \mathcal{S_F}(\psi)$
+  - Soient $\varphi, \psi \in \mathcal{P}_\mathcal{V}$  alors $\mathcal{S_F}(\varphi \diamonds \psi) = \{\varphi \diamonds \psi\} \cup \mathcal{S_F}(\varphi) \cup \mathcal{S_F}(\psi)$
 
-$\leadsto$ __Sous-formule__ d'une variable par une formule prop
+___
+
+#### __Sous-formule__ d'une variable par une formule prop
 
 Idée $=$ remplacer la variable à chaque endroit où la variable est présente dans la formule.
 
@@ -111,7 +120,7 @@ Idée $=$ remplacer la variable à chaque endroit où la variable est présente 
 - Assertions : $\top[\psi/x] = \top$ et $\bot[\psi/x] = \bot$. Soit $v \in \mathcal{V}$ alors $\begin{cases} v[\psi/x] = \psi \space \text{si} \space v = x \\ v[\psi/x] = v \space \text{sinon}  \end{cases}$
 - Règles d'inférence :
   - Soit $\varphi \in \mathcal{P}_\mathcal{V}$ alors $(\neg \varphi) [\psi/x] = \neg (\varphi[\psi/x])$.
-  - Soient $\varphi, \varphi' \in \mathcal{P}_\mathcal{V}$ et connecteur $\diamonds \in \{\lor, \land, \rightarrow, \leftrightarrow\}$ alors $(\varphi \diamonds \varphi') [\psi/x] = (\varphi[\psi/x] \diamonds \varphi'[\psi/x])$
+  - Soient $\varphi, \varphi' \in \mathcal{P}_\mathcal{V}$ alors $(\varphi \diamonds \varphi') [\psi/x] = (\varphi[\psi/x] \diamonds \varphi'[\psi/x])$
 
 ### 3. Logique du $1^{er}$ ordre
 
@@ -119,16 +128,22 @@ Objectif : pouvoir manipuler des objets qui ne sont pas justes "vrai ou faux".
 
 $\underline{Exemple}$ : $2 \leq x + 1 < 3y$.
 
-- __Def__ (domaine): un domaine est composé
-  - d'un ensemble de variables $X$
-  - d'un ensemble de fonctions d'arité $a$ définies sur $X^{a}$ noté $S_f^{a}$.
-  - d'un ensemble de prédicats d'arrité $a$ noté $S_p^a$.
+>__Def__ (domaine): un domaine est composé
+>
+>- d'un ensemble de variables $X$
+>- d'un ensemble de fonctions d'arité $a$ définies sur $X^{a}$ noté $S_f^{a}$.
+>- d'un ensemble de prédicats d'arrité $a$ noté $S_p^a$.
 
-- __Def__ (terme):
-  - Toute variable de $X$ est un terme.
-  - Si $f \in S_f^a$ et $t_1, t_2, \dots, t_a$ sont des termes alors $f(t_1, t_2, \dots, t_a)$ est un terme.
+___
+
+>__Def__ (terme):
+>
+>- Toute variable de $X$ est un terme.
+>- Si $f \in S_f^a$ et $t_1, t_2, \dots, t_a$ sont des termes alors $f(t_1, t_2, \dots, t_a)$ est un terme.
+
+___
   
-- __Def__ (atome) : Si $t_1, t_2, \dots, t_a$ sont des termes et $p \in S_p^a$ alors $p(t_1, t_2, \dots, t_a)$ est un atome.
+>__Def__ (atome) : Si $t_1, t_2, \dots, t_a$ sont des termes et $p \in S_p^a$ alors $p(t_1, t_2, \dots, t_a)$ est un atome.
 
 Retour sur l'exemple : $2 \leq x + 1 < 3y$
 
@@ -140,16 +155,20 @@ Retour sur l'exemple : $2 \leq x + 1 < 3y$
 
 $\underline{Exemple}$ 2 : "Tous les hommes sont mortels. Socrate est un homme. Donc Socrate est mortel." Pour transformer cette phrase il nous faut les quantificateur.
 
-- __Def__ (quantificateurs):
-  - Le symbole $\forall$ désigne le quantificateur universel.
-  - Le symbole $\exists$ désigne le quantificateur existentiel.
+>__Def__ (quantificateurs):
+>
+>- Le symbole $\forall$ désigne le quantificateur universel.
+>- Le symbole $\exists$ désigne le quantificateur existentiel.
 
-- __Def__ de l'ensemble des formules du premier ordre sur un domaine.
-  - Assertion: un atome est une formule du premier ordre.
-  - Règles d'inférence:
-    - Si $\varphi$ est une formle du permier ordre et $\neg$ le connecteur de négation alors $\neg \varphi$ est une formule du permier ordre.
-    - Si $\varphi$ et $\psi$ sont des formles du permier ordre alors $(\varphi \diamonds \psi)$ est une formule du premier ordre et $\diamonds \in \{\lor, \land, \rightarrow, \leftrightarrow\}$ connecteur d'arité 2.
-    - Si $\varphi$ est une formule du permier ordre et $x$ une variable de $X$ alors $\begin{cases} \forall x \cdot \varphi \\ \exists x \cdot \varphi \end{cases}$ sont des formules du permier ordre.
+___
+
+>__Def__ de l'ensemble des formules du premier ordre sur un domaine.
+>
+>- Assertion: un atome est une formule du premier ordre.
+>- Règles d'inférence:
+>   - Si $\varphi$ est une formle du permier ordre et $\neg$ le connecteur de négation alors $\neg \varphi$ est une formule du permier ordre.
+>   - Si $\varphi$ et $\psi$ sont des formles du permier ordre alors $(\varphi \diamonds \psi)$ est une formule du premier ordre et $\diamonds \in \{\lor, \land, \rightarrow, \leftrightarrow\}$ connecteur d'arité 2.
+>   - Si $\varphi$ est une formule du permier ordre et $x$ une variable de $X$ alors $\begin{cases} \forall x \cdot \varphi \\ \exists x \cdot \varphi \end{cases}$ sont des formules du permier ordre.
 
 On peut représenter les formules par un arbre.
 
@@ -207,13 +226,16 @@ $$
 $$
 (On défnit de même les fonctions $f_\lor, f_\rightarrow, f_\leftrightarrow$.)
 
-- __Def:__ une *valuation* est une fonction associant à chaque variable propositionnnelle une valeur de vérité.
+> __Def:__ une *valuation* est une fonction associant à chaque variable propositionnnelle une valeur de vérité.
 
-- __Def:__ Evaluation d'une formule $\varphi$ par une valuation $v$, notée $[\![\varphi]\!]_v$
-  - Assertion:
-    - $\begin{cases} [\![\top]\!]_v = V \\ [\![\bot]\!]_v = F \\ [\![x]\!]_v = v(x) \space \text{avec} \space x \in \mathcal{V} \end{cases}$
-  - Règle d'inférence:
-    - $\begin{cases} [\![\neg \varphi]\!]_v = f_\neg ([\![\varphi]\!]_v) \\ [\![\varphi \diamonds \psi]\!]_v = f_\diamonds ([\![\varphi]\!]_v, [\![\psi]\!]_v) \end{cases}$
+___
+
+> __Def:__ Evaluation d'une formule $\varphi$ par une valuation $v$, notée $[\![\varphi]\!]_v$
+>
+>- Assertion:
+>   - $\begin{cases} [\![\top]\!]_v = V \\ [\![\bot]\!]_v = F \\ [\![x]\!]_v = v(x) \space \text{avec} \space x \in \mathcal{V} \end{cases}$
+>- Règle d'inférence:
+>   - $\begin{cases} [\![\neg \varphi]\!]_v = f_\neg ([\![\varphi]\!]_v) \\ [\![\varphi \diamonds \psi]\!]_v = f_\diamonds ([\![\varphi]\!]_v, [\![\psi]\!]_v) \end{cases}$
 
 $\underline{Exemple}$ : $\mathcal = \{x, y\}$ et $\varphi = ((x \rightarrow y) \lor (x \land \neg y)) \land (x \lor \neg y)$
 Soit $v$ la validation défnie par $\begin{cases} v(x) = F \\ v(y) = F \end{cases}$.
@@ -232,7 +254,7 @@ $$
 \end{align*}
 $$
 
-- Une *table de vérité* d'ube formule $\varphi$ permet de résumer $[\![\varphi]\!]_v$ pour chque valuation $v$ existante.
+$\to$ Une *table de vérité* d'ube formule $\varphi$ permet de résumer $[\![\varphi]\!]_v$ pour chque valuation $v$ existante.
 
 $$
 \begin{vmatrix}
@@ -243,6 +265,8 @@ $$
   V && V && V && V && V
 \end{vmatrix}
 $$
+
+___
 
 __Propriété :__
 
@@ -262,11 +286,11 @@ $\underline{Remarque}$ $\top$ est une tautologie et $\bot$ est une antilogie.
 
 ### 2. Equivalence et conséquence sémantique
 
-- __Def:__ Une formule $\psi$ est une conséquence sémantique d'une formule $\varphi$ quand toute valuation qui satisfait $\varphi$ satidfait $\psi$. Autrement dit quand $Mod(\varphi) \subset Mod(\psi)$. On note $\varphi \vDash \psi$
+> __Def:__ Une formule $\psi$ est une conséquence sémantique d'une formule $\varphi$ quand toute valuation qui satisfait $\varphi$ satidfait $\psi$. Autrement dit quand $Mod(\varphi) \subset Mod(\psi)$. On note $\varphi \vDash \psi$
 
-$\underline{Généralisation}$ Une formule $\psi$ est une conséquence sémantique *d'un ensemble* de formules $\Gamma$ quand toute valuation qui satisfait toute formule de $\Gamma$ satisfait aussi $\psi$. On le note aussi $\Gamma \vDash \psi$.
+$\underline{Généralisation :}$ Une formule $\psi$ est une conséquence sémantique *d'un ensemble* de formules $\Gamma$ quand toute valuation qui satisfait toute formule de $\Gamma$ satisfait aussi $\psi$. On le note aussi $\Gamma \vDash \psi$.
 
-$\to$ Pour étudier la cons"quence sémantique on fait les tables de vérité de toutes les formules impliquées.
+$\to$ Pour étudier la conséquence sémantique on fait les tables de vérité de toutes les formules impliquées.
 
 $\underline{Exemple}$: $\mathcal{V} = \{x, y\}$. Montrer que $x \land y \vDash x \rightarrow y$
 
@@ -280,7 +304,7 @@ $$
 \end{vmatrix}
 $$
 
-- __Def :__ Deux formules $\varphi$ et $\psi$ sont dites *sémantiquement équivalentes* si $Mod(\varphi) = Mod(\psi)$. On note $\varphi \equiv \psi$.
+> __Def :__ Deux formules $\varphi$ et $\psi$ sont dites *sémantiquement équivalentes* si $Mod(\varphi) = Mod(\psi)$. On note $\varphi \equiv \psi$.
 
 __Propriétés :__
 
