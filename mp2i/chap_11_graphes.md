@@ -208,9 +208,9 @@ On peut aussi avoir des GO chemins.
 
 ### 2. Prop particulières
 
-__Vocabulaire:
+__Vocabulaire:__
 
---__creux__ = pax beaucoup d'arrêtes/arcs.
+- __creux__ = pax beaucoup d'arrêtes/arcs.
 
 - __denses__ = bcp d'arrêtes\arcs.
 
