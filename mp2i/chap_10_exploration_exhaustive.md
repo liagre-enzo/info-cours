@@ -15,8 +15,8 @@ __Types de problèmes :__
 > Tester toutes les possibilités, i.e. explorer tout l'ensemble $E$ pour tester la propriété $P$.
 
 ```pseudo-code
-POUR chaque élement e de E
-    SI P(e) est vrai
+POUR chaque élement e de E:
+    SI P(e) est vrai:
         RENVOYER e
     FIN SI
 ```
@@ -47,11 +47,11 @@ On peut représenter l'algo de backtracking à l'aide d'un arbre:
 
 ![image](ressources/chap_10/backtracking.png)
 
-Les feuilles sont les solutions potentielles. L'algo se déroule sur le même principe q'un parcours en profondeur.
+Les feuilles sont les solutions potentielles. L'algo se déroule sur le même principe qu'un parcours en profondeur.
 
 __Algo :__
 
-- On suppoe la fonction  
+- On suppose la fonction  
   - `racine()` qui renvoie une construction vide
   - `fils(construction partielle)` qui renvoie toutes les construction possibles
   - `est_feuille(construction)` (assez explicite)
@@ -63,7 +63,7 @@ FONCTION backtracking(construction):
       construction est solution
     FIN SI
   SINON
-    POUR chaque construction suivante dans fils(construction)
+    POUR chaque construction suivante dans fils(construction):
       backtracking(construction suivante)
     FIN POUR
   FIN SI
@@ -76,9 +76,9 @@ $\to$ le backtracking est utile avec des optimisations.
 
 > __Élagage de l'arbre__
 >
-> On ne continue pas sur les construction qui sont sûre de ne pas aboutire
+> On ne continue pas sur les construction qui sont sûre de ne pas aboutir
 
-- L'arbre des construction a moins de branches. En contre partie la vérification a une complexité.
+- L'arbre des constructions a moins de branches. En contre partie la vérification a une complexité.
 - Généralement le backtracking est toujours utilisé avec l'élagage de l'arbre.
 
 > __Mémoïsation des constructions partielles__

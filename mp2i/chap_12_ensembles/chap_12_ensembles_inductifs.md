@@ -5,7 +5,7 @@
 ### Vocabulaire à connaître
 
 - __Ensembles ordonnés:__
-  - reflecive, transitive, symétrie, anti-symétrie
+  - reflexive, transitive, symétrie, anti-symétrie
   - relation d'équivalence
   - relation d'ordre
   - prédécesseur.successeur $\pm$ immédiat
@@ -13,24 +13,24 @@
   - elt minimal / maximal
   - minimum / maxium
   - ensemble __bien fondé__
-- __Esembles inductifs:__
+- __Ensembles inductifs:__
   - assertion, règle d'inférence
   - __dérivation__
   - __ambiguté__
 
 ### Savoir faire
 
-- __Esembles ordonnés:__
+- __Ensembles ordonnés:__
   - Dessiner le graphe associé à un ensemble ordonné (p.4 du poly)
-- __Esembles inductifs:__
+- __Ensembles inductifs:__
   - définir un ensemble inductivement
   - preuves par induction structurelle
   - définition d'une fonction sur les ensembles inductifs
 
 ### À savoir par coeur
 
-- ⚠️ Théorème page 6. "Enseble bien fondé $\iff$ il n'existe pas de suite strictement décroissante."
-- Métode pour la terminaison.
+- ⚠️ Théorème page 6. "Ensemble bien fondé $\iff$ il n'existe pas de suite infinie strictement décroissante."
+- Méthode pour la terminaison.
   1. Munir chaque $\begin{cases} \text{variable de boucle} \\ \text{paramètre de la fonction récursive} \end{cases}$ d'un ordre bien fondé. Munir l'ensemble d'un ordre produit / lexicographique qui est par définition bien fondé.
   2. Montrer sa stricte décroissance $\begin{cases} \text{d'un appel rec au suivant} \\ \text{d'une itération à la suivante} \end{cases}$.
   3. citer le théorème ci dessus pour justifier que le nombre $\begin{cases} \text{d'appels réc} \\ \text{d'itérations} \end{cases}$ est bien fini puis vérifier la terminaison du reste des instruction.

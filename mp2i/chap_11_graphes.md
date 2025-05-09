@@ -1,6 +1,6 @@
 # Chapitre 11 : les Graphes
 
--> structure ralationnelle crée pour résoudre le pb du pont de konigsberg.
+$\to$ structure ralationnelle crée pour résoudre le pb du pont de konigsberg.
 ![image](ressources/chap_11/ponts_konigsberg.png)
 
 ## I. Définitions
@@ -25,6 +25,7 @@ $\to$ boucles
 __Voc__ : Une arrête est *incidente* à un sommet et $s_1$ et $s_2$ sont dit *voisins*.
 
 __Prop__:
+
 $$card(A)\leq \frac{card(S)\times (card(S)-1)}{2}$$
 
 ### 2. Graphes orientés
@@ -47,6 +48,7 @@ $\to$ boucles
 __Voc__ : $s_1$ est appelé *prédécesseur* de $s_2$ et $s_2$ est le successeur de $s_1$.
 
 __Prop__:
+
 $$card(A) \leq card(S)\times (card(S)-1)$$
 
 ## II. Vocabulaire de la théorie des Graphes
