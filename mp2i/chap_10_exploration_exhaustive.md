@@ -2,12 +2,12 @@
 
 Chapitre qui présente 2 méthodes algorithmiques. Il est appliquable quand il est impossible de se ramener à des sous problèmes.
 
-## I. Recherche par foce brute
+## I. Recherche par force brute
 
 __Types de problèmes :__
 
 - Problèmes de décisons:
-  - On a une propriété $P$ sur un ensemble $E$ et on charche $e \in E$ tq $P(e)$ soit vraie.
+  - On a une propriété $P$ sur un ensemble $E$ et on cherche $e \in E$ tq $P(e)$ soit vraie.
 - Parfois utilisée en optimisation / combinatoire.
 
 > __Principe__
@@ -21,10 +21,10 @@ POUR chaque élement e de E
     FIN SI
 ```
 
-__Complecité :__
+__Complexité :__
 
 - $card(E)$ itérations.
-- On applique $P$ à quanche itération.
+- On applique $P$ à chaque itération.
 - $O(card(E \times (\text{complexité de }P))$
 
 Il faut aussi prendre en compte la complexité de la *construction* de $E$ (parfois immédiate). La plupart du temps c'est de la complexité en plus.
@@ -74,12 +74,12 @@ __Complexité :__ Dans le pire des cas, même que pour la recherche par force br
 
 $\to$ le backtracking est utile avec des optimisations.
 
-> __Élaggage de l'arbre__
+> __Élagage de l'arbre__
 >
 > On ne continue pas sur les construction qui sont sûre de ne pas aboutire
 
 - L'arbre des construction a moins de branches. En contre partie la vérification a une complexité.
-- Généralement le bacjtracjing est toujours utilisé avec l'élaggage de l'abre.
+- Généralement le backtracking est toujours utilisé avec l'élagage de l'abre.
 
 > __Mémoïsation des constructions partielles__
 >
