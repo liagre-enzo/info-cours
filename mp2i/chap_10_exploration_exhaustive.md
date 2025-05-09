@@ -79,7 +79,7 @@ $\to$ le backtracking est utile avec des optimisations.
 > On ne continue pas sur les construction qui sont sûre de ne pas aboutire
 
 - L'arbre des construction a moins de branches. En contre partie la vérification a une complexité.
-- Généralement le backtracking est toujours utilisé avec l'élagage de l'abre.
+- Généralement le backtracking est toujours utilisé avec l'élagage de l'arbre.
 
 > __Mémoïsation des constructions partielles__
 >
