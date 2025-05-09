@@ -132,7 +132,7 @@ Dans un GO, les circuit dont au moins de longueur $2$.
 
 $\underline{\text{Dans un GNO.}}$
 
-> Un GNO est dit __connexe__ si tous sommet du graphe est accessible depuis tout autre sommet. Les __composantes connnexes__ d'un GNO sont les sous-graphes induits par la relation d'équivalence d'accessibilité.
+> Un GNO est dit __connexe__ si tous sommet du graphe est accessible depuis tout autre sommet. Les __composantes connexes__ d'un GNO sont les sous-graphes induits par la relation d'équivalence d'accessibilité.
 
 Un graphe est connexe $\iff$ il possède une seule composante connexe.
 
@@ -147,7 +147,7 @@ $\underline{\text{Dans un GO.}}$
 
 >- Un GO est dit __fortement connexe__ si, pour tout sommet $s_1$ et $s_2$ d graphe, il existe un chemin reliant $s_1$ à $s_2$.
 >- Un GO est dit __faiblement connexe__ si, l'oublie de l'orientation donne un graphe connexe.
->- Un GO est dit __fortement connexe__ si, pour tout sommet $s_1$ et $s_2$ d graphe, il existe un chemin reliant $s_1$ à $s_2$ ou un chemin reliant $s_2$ à $s_1$.
+>- Un GO est dit __connexe__ si, pour tout sommet $s_1$ et $s_2$ d graphe, il existe un chemin reliant $s_1$ à $s_2$ ou un chemin reliant $s_2$ à $s_1$.
 
 Exemples (un graphe fortement connexe et un non fortement connexe (sommet noir non accessible depuis le sommet gris)) :
 
@@ -310,7 +310,7 @@ et si on l'enracine en 0 on a : ![image](ressources/chap_11/arbre%20enraciné%20
 
 > __Def__:
 >
-> un __arbre couvrant__ est un graphe $G = (S,A)$ est un sous-graphe $\tilde G = (\tilde S, \tilde A)$ tel que $\tilde S = S$ (même sommets) et $\tilde A \subset A$ tel que $\tilde G $ est un arbre (connnexe acyclique).
+> un __arbre couvrant__ est un graphe $G = (S,A)$ est un sous-graphe $\tilde G = (\tilde S, \tilde A)$ tel que $\tilde S = S$ (même sommets) et $\tilde A \subset A$ tel que $\tilde G $ est un arbre (connexe acyclique).
 
 - __Théorème__ : Tout GNO connexe admet un arbre couvrant.
   - Considérons l'algo suivant:
@@ -604,7 +604,7 @@ GNO et __connexité__
 - n'importe lequel des 3 algos peut être adapté
 - vérifier que tous les sommets sont dans `vus`
 
-GNO: trouver les composantes connnexes
+GNO: trouver les composantes connexes
 
 - avec n'importe quel algo on lance un parcours avec n'importe quel sommetde départ ce sommet de départ ce qui donne sa comp_connexe on recommance avec un sommet non vu, etc...
 
