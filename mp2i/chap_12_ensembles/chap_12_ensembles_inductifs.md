@@ -38,38 +38,38 @@
 
 __La suite du fichier donne la corréction de la plupart des exos du poly.__
 
-## Partie I
+## I. Ensembles ordonnées
 
-### Partie 2
+### 2. Relation d'équivalence
 
 - Tout sommet est accessible de lui même par un chemin de longueur 0. $\to R$ est reflexive.
 - En mettant bout à bout les chemin on a la transitivité de $R$
 - La symétrie est triviale.
 
-### Partie 3
+### 3. Relations d'ordre
 
-#### Exo 1
+#### Exo 1. 2. $x \leadsto y \iff y \text{ accessible depuis } x$
 
 - Même argument pour la réflexibilité.
 - IDEM pour la transitivité.
 - Comme le graphe est acyclique si 2 sommets $\neq$ alors on a un cycle ce qui n'est pas possible. D'où l'anti-symétrie.
 
-#### Exo 2
+#### Exo 2. Dessiner le graphe de la divisibilité dans $[\![1, 12]\!]$
 
-![image](ressources/chap_12/graphe_ensemble_ordonnée.png)
+![image](../ressources/chap_12/graphe_ensemble_ordonnée.png)
 
-#### Exo 4
+#### Exo 4. Preuve de la propriété
 
 Par l'absurde: Si le graphe est cyclique.
 Alors il existe un chemin de taille $n$ (non nul) tel que $s_1 s_2\dots s_n s_1$ soit un cycle.
 Donc $s_2 \prec s_n$ et $s_n \prec s_2$, absurde.
 Donc le graphe est acyclique.
 
-### Partie 5
+### 5. Retour sur la terminaison des fonctions
 
-#### Exo 1 (partie b)
+#### b. terminaison d'une boucle
 
-Q1.
+*Q1.*
 
 $x \in \N$ et $y \in \N$ et $(\N, \leq)$ est bien fondé donc par définition l'ordre lexicographique sur $(x, y)$ est bien fondé.
 Soit $\tilde x, \tilde y$ les valeurs de $x$ et $y$ en fin d'itération. Montrons que $(\tilde x, \tilde y) < (x, y)$ selon l'ordre lexicographique:
@@ -79,7 +79,7 @@ Soit $\tilde x, \tilde y$ les valeurs de $x$ et $y$ en fin d'itération. Montron
 
 Il n'existe pas de suite infinie strictement décroissante à valeurs dans un ensemble bien fondé. Donc le nombre d'itération de la boucle est finie. Le reste des instructions terminent trivialement, donc la boucle termine.
 
-Q2.
+*Q2.*
 
 $n \in \N$ et $m \in \N$ et $(\N, \leq)$ est bien fondé donc par définition l'ordre lexicographique sur $(n, m)$ est bien fondé.
 Soit $\tilde n, \tilde m$ les valeurs de $n$ et $m$ en fin d'itération. Montrons que $(\tilde n, \tilde m) < (n, m)$ selon l'ordre lexicographique:
@@ -89,13 +89,13 @@ Soit $\tilde n, \tilde m$ les valeurs de $n$ et $m$ en fin d'itération. Montron
 
 Il n'existe pas de suite infinie strictement décroissante à valeurs dans un ensemble bien fondé. Donc le nombre d'itération de la boucle est finie. Le reste des instructions terminent trivialement, donc la boucle termine.
 
-Q3.
+*Q3.*
 
 Ordre lexicographique avec $(l-i, c-j)$.
 
-#### Exo 2 (partie c)
+#### c. terminaison d'une fonction récursive
 
-Q1.
+*Q1.*
 
 $a \in \N$, $b \in \N$ et $c \in \N$ et $(\N, \leq)$ est bien fondé donc par définition l'ordre lexicographique sur $(a, b, c)$ est bien fondé.
 Soit $\tilde a, \tilde b, \tilde c$ les valeurs de $a$, $b$ et $c$ en fin d'itération. Montrons que $(\tilde a, \tilde b, \tilde c) < (a, b, c)$ selon l'ordre lexicographique:
@@ -111,39 +111,42 @@ Soit $\tilde a, \tilde b, \tilde c$ les valeurs de $a$, $b$ et $c$ en fin d'ité
 
 Il n'existe pas de suite infinie strictement décroissante à valeurs dans un ensemble bien fondé. Donc le nombre d'itération de la boucle est finie. Le reste des instructions terminent trivialement, donc la boucle termine.
 
-Q2.
+*Q2.*
 
 Exercice laissé au soin du lecteur.
 
-## Partie II
+## II. Ensembles inductifs
 
-### Partie 1
+### 1. définition des ensembles inductifs
 
-#### Exercice 1
+#### Exercie d'application de la défintion
 
-Q1.
+*Q1.*
 
 - Assetion : $n = 0$ pour les entiers pairs $n = 1$ pour les impairs.
 - Règle d'inférence : Soit $n$ un entier pair/impair $S = n \pm 2$.
 
-Q2.
+*Q2.*
+
 $\Z^*$
 
-Q3. Voir chapitre sur les arbres.
+*Q3.*
 
-#### Exercice 2
+Voir chapitre sur les arbres.
+
+#### Application de la définition de la dérivation
 
 On note $S_1 = x \mapsto 2x$, $S_2 = x \mapsto 2x + 1$ et $S_3 = x \mapsto -x$. Alors $-14 = S_3(S_2(S_1(S_1(\mathbb(1)))))$
 
-#### Exercice 3
+#### Définition de l'ambiguité
 
 1. Non ambigüe
 2. ambigüe
 3. ambigüe
 
-### P. 3
+### 3. Fonctions sur un ensemble inductif
 
-#### E. 1
+#### Définition de fonctions sur un ensemble inductif
 
 L'addition sur deux entier naturels :
 
@@ -160,7 +163,7 @@ La factorielle:
 - Pour $n = 0$ : $0! = 1$
 - Soit $n \in \N$. $S(n)! = S(n) \times n!$
 
-#### E. 2
+#### Écriture des fonctions inductives
 
 ```Ocaml
 type entier = Zero | S of entier
