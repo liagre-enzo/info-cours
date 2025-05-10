@@ -20,16 +20,16 @@ ___
 
 ___
 
->__Def__: Soit $V$ l'ensemble des variables propositionnnelles on définit uninductivemment l'ensemble $P_V$ des formules propositionnnelles.
+>__Def__: Soit $V$ l'ensemble des variables propositionnnelles on définit uninductivemment l'ensemble $P {\scriptstyle V}$ des formules propositionnnelles.
 >
 >- __Assetions__ :
->   - une vatiable est une formule: $V \subset P_V$ .
->   - les consantes logiques sont des formules i.e. $\top \in P_V$ et $\bot \in P_V$ .
+>   - une vatiable est une formule: $V \subset P {\scriptstyle V}$ .
+>   - les consantes logiques sont des formules i.e. $\top \in P {\scriptstyle V}$ et $\bot \in P {\scriptstyle V}$ .
 >
 >- __Règles d'inférences__ :
->   - Soit $\neg$ le connecteur de négation et $\varphi \in P_V$ . Alors $\neg \varphi \in P_V$ .
->   - Soit $\land$ le connecteur de conjonction et $\psi$ et $\varphi \in P_V$. Alors $(\psi \land \varphi) \in P_V$ .
->   - Soient $\lor$ le connecteur de disjonction, $\rightarrow$ le connecteur d'implication et $\leftrightarrow$ le connnecteur d'équivalence. Soient $\psi$ et $\varphi \in P_V$. Alors $(\psi \lor \varphi) \in P_V, (\psi \rightarrow \varphi) \in P_V$ et $(\psi \leftrightarrow \varphi) \in P_V$
+>   - Soit $\neg$ le connecteur de négation et $\varphi \in P {\scriptstyle V}$ . Alors $\neg \varphi \in P {\scriptstyle V}$ .
+>   - Soit $\land$ le connecteur de conjonction et $\psi$ et $\varphi \in P {\scriptstyle V}$. Alors $(\psi \land \varphi) \in P {\scriptstyle V}$ .
+>   - Soient $\lor$ le connecteur de disjonction, $\rightarrow$ le connecteur d'implication et $\leftrightarrow$ le connnecteur d'équivalence. Soient $\psi$ et $\varphi \in P {\scriptstyle V}$. Alors $(\psi \lor \varphi) \in P {\scriptstyle V}, (\psi \rightarrow \varphi) \in P {\scriptstyle V}$ et $(\psi \leftrightarrow \varphi) \in P {\scriptstyle V}$
 
 Pour simplifier les écritures on définit pour la suite du cours $\diamond \in \{\lor, \land, \rightarrow, \leftrightarrow\}$ le connecteur générique.
 
@@ -84,8 +84,8 @@ Idée $=$ taille de l'arbre.
 
 - Assertions : $\mathcal{T}(\top) = 1$ et $\mathcal{T}(\bot) = 1$. Soit $v \in V$ alors $\mathcal{T}(v) = 1$
 - Règles d'inférence :
-  - Soit $\varphi \in P_V$ alors $\mathcal{T}(\neg \varphi) = 1 + \mathcal{T}(\varphi)$.
-  - Soient $\varphi, \psi \in P_V$ alors $\mathcal{T}(\varphi \diamond \psi) = 1 + \mathcal{T}(\varphi) + \mathcal{T}(\psi)$
+  - Soit $\varphi \in P {\scriptstyle V}$ alors $\mathcal{T}(\neg \varphi) = 1 + \mathcal{T}(\varphi)$.
+  - Soient $\varphi, \psi \in P {\scriptstyle V}$ alors $\mathcal{T}(\varphi \diamond \psi) = 1 + \mathcal{T}(\varphi) + \mathcal{T}(\psi)$
 
 ___
 
@@ -97,8 +97,8 @@ Idée $=$ hauteur de l'arbre.
 
 - Assertions : $\mathcal{H}(\top) = 0$ et $\mathcal{H}(\bot) = 0$. Soit $v \in V$ alors $\mathcal{H}(v) = 0$
 - Règles d'inférence :
-  - Soit $\varphi \in P_V$ alors $\mathcal{H}(\neg \varphi) = 1 + \mathcal{H}(\varphi)$.
-  - Soient $\varphi, \psi \in P_V$ alors $\mathcal{H}(\varphi \diamond \psi) = 1 + max(\mathcal{H}(\varphi), \mathcal{H}(\psi))$
+  - Soit $\varphi \in P {\scriptstyle V}$ alors $\mathcal{H}(\neg \varphi) = 1 + \mathcal{H}(\varphi)$.
+  - Soient $\varphi, \psi \in P {\scriptstyle V}$ alors $\mathcal{H}(\varphi \diamond \psi) = 1 + max(\mathcal{H}(\varphi), \mathcal{H}(\psi))$
 
 ___
 
@@ -110,8 +110,8 @@ Idée $=$ une sous-formule est une partie de la formule qui est syntaciquement u
 
 - Assertions : $\mathcal{S_F}(\top) = \top$ et $\mathcal{S_F}(\bot) = \bot$. Soit $v \in V$ alors $\mathcal{S_F}(v) = \{v\}$
 - Règles d'inférence :
-  - Soit $\varphi \in P_V$ alors $\mathcal{S_F}(\neg \varphi) = \{\neg \varphi\} \cup \mathcal{S_F}(\varphi)$.
-  - Soient $\varphi, \psi \in P_V$  alors $\mathcal{S_F}(\varphi \diamond \psi) = \{\varphi \diamond \psi\} \cup \mathcal{S_F}(\varphi) \cup \mathcal{S_F}(\psi)$
+  - Soit $\varphi \in P {\scriptstyle V}$ alors $\mathcal{S_F}(\neg \varphi) = \{\neg \varphi\} \cup \mathcal{S_F}(\varphi)$.
+  - Soient $\varphi, \psi \in P {\scriptstyle V}$  alors $\mathcal{S_F}(\varphi \diamond \psi) = \{\varphi \diamond \psi\} \cup \mathcal{S_F}(\varphi) \cup \mathcal{S_F}(\psi)$
 
 ___
 
@@ -131,8 +131,8 @@ $$
 $$
 
 - Règles d'inférence :
-  - Soit $\varphi \in P_V$ alors $(\neg \varphi) [\psi/x] = \neg (\varphi[\psi/x])$.
-  - Soient $\varphi, \varphi' \in P_V$ alors $(\varphi \diamond \varphi') [\psi/x] = (\varphi[\psi/x] \diamond \varphi'[\psi/x])$
+  - Soit $\varphi \in P {\scriptstyle V}$ alors $(\neg \varphi) [\psi/x] = \neg (\varphi[\psi/x])$.
+  - Soient $\varphi, \varphi' \in P {\scriptstyle V}$ alors $(\varphi \diamond \varphi') [\psi/x] = (\varphi[\psi/x] \diamond \varphi'[\psi/x])$
 
 ### 3. Logique du $1^{er}$ ordre
 
@@ -217,41 +217,41 @@ __Vocabulaire__ :
 
 $\underline{Exemples}$ :
 
-- Soit $f_\neg$ la fonction booléénne qui associe au connecteur la négation on a:
+- Soit $f {\scriptstyle \neg}$ la fonction booléénne qui associe au connecteur la négation on a:
 
 $$
 \begin{cases}
-  f_\neg(V) = F \\
-  f_\neg(F) = V
+  f {\scriptstyle \neg}(V) = F \\
+  f {\scriptstyle \neg}(F) = V
 \end{cases}
 $$
 
-- Soit $f_\land$ la fonction booléénne qui associe au connecteur la conjonction on a:
+- Soit $f {\scriptstyle \land}$ la fonction booléénne qui associe au connecteur la conjonction on a:
 
 $$
 \begin{cases}
-  f_\land(F,F) = F \\
-  f_\land(F,V) = F \\
-  f_\land(V,F) = F \\
-  f_\land(V,V) = V
+  f {\scriptstyle \land}(F,F) = F \\
+  f {\scriptstyle \land}(F,V) = F \\
+  f {\scriptstyle \land}(V,F) = F \\
+  f {\scriptstyle \land}(V,V) = V
 \end{cases}
 $$
 
-(On défnit de même les fonctions $f_\lor, f_\rightarrow, f_\leftrightarrow$.)
+(On défnit de même les fonctions $f {\scriptstyle \lor}, f {\scriptstyle \rightarrow}, f {\scriptstyle \leftrightarrow}$.)
 
 > __Def:__ une *valuation* est une fonction associant à chaque variable propositionnnelle une valeur de vérité.
 
 ___
 
-> __Def:__ Evaluation d'une formule $\varphi$ par une valuation $v$, notée $[\![ \varphi]\!] _v$
+> __Def:__ Evaluation d'une formule $\varphi$ par une valuation $v$, notée $[\![ \varphi]\!]  {\scriptstyle v}$
 >
 >- Assertion:
->   - $[\![ \top]\!]_v = V$
->   - $[\![ \bot]\!]_v = F$
->   - $[\![ x]\!] _v = v(x) \space \text{avec} \space x \in V$
+>   - $[\![ \top]\!] {\scriptstyle v} = V$
+>   - $[\![ \bot]\!] {\scriptstyle v} = F$
+>   - $[\![ x]\!]  {\scriptstyle v} = v(x) \space \text{avec} \space x \in V$
 >- Règle d'inférence:
->   - $[\![ \neg \varphi]\!]_v = f_{\neg} ([\![ \varphi]\!]_v)$
->   - $[\![ \varphi \diamond \psi]\!]_v = f_{\diamond} ([\![ \varphi]\!]_v, [\![ \psi]\!]_v)$
+>   - $[\![ \neg \varphi]\!] {\scriptstyle v}$ $=$ $f_{\neg} ([\![ \varphi]\!] {\scriptstyle v})$
+>   - $[\![ \varphi \diamond \psi]\!] {\scriptstyle v}$ $=$ $f_{\diamond} ([\![ \varphi]\!] {\scriptstyle v},$ $[\![ \psi]\!] {\scriptstyle v})$
 
 $\underline{Exemple}$ : $\mathcal = \{x, y\}$ et $\varphi = ((x \rightarrow y) \lor (x \land \neg y)) \land (x \lor \neg y)$
 Soit $v$ la validation défnie par $\begin{cases} v(x) = F \\ v(y) = F \end{cases}$.
@@ -260,20 +260,20 @@ Alors:
 
 $$
 \begin{align}
-  [\![ \varphi]\!] _v &= f_\land ([\![ (x \rightarrow y) \lor (x \land \neg y)]\!] _v, [\![ x \lor \neg y]\!] _v) \\
-    &= f_\land (f_\lor ([\![ x \rightarrow y]\!] _v,[\![ x \land \neg y]\!] _v) , f_\lor ([\![ x, \neg y]\!] _v)) \\
-    & = f_\land (f_\lor (f_\rightarrow([\![ x]\!] _v, [\![ y]\!] _v),f_\land([\![ x]\!] _v, f_\neg([\![ y]\!] _v))) , f_\lor ([\![ x]\!] _v, f_\neg( [\![ y]\!] _v))) \\
-    &= f_\land (f_\lor (f_\rightarrow(F, F),f_\land(F, f_\neg(F))) , f_\lor (F, f_\neg(F))) \\
-    &= f_\land (f_\lor (V,f_\land(F, V)) , f_\lor (F, V)) \\
-    &= f_\land (f_\lor (V,F) , V) \\
-    &= f_\land (V , V) \\
+  [\![ \varphi]\!]  {\scriptstyle v} &= f {\scriptstyle \land} ([\![ (x \rightarrow y) \lor (x \land \neg y)]\!]  {\scriptstyle v}, [\![ x \lor \neg y]\!]  {\scriptstyle v}) \\
+    &= f {\scriptstyle \land} (f {\scriptstyle \lor} ([\![ x \rightarrow y]\!]  {\scriptstyle v},[\![ x \land \neg y]\!]  {\scriptstyle v}) , f {\scriptstyle \lor} ([\![ x, \neg y]\!]  {\scriptstyle v})) \\
+    & = f {\scriptstyle \land} (f {\scriptstyle \lor} (f {\scriptstyle \rightarrow}([\![ x]\!]  {\scriptstyle v}, [\![ y]\!]  {\scriptstyle v}),f {\scriptstyle \land}([\![ x]\!]  {\scriptstyle v}, f {\scriptstyle \neg}([\![ y]\!]  {\scriptstyle v}))) , f {\scriptstyle \lor} ([\![ x]\!]  {\scriptstyle v}, f {\scriptstyle \neg}( [\![ y]\!]  {\scriptstyle v}))) \\
+    &= f {\scriptstyle \land} (f {\scriptstyle \lor} (f {\scriptstyle \rightarrow}(F, F),f {\scriptstyle \land}(F, f {\scriptstyle \neg}(F))) , f {\scriptstyle \lor} (F, f {\scriptstyle \neg}(F))) \\
+    &= f {\scriptstyle \land} (f {\scriptstyle \lor} (V,f {\scriptstyle \land}(F, V)) , f {\scriptstyle \lor} (F, V)) \\
+    &= f {\scriptstyle \land} (f {\scriptstyle \lor} (V,F) , V) \\
+    &= f {\scriptstyle \land} (V , V) \\
     &= V
 \end{align}
 $$
 
-$\to$ Une *table de vérité* d'ube formule $\varphi$ permet de résumer $[\![ \varphi]\!] _v$ pour chque valuation $v$ existante.
+$\to$ Une *table de vérité* d'ube formule $\varphi$ permet de résumer $[\![ \varphi]\!]  {\scriptstyle v}$ pour chque valuation $v$ existante.
 
-| $v(x)$ | $v(y)$ | $[\![ (x \rightarrow y) \lor (x \land \neg y ]\!] _v$ | $[\![ x \lor \neg y]\!] _v$ | $[\![ \varphi]\!] _v$ |
+| $v(x)$ | $v(y)$ | $[\![ (x \rightarrow y) \lor (x \land \neg y ]\!]  {\scriptstyle v}$ | $[\![ x \lor \neg y]\!]  {\scriptstyle v}$ | $[\![ \varphi]\!]  {\scriptstyle v}$ |
 | :-: | :-: | :-: | :-: | :-: |
 | $F$ | $F$ | $V$ | $V$ | $V$ |
 | $F$ | $V$ | $F$ | $V$ | $F$ |
@@ -284,12 +284,12 @@ ___
 
 __Propriété :__
 
-- Si $V$ contient $n$ variable prop. Une formule $\in P_V$ contient $2^n$ lignes pour une table de vérité (i.e. $2^n$ validations existantes).
+- Si $V$ contient $n$ variable prop. Une formule $\in P {\scriptstyle V}$ contient $2^n$ lignes pour une table de vérité (i.e. $2^n$ validations existantes).
 - Il y a $2^{2^n}$ tables de vérité existantes pour l'ensemble des formules à $n$ variables prop.
 
 __Vocabulaire :__
 
-- Un *modèle* d'une formule propostionnelle $\varphi$ est une validarion $v$ tq $[\![ \varphi]\!] _v = V$. On dit que le modèle *satisfait* $\varphi$. on note $Mod(\varphi)$ l'ensemble des modèles de $\varphi$.
+- Un *modèle* d'une formule propostionnelle $\varphi$ est une validarion $v$ tq $[\![ \varphi]\!]  {\scriptstyle v} = V$. On dit que le modèle *satisfait* $\varphi$. on note $Mod(\varphi)$ l'ensemble des modèles de $\varphi$.
 - Une formule $\varphi$ est dite *satisfiable* si $Mod(\varphi) \neq \emptyset$
 - Une formule $\varphi$ est une *antilogie* si $Mod(\varphi) = \emptyset$
 - Une formule $\varphi$ est une *tautologie* si toute valuation est un modèle de $\varphi$. On note $\vDash \varphi$.
@@ -308,7 +308,7 @@ $\to$ Pour étudier la conséquence sémantique on fait les tables de vérité d
 
 $\underline{Exemple}$: $V = \{x, y\}$. Montrer que $x \land y \vDash x \rightarrow y$
 
-| $v(x)$ | $v(y)$ | $[\![ x \land y]\!] _v$ | $[\![ x \rightarrow y]\!] _v$ |
+| $v(x)$ | $v(y)$ | $[\![ x \land y]\!]  {\scriptstyle v}$ | $[\![ x \rightarrow y]\!]  {\scriptstyle v}$ |
 | :-: | :-: | :-: | :-: |
 | $F$ | $F$ | $F$ | $V$ |
 | $F$ | $V$ | $F$ | $V$ |
@@ -321,6 +321,6 @@ __Propriétés :__
 
 - Si $\varphi \equiv \psi$ alors $\varphi \vDash \psi$ et $\psi \vDash \varphi$.
 - $\equiv$ est une relation d'équivalence. Ceci est immédiat du fait que $=$ est une relation d'équivalence.
-- (impact de la substitution) Si $\varphi \equiv \nu$. Soit $x \in V$ et $\psi \in P_V$.
+- (impact de la substitution) Si $\varphi \equiv \nu$. Soit $x \in V$ et $\psi \in P {\scriptstyle V}$.
   - $\varphi[\psi/x] \equiv \nu[\psi/x]$
   - $\psi[\varphi/x] \equiv \psi[\nu/x]$ ces deux propriétés se montre par induction structurelle.
