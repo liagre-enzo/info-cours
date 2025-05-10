@@ -20,16 +20,16 @@ ___
 
 ___
 
->__Def__: Soit $\mathcal{V}$ l'ensemble des variables propositionnnelles on définit uninductivemment l'ensemble $\mathcal{P}_{\mathcal{V}}$ des formules propositionnnelles.
+>__Def__: Soit $V$ l'ensemble des variables propositionnnelles on définit uninductivemment l'ensemble $P_V$ des formules propositionnnelles.
 >
 >- __Assetions__ :
->   - une vatiable est une formule: $\mathcal{V} \subset \mathcal{P}_{\mathcal{V}}$ .
->   - les consantes logiques sont des formules i.e. $\top \in \mathcal{P}_{\mathcal{V}}$ et $\bot \in \mathcal{P}_{\mathcal{V}}$ .
+>   - une vatiable est une formule: $V \subset P_V$ .
+>   - les consantes logiques sont des formules i.e. $\top \in P_V$ et $\bot \in P_V$ .
 >
 >- __Règles d'inférences__ :
->   - Soit $\neg$ le connecteur de négation et $\varphi \in \mathcal{P}_{\mathcal{V}}$ . Alors $\neg \varphi \in \mathcal{P}_{\mathcal{V}}$ .
->   - Soit $\land$ le connecteur de conjonction et $\psi$ et $\varphi \in \mathcal{P}_{\mathcal{V}}$. Alors $(\psi \land \varphi) \in \mathcal{P}_{\mathcal{V}}$ .
->   - Soient $\lor$ le connecteur de disjonction, $\rightarrow$ le connecteur d'implication et $\leftrightarrow$ le connnecteur d'équivalence. Soient $\psi$ et $\varphi \in \mathcal{P}_{\mathcal{V}}$. Alors $(\psi \lor \varphi) \in \mathcal{P}_{\mathcal{V}}, (\psi \rightarrow \varphi) \in \mathcal{P}_{\mathcal{V}}$ et $(\psi \leftrightarrow \varphi) \in \mathcal{P}_{\mathcal{V}}$
+>   - Soit $\neg$ le connecteur de négation et $\varphi \in P_V$ . Alors $\neg \varphi \in P_V$ .
+>   - Soit $\land$ le connecteur de conjonction et $\psi$ et $\varphi \in P_V$. Alors $(\psi \land \varphi) \in P_V$ .
+>   - Soient $\lor$ le connecteur de disjonction, $\rightarrow$ le connecteur d'implication et $\leftrightarrow$ le connnecteur d'équivalence. Soient $\psi$ et $\varphi \in P_V$. Alors $(\psi \lor \varphi) \in P_V, (\psi \rightarrow \varphi) \in P_V$ et $(\psi \leftrightarrow \varphi) \in P_V$
 
 Pour simplifier les écritures on définit pour la suite du cours $\diamond \in \{\lor, \land, \rightarrow, \leftrightarrow\}$ le connecteur générique.
 
@@ -82,10 +82,10 @@ Idée $=$ taille de l'arbre.
 
 *Définition inductive* de la taille $\mathcal{T}$:
 
-- Assertions : $\mathcal{T}(\top) = 1$ et $\mathcal{T}(\bot) = 1$. Soit $v \in \mathcal{V}$ alors $\mathcal{T}(v) = 1$
+- Assertions : $\mathcal{T}(\top) = 1$ et $\mathcal{T}(\bot) = 1$. Soit $v \in V$ alors $\mathcal{T}(v) = 1$
 - Règles d'inférence :
-  - Soit $\varphi \in \mathcal{P}_{\mathcal{V}}$ alors $\mathcal{T}(\neg \varphi) = 1 + \mathcal{T}(\varphi)$.
-  - Soient $\varphi, \psi \in \mathcal{P}_{\mathcal{V}}$ alors $\mathcal{T}(\varphi \diamond \psi) = 1 + \mathcal{T}(\varphi) + \mathcal{T}(\psi)$
+  - Soit $\varphi \in P_V$ alors $\mathcal{T}(\neg \varphi) = 1 + \mathcal{T}(\varphi)$.
+  - Soient $\varphi, \psi \in P_V$ alors $\mathcal{T}(\varphi \diamond \psi) = 1 + \mathcal{T}(\varphi) + \mathcal{T}(\psi)$
 
 ___
 
@@ -95,10 +95,10 @@ Idée $=$ hauteur de l'arbre.
 
 *Définition inductive* de la hauteur $\mathcal{H}$:
 
-- Assertions : $\mathcal{H}(\top) = 0$ et $\mathcal{H}(\bot) = 0$. Soit $v \in \mathcal{V}$ alors $\mathcal{H}(v) = 0$
+- Assertions : $\mathcal{H}(\top) = 0$ et $\mathcal{H}(\bot) = 0$. Soit $v \in V$ alors $\mathcal{H}(v) = 0$
 - Règles d'inférence :
-  - Soit $\varphi \in \mathcal{P}_{\mathcal{V}}$ alors $\mathcal{H}(\neg \varphi) = 1 + \mathcal{H}(\varphi)$.
-  - Soient $\varphi, \psi \in \mathcal{P}_{\mathcal{V}}$ alors $\mathcal{H}(\varphi \diamond \psi) = 1 + max(\mathcal{H}(\varphi), \mathcal{H}(\psi))$
+  - Soit $\varphi \in P_V$ alors $\mathcal{H}(\neg \varphi) = 1 + \mathcal{H}(\varphi)$.
+  - Soient $\varphi, \psi \in P_V$ alors $\mathcal{H}(\varphi \diamond \psi) = 1 + max(\mathcal{H}(\varphi), \mathcal{H}(\psi))$
 
 ___
 
@@ -108,10 +108,10 @@ Idée $=$ une sous-formule est une partie de la formule qui est syntaciquement u
 
 *Définition inductive* de $\mathcal{S_F}$ l'ensemble des sous formules.:
 
-- Assertions : $\mathcal{S_F}(\top) = \top$ et $\mathcal{S_F}(\bot) = \bot$. Soit $v \in \mathcal{V}$ alors $\mathcal{S_F}(v) = \{v\}$
+- Assertions : $\mathcal{S_F}(\top) = \top$ et $\mathcal{S_F}(\bot) = \bot$. Soit $v \in V$ alors $\mathcal{S_F}(v) = \{v\}$
 - Règles d'inférence :
-  - Soit $\varphi \in \mathcal{P}_{\mathcal{V}}$ alors $\mathcal{S_F}(\neg \varphi) = \{\neg \varphi\} \cup \mathcal{S_F}(\varphi)$.
-  - Soient $\varphi, \psi \in \mathcal{P}_{\mathcal{V}}$  alors $\mathcal{S_F}(\varphi \diamond \psi) = \{\varphi \diamond \psi\} \cup \mathcal{S_F}(\varphi) \cup \mathcal{S_F}(\psi)$
+  - Soit $\varphi \in P_V$ alors $\mathcal{S_F}(\neg \varphi) = \{\neg \varphi\} \cup \mathcal{S_F}(\varphi)$.
+  - Soient $\varphi, \psi \in P_V$  alors $\mathcal{S_F}(\varphi \diamond \psi) = \{\varphi \diamond \psi\} \cup \mathcal{S_F}(\varphi) \cup \mathcal{S_F}(\psi)$
 
 ___
 
@@ -121,7 +121,7 @@ Idée $=$ remplacer la variable à chaque endroit où la variable est présente 
 
 *Définition inductive* de $\varphi[\psi/x]$ substitution de $x$ par $\psi$ dans la formule $\varphi$:
 
-- Assertions : $\top[\psi/x] = \top$ et $\bot[\psi/x] = \bot$. Soit $v \in \mathcal{V}$ alors:
+- Assertions : $\top[\psi/x] = \top$ et $\bot[\psi/x] = \bot$. Soit $v \in V$ alors:
 
 $$
 \begin{cases}
@@ -131,8 +131,8 @@ $$
 $$
 
 - Règles d'inférence :
-  - Soit $\varphi \in \mathcal{P}_{\mathcal{V}}$ alors $(\neg \varphi) [\psi/x] = \neg (\varphi[\psi/x])$.
-  - Soient $\varphi, \varphi' \in \mathcal{P}_{\mathcal{V}}$ alors $(\varphi \diamond \varphi') [\psi/x] = (\varphi[\psi/x] \diamond \varphi'[\psi/x])$
+  - Soit $\varphi \in P_V$ alors $(\neg \varphi) [\psi/x] = \neg (\varphi[\psi/x])$.
+  - Soient $\varphi, \varphi' \in P_V$ alors $(\varphi \diamond \varphi') [\psi/x] = (\varphi[\psi/x] \diamond \varphi'[\psi/x])$
 
 ### 3. Logique du $1^{er}$ ordre
 
@@ -248,10 +248,10 @@ ___
 >- Assertion:
 >   - $[\![ \top]\!]_v = V$
 >   - $[\![ \bot]\!]_v = F$
->   - $[\![ x]\!] _v = v(x) \space \text{avec} \space x \in \mathcal{V}$
+>   - $[\![ x]\!] _v = v(x) \space \text{avec} \space x \in V$
 >- Règle d'inférence:
->   - $[\![ \neg \varphi]\!]_v = f_\neg ([\![ \varphi]\!]_v)$
->   - $[\![ \varphi \diamond \psi]\!]_v = f_\diamond ([\![ \varphi]\!]_v, [\![ \psi]\!]_v)$
+>   - $[\![ \neg \varphi]\!]_v = f_{\neg} ([\![ \varphi]\!]_v)$
+>   - $[\![ \varphi \diamond \psi]\!]_v = f_{\diamond} ([\![ \varphi]\!]_v, [\![ \psi]\!]_v)$
 
 $\underline{Exemple}$ : $\mathcal = \{x, y\}$ et $\varphi = ((x \rightarrow y) \lor (x \land \neg y)) \land (x \lor \neg y)$
 Soit $v$ la validation défnie par $\begin{cases} v(x) = F \\ v(y) = F \end{cases}$.
@@ -259,7 +259,7 @@ Soit $v$ la validation défnie par $\begin{cases} v(x) = F \\ v(y) = F \end{case
 Alors:
 
 $$
-\begin{align*}
+\begin{align}
   [\![ \varphi]\!] _v &= f_\land ([\![ (x \rightarrow y) \lor (x \land \neg y)]\!] _v, [\![ x \lor \neg y]\!] _v) \\
     &= f_\land (f_\lor ([\![ x \rightarrow y]\!] _v,[\![ x \land \neg y]\!] _v) , f_\lor ([\![ x, \neg y]\!] _v)) \\
     & = f_\land (f_\lor (f_\rightarrow([\![ x]\!] _v, [\![ y]\!] _v),f_\land([\![ x]\!] _v, f_\neg([\![ y]\!] _v))) , f_\lor ([\![ x]\!] _v, f_\neg( [\![ y]\!] _v))) \\
@@ -268,7 +268,7 @@ $$
     &= f_\land (f_\lor (V,F) , V) \\
     &= f_\land (V , V) \\
     &= V
-\end{align*}
+\end{align}
 $$
 
 $\to$ Une *table de vérité* d'ube formule $\varphi$ permet de résumer $[\![ \varphi]\!] _v$ pour chque valuation $v$ existante.
@@ -284,7 +284,7 @@ ___
 
 __Propriété :__
 
-- Si $\mathcal{V}$ contient $n$ variable prop. Une formule $\in \mathcal{P}_{\mathcal{V}}$ contient $2^n$ lignes pour une table de vérité (i.e. $2^n$ validations existantes).
+- Si $V$ contient $n$ variable prop. Une formule $\in P_V$ contient $2^n$ lignes pour une table de vérité (i.e. $2^n$ validations existantes).
 - Il y a $2^{2^n}$ tables de vérité existantes pour l'ensemble des formules à $n$ variables prop.
 
 __Vocabulaire :__
@@ -306,7 +306,7 @@ $\underline{Généralisation :}$ Une formule $\psi$ est une conséquence sémant
 
 $\to$ Pour étudier la conséquence sémantique on fait les tables de vérité de toutes les formules impliquées.
 
-$\underline{Exemple}$: $\mathcal{V} = \{x, y\}$. Montrer que $x \land y \vDash x \rightarrow y$
+$\underline{Exemple}$: $V = \{x, y\}$. Montrer que $x \land y \vDash x \rightarrow y$
 
 | $v(x)$ | $v(y)$ | $[\![ x \land y]\!] _v$ | $[\![ x \rightarrow y]\!] _v$ |
 | :-: | :-: | :-: | :-: |
@@ -321,6 +321,6 @@ __Propriétés :__
 
 - Si $\varphi \equiv \psi$ alors $\varphi \vDash \psi$ et $\psi \vDash \varphi$.
 - $\equiv$ est une relation d'équivalence. Ceci est immédiat du fait que $=$ est une relation d'équivalence.
-- (impact de la substitution) Si $\varphi \equiv \nu$. Soit $x \in \mathcal{V}$ et $\psi \in \mathcal{P}_{\mathcal{V}}$.
+- (impact de la substitution) Si $\varphi \equiv \nu$. Soit $x \in V$ et $\psi \in P_V$.
   - $\varphi[\psi/x] \equiv \nu[\psi/x]$
   - $\psi[\varphi/x] \equiv \psi[\nu/x]$ ces deux propriétés se montre par induction structurelle.
