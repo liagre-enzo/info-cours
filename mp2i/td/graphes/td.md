@@ -1,8 +1,8 @@
-# TD : Raisonner sur les graphes.
+# TD : Raisonner sur les graphes
 
 ## Graphes non orientés
 
-Graphe étudié : ![image](../ressources/non_oriente_qq.png)
+Graphe étudié : ![image](ressources/non_oriente_qq.png)
 
 ### 1)
 
@@ -41,7 +41,7 @@ Ce montre par disjonction de cas dans l'hérédité d'une récurrence. $\space \
 
 ## Graphes orientés
 
-Graphe étudié : ![image](../ressources/oriente_qq.png)
+Graphe étudié : ![image](ressources/oriente_qq.png)
 
 ### 9)
 
@@ -75,4 +75,4 @@ $$
 
 Il n'est pas fortement connexe. Il possède au moins 2 (flemme de compter).
 
-Il est faiblement connexe.
+Il est faiblement connexe

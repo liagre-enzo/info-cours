@@ -38,7 +38,7 @@ let adj = [|
 
 ### q9
 
-Si $p \in \N$, alors les matrices $M^p$ représentent les chemins de tailles $p$ dans la matrice.
+Si $p \in \mathbb{N}$, alors les matrices $M^p$ représentent les chemins de tailles $p$ dans la matrice.
 
 ### q10
 
@@ -65,4 +65,4 @@ Vérifier à l'aide d'un parcours en largeur que tous les sommets sont accessibl
 
 ## Résoudre une situation concrète à l'aide d'un graphe
 
-![image](td_parcours_graphes.jpg)
+![image](ressources/td_parcours_graphes.jpg)
