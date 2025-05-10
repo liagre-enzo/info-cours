@@ -13,7 +13,9 @@ $\leadsto$ __Sémantique__: sens, interprétation des formules.
 >__Def__: Une *variable propositionnelle* est une proposition élémentaire pouvant être vraie ou fausse.
 ___
 
->__Def__: Les *constantes logiques* sont $\begin{cases} \top \space \text{désignant une proposition toujours vraie} \\ \bot \space \text{----- fausse.}  \end{cases}$
+>__Def__: Les *constantes logiques* sont :
+>
+> $$\begin{cases} \top \space \text{désignant une proposition toujours vraie} \\ \bot \space \text{désignant une proposition toujours fausse.}  \end{cases}$$
 ___
 
 >__Def__: Soit $\mathcal{V}$ l'ensemble des variables propositionnnelles on définit uninductivemment l'ensemble $\mathcal{P}_\mathcal{V}$ des formules propositionnnelles.
@@ -27,7 +29,7 @@ ___
 >   - Soit $\land$ le connecteur de conjonction et $\psi$ et $\varphi \in \mathcal{P}_\mathcal{V}$. Alors $(\psi \land \varphi) \in \mathcal{P}_\mathcal{V}$.
 >   - Soient $\lor$ le connecteur de disjonction, $\rightarrow$ le connecteur d'implication et $\leftrightarrow$ le connnecteur d'équivalence. Soient $\psi$ et $\varphi \in \mathcal{P}_\mathcal{V}$. Alors $(\psi \lor \varphi) \in \mathcal{P}_\mathcal{V}, (\psi \rightarrow \varphi) \in \mathcal{P}_\mathcal{V}$ et $(\psi \leftrightarrow \varphi) \in \mathcal{P}_\mathcal{V}$
 
-Pour simplifier les écritures on définit pour la suite du cours $\diamonds \in \{\lor, \land, \rightarrow, \leftrightarrow\}$ le connecteur générique.
+Pour simplifier les écritures on définit pour la suite du cours $\diamond \in \{\lor, \land, \rightarrow, \leftrightarrow\}$ le connecteur générique.
 
 Ex:
 
@@ -36,7 +38,7 @@ Ex:
 - "Si j'ai cours de math ou si j'ai cours d'info alors je prends mon cahier." On pose $x$ la variable propositionnelle signifiant "j'ai cours de math", $y$ signifiant "j'ai cours d'info" et $z$ signifiant "je prends mon cahier". On a alors $((x \lor y) \rightarrow z)$
 
 __Représentation arborescente__ : Toute formule propositionnelle peut être représentée par un arbre. Dans un arbre $\top$ et $\bot$ sont des feuilles et
-$\diamonds$ en noeud interne.
+$\diamond$ en noeud interne.
 ___
 
 __Propsitions :__
@@ -81,7 +83,7 @@ Idée $=$ taille de l'arbre.
 - Assertions : $\mathcal{T}(\top) = 1$ et $\mathcal{T}(\bot) = 1$. Soit $v \in \mathcal{V}$ alors $\mathcal{T}(v) = 1$
 - Règles d'inférence :
   - Soit $\varphi \in \mathcal{P}_\mathcal{V}$ alors $\mathcal{T}(\neg \varphi) = 1 + \mathcal{T}(\varphi)$.
-  - Soient $\varphi, \psi \in \mathcal{P}_\mathcal{V}$ alors $\mathcal{T}(\varphi \diamonds \psi) = 1 + \mathcal{T}(\varphi) + \mathcal{T}(\psi)$
+  - Soient $\varphi, \psi \in \mathcal{P}_\mathcal{V}$ alors $\mathcal{T}(\varphi \diamond \psi) = 1 + \mathcal{T}(\varphi) + \mathcal{T}(\psi)$
 
 ___
 
@@ -94,7 +96,7 @@ Idée $=$ hauteur de l'arbre.
 - Assertions : $\mathcal{H}(\top) = 0$ et $\mathcal{H}(\bot) = 0$. Soit $v \in \mathcal{V}$ alors $\mathcal{H}(v) = 0$
 - Règles d'inférence :
   - Soit $\varphi \in \mathcal{P}_\mathcal{V}$ alors $\mathcal{H}(\neg \varphi) = 1 + \mathcal{H}(\varphi)$.
-  - Soient $\varphi, \psi \in \mathcal{P}_\mathcal{V}$ alors $\mathcal{H}(\varphi \diamonds \psi) = 1 + max(\mathcal{H}(\varphi), \mathcal{H}(\psi))$
+  - Soient $\varphi, \psi \in \mathcal{P}_\mathcal{V}$ alors $\mathcal{H}(\varphi \diamond \psi) = 1 + max(\mathcal{H}(\varphi), \mathcal{H}(\psi))$
 
 ___
 
@@ -107,7 +109,7 @@ Idée $=$ une sous-formule est une partie de la formule qui est syntaciquement u
 - Assertions : $\mathcal{S_F}(\top) = \top$ et $\mathcal{S_F}(\bot) = \bot$. Soit $v \in \mathcal{V}$ alors $\mathcal{S_F}(v) = \{v\}$
 - Règles d'inférence :
   - Soit $\varphi \in \mathcal{P}_\mathcal{V}$ alors $\mathcal{S_F}(\neg \varphi) = \{\neg \varphi\} \cup \mathcal{S_F}(\varphi)$.
-  - Soient $\varphi, \psi \in \mathcal{P}_\mathcal{V}$  alors $\mathcal{S_F}(\varphi \diamonds \psi) = \{\varphi \diamonds \psi\} \cup \mathcal{S_F}(\varphi) \cup \mathcal{S_F}(\psi)$
+  - Soient $\varphi, \psi \in \mathcal{P}_\mathcal{V}$  alors $\mathcal{S_F}(\varphi \diamond \psi) = \{\varphi \diamond \psi\} \cup \mathcal{S_F}(\varphi) \cup \mathcal{S_F}(\psi)$
 
 ___
 
@@ -117,10 +119,18 @@ Idée $=$ remplacer la variable à chaque endroit où la variable est présente 
 
 *Définition inductive* de $\varphi[\psi/x]$ substitution de $x$ par $\psi$ dans la formule $\varphi$:
 
-- Assertions : $\top[\psi/x] = \top$ et $\bot[\psi/x] = \bot$. Soit $v \in \mathcal{V}$ alors $\begin{cases} v[\psi/x] = \psi \space \text{si} \space v = x \\ v[\psi/x] = v \space \text{sinon}  \end{cases}$
+- Assertions : $\top[\psi/x] = \top$ et $\bot[\psi/x] = \bot$. Soit $v \in \mathcal{V}$ alors:
+
+$$
+\begin{cases}
+  v[\psi/x] = \psi \space \text{si} \space v = x \\
+  v[\psi/x] = v \space \text{sinon}  
+\end{cases}
+$$
+
 - Règles d'inférence :
   - Soit $\varphi \in \mathcal{P}_\mathcal{V}$ alors $(\neg \varphi) [\psi/x] = \neg (\varphi[\psi/x])$.
-  - Soient $\varphi, \varphi' \in \mathcal{P}_\mathcal{V}$ alors $(\varphi \diamonds \varphi') [\psi/x] = (\varphi[\psi/x] \diamonds \varphi'[\psi/x])$
+  - Soient $\varphi, \varphi' \in \mathcal{P}_\mathcal{V}$ alors $(\varphi \diamond \varphi') [\psi/x] = (\varphi[\psi/x] \diamond \varphi'[\psi/x])$
 
 ### 3. Logique du $1^{er}$ ordre
 
@@ -167,8 +177,8 @@ ___
 >- Assertion: un atome est une formule du premier ordre.
 >- Règles d'inférence:
 >   - Si $\varphi$ est une formle du permier ordre et $\neg$ le connecteur de négation alors $\neg \varphi$ est une formule du permier ordre.
->   - Si $\varphi$ et $\psi$ sont des formles du permier ordre alors $(\varphi \diamonds \psi)$ est une formule du premier ordre et $\diamonds \in \{\lor, \land, \rightarrow, \leftrightarrow\}$ connecteur d'arité 2.
->   - Si $\varphi$ est une formule du permier ordre et $x$ une variable de $X$ alors $\begin{cases} \forall x \cdot \varphi \\ \exists x \cdot \varphi \end{cases}$ sont des formules du permier ordre.
+>   - Si $\varphi$ et $\psi$ sont des formles du permier ordre alors $(\varphi \diamond \psi)$ est une formule du premier ordre et $\diamond \in \{\lor, \land, \rightarrow, \leftrightarrow\}$ connecteur d'arité 2.
+>   - Si $\varphi$ est une formule du permier ordre et $x$ une variable de $X$ alors $\forall x \cdot \varphi / \exists x \cdot \varphi$ sont des formules du permier ordre.
 
 On peut représenter les formules par un arbre.
 
@@ -184,9 +194,9 @@ Ex : Formule du premier ordre $((\forall A, \space \forall B, \space A \cap B \s
 
 __Vocabulaire__ :
 
-- *Portée* d'une variable $x$ dans une formule $\begin{cases} \forall x \cdot \varphi \\ \exists x \cdot \varphi \end{cases}$ est la formule $\varphi$.
+- *Portée* d'une variable $x$ dans une formule $\forall x \cdot \varphi / \exists x \cdot \varphi$ est la formule $\varphi$.
 
-- Variable *libre/liée* : une occurrence d'une variable $x$ est $\begin{cases} \text{liée} \\ \text{libre} \end{cases}$ si elle $\begin{cases} \text{apparaît} \\ \text{n'apparaît plus} \end{cases}$ à la suite d'un $\begin{cases} \forall x \cdot \\ \exists x \cdot \end{cases}$. Une variable est dite $\begin{cases} \text{liée} \\ \text{libre} \end{cases}$ si elle a au moins une occurrence $\begin{cases} \text{liée} \\ \text{libre} \end{cases}$.
+- Variable *libre/liée* : une occurrence d'une variable $x$ est liée/libre si elle apparaît/n'apparaît plus à la suite d'un $\forall x \cdot / \exists x \cdot$. Une variable est dite liée/libre si elle a au moins une occurrence liée/libre.
   
 Ex: Dans la formule précédente $A$ libre et liée et $B$ liée.
 
@@ -201,7 +211,7 @@ __Vocabulaire__ :
 
 ### 1. Valeur de vérité d'une formule
 
-- Une *fonction booléenne* associé à un connnecteur $\diamonds$ donne la valeur de vérité de $\psi \diamonds \varphi$ en fonction des valeurs de vérité de $\psi$ et $\varphi$.
+- Une *fonction booléenne* associé à un connnecteur $\diamond$ donne la valeur de vérité de $\psi \diamond \varphi$ en fonction des valeurs de vérité de $\psi$ et $\varphi$.
 
 $\underline{Exemples}$ :
 
@@ -224,6 +234,7 @@ $$
   f_\land(V,V) = V
 \end{cases}
 $$
+
 (On défnit de même les fonctions $f_\lor, f_\rightarrow, f_\leftrightarrow$.)
 
 > __Def:__ une *valuation* est une fonction associant à chaque variable propositionnnelle une valeur de vérité.
@@ -233,9 +244,12 @@ ___
 > __Def:__ Evaluation d'une formule $\varphi$ par une valuation $v$, notée $\llbracket \varphi\rrbracket _v$
 >
 >- Assertion:
->   - $\begin{cases} \llbracket \top\rrbracket _v = V \\ \llbracket \bot\rrbracket _v = F \\ \llbracket x\rrbracket _v = v(x) \space \text{avec} \space x \in \mathcal{V} \end{cases}$
+>
+> $$\begin{cases} \llbracket \top\rrbracket _v = V \\ \llbracket \bot\rrbracket _v = F \\ \llbracket x\rrbracket _v = v(x) \space \text{avec} \space x \in \mathcal{V} \end{cases}$$
+>
 >- Règle d'inférence:
->   - $\begin{cases} \llbracket \neg \varphi\rrbracket _v = f_\neg (\llbracket \varphi\rrbracket _v) \\ \llbracket \varphi \diamonds \psi\rrbracket _v = f_\diamonds (\llbracket \varphi\rrbracket _v, \llbracket \psi\rrbracket _v) \end{cases}$
+>
+> $$\begin{cases} \llbracket \neg \varphi\rrbracket _v = f_\neg (\llbracket \varphi\rrbracket _v) \\ \llbracket \varphi \diamond \psi\rrbracket _v = f_\diamond (\llbracket \varphi\rrbracket _v, \llbracket \psi\rrbracket _v) \end{cases}$$
 
 $\underline{Exemple}$ : $\mathcal = \{x, y\}$ et $\varphi = ((x \rightarrow y) \lor (x \land \neg y)) \land (x \lor \neg y)$
 Soit $v$ la validation défnie par $\begin{cases} v(x) = F \\ v(y) = F \end{cases}$.
@@ -256,16 +270,12 @@ $$
 
 $\to$ Une *table de vérité* d'ube formule $\varphi$ permet de résumer $\llbracket \varphi\rrbracket _v$ pour chque valuation $v$ existante.
 
-$$
-\begin{vmatrix}
-  v(x) && v(y) && \llbracket (x \rightarrow y) \lor (x \land \neg y)\rrbracket _v && \llbracket x \lor \neg y\rrbracket _v && \llbracket \varphi\rrbracket _v \\
-  \hline
-  F && F && V && V && V \\
-  F && V && F && V && F \\
-  V && F && V && F && F \\
-  V && V && V && V && V
-\end{vmatrix}
-$$
+| $v(x)$ | $v(y)$ | $\llbracket (x \rightarrow y) \lor (x \land \neg y \rrbracket _v$ | $\llbracket x \lor \neg y\rrbracket _v$ | $\llbracket \varphi\rrbracket _v$ |
+| :-: | :-: | :-: | :-: | :-: |
+| $F$ | $F$ | $V$ | $V$ | $V$ |
+| $F$ | $V$ | $F$ | $V$ | $F$ |
+| $V$ | $F$ | $V$ | $F$ | $F$ |
+| $V$ | $V$ | $V$ | $V$ | $V$ |
 
 ___
 
@@ -295,16 +305,12 @@ $\to$ Pour étudier la conséquence sémantique on fait les tables de vérité d
 
 $\underline{Exemple}$: $\mathcal{V} = \{x, y\}$. Montrer que $x \land y \vDash x \rightarrow y$
 
-$$
-\begin{vmatrix}
-  v(x) && v(y) && \llbracket x \land y\rrbracket _v && \llbracket x \rightarrow y\rrbracket _v \\
-  \hline
-  F && F && F && V \\
-  F && V && F && V \\
-  V && F && F && F \\
-  V && V && V && V
-\end{vmatrix}
-$$
+| $v(x)$ | $v(y)$ | $\llbracket x \land y\rrbracket _v$ | $\llbracket x \rightarrow y\rrbracket _v$ |
+| :-: | :-: | :-: | :-: |
+| $F$ | $F$ | $F$ | $V$ |
+| $F$ | $V$ | $F$ | $V$ |
+| $V$ | $F$ | $F$ | $F$ |
+| $V$ | $V$ | $V$ | $V$ |
 
 > __Def :__ Deux formules $\varphi$ et $\psi$ sont dites *sémantiquement équivalentes* si $Mod(\varphi) = Mod(\psi)$. On note $\varphi \equiv \psi$.
 
