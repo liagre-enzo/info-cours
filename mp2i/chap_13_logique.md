@@ -230,12 +230,12 @@ $$
 
 ___
 
-> __Def:__ Evaluation d'une formule $\varphi$ par une valuation $v$, notée $[\![\varphi]\!]_v$
+> __Def:__ Evaluation d'une formule $\varphi$ par une valuation $v$, notée $\llbracket \varphi\rrbracket _v$
 >
 >- Assertion:
->   - $\begin{cases} [\![\top]\!]_v = V \\ [\![\bot]\!]_v = F \\ [\![x]\!]_v = v(x) \space \text{avec} \space x \in \mathcal{V} \end{cases}$
+>   - $\begin{cases} \llbracket \top\rrbracket _v = V \\ \llbracket \bot\rrbracket _v = F \\ \llbracket x\rrbracket _v = v(x) \space \text{avec} \space x \in \mathcal{V} \end{cases}$
 >- Règle d'inférence:
->   - $\begin{cases} [\![\neg \varphi]\!]_v = f_\neg ([\![\varphi]\!]_v) \\ [\![\varphi \diamonds \psi]\!]_v = f_\diamonds ([\![\varphi]\!]_v, [\![\psi]\!]_v) \end{cases}$
+>   - $\begin{cases} \llbracket \neg \varphi\rrbracket _v = f_\neg (\llbracket \varphi\rrbracket _v) \\ \llbracket \varphi \diamonds \psi\rrbracket _v = f_\diamonds (\llbracket \varphi\rrbracket _v, \llbracket \psi\rrbracket _v) \end{cases}$
 
 $\underline{Exemple}$ : $\mathcal = \{x, y\}$ et $\varphi = ((x \rightarrow y) \lor (x \land \neg y)) \land (x \lor \neg y)$
 Soit $v$ la validation défnie par $\begin{cases} v(x) = F \\ v(y) = F \end{cases}$.
@@ -243,9 +243,9 @@ Soit $v$ la validation défnie par $\begin{cases} v(x) = F \\ v(y) = F \end{case
 Alors:
 $$
 \begin{align*}
-  [\![\varphi]\!]_v &= f_\land ([\![(x \rightarrow y) \lor (x \land \neg y)]\!]_v, [\![x \lor \neg y]\!]_v) \\
-    &= f_\land (f_\lor ([\![x \rightarrow y]\!]_v,[\![x \land \neg y]\!]_v) , f_\lor ([\![x, \neg y]\!]_v)) \\
-    & = f_\land (f_\lor (f_\rightarrow([\![x]\!]_v, [\![y]\!]_v),f_\land([\![x]\!]_v, f_\neg([\![y]\!]_v))) , f_\lor ([\![x]\!]_v, f_\neg( [\![y]\!]_v))) \\
+  \llbracket \varphi\rrbracket _v &= f_\land (\llbracket (x \rightarrow y) \lor (x \land \neg y)\rrbracket _v, \llbracket x \lor \neg y\rrbracket _v) \\
+    &= f_\land (f_\lor (\llbracket x \rightarrow y\rrbracket _v,\llbracket x \land \neg y\rrbracket _v) , f_\lor (\llbracket x, \neg y\rrbracket _v)) \\
+    & = f_\land (f_\lor (f_\rightarrow(\llbracket x\rrbracket _v, \llbracket y\rrbracket _v),f_\land(\llbracket x\rrbracket _v, f_\neg(\llbracket y\rrbracket _v))) , f_\lor (\llbracket x\rrbracket _v, f_\neg( \llbracket y\rrbracket _v))) \\
     &= f_\land (f_\lor (f_\rightarrow(F, F),f_\land(F, f_\neg(F))) , f_\lor (F, f_\neg(F))) \\
     &= f_\land (f_\lor (V,f_\land(F, V)) , f_\lor (F, V)) \\
     &= f_\land (f_\lor (V,F) , V) \\
@@ -254,11 +254,12 @@ $$
 \end{align*}
 $$
 
-$\to$ Une *table de vérité* d'ube formule $\varphi$ permet de résumer $[\![\varphi]\!]_v$ pour chque valuation $v$ existante.
+$\to$ Une *table de vérité* d'ube formule $\varphi$ permet de résumer $\llbracket \varphi\rrbracket _v$ pour chque valuation $v$ existante.
 
 $$
 \begin{vmatrix}
-  v(x) && v(y) && [\![(x \rightarrow y) \lor (x \land \neg y)]\!]_v && [\![x \lor \neg y]\!]_v && [\![\varphi]\!]_v \\ \hline
+  v(x) && v(y) && \llbracket (x \rightarrow y) \lor (x \land \neg y)\rrbracket _v && \llbracket x \lor \neg y\rrbracket _v && \llbracket \varphi\rrbracket _v \\
+  \hline
   F && F && V && V && V \\
   F && V && F && V && F \\
   V && F && V && F && F \\
@@ -275,7 +276,7 @@ __Propriété :__
 
 __Vocabulaire :__
 
-- Un *modèle* d'une formule propostionnelle $\varphi$ est une validarion $v$ tq $[\![\varphi]\!]_v = V$. On dit que le modèle *satisfait* $\varphi$. on note $Mod(\varphi)$ l'ensemble des modèles de $\varphi$.
+- Un *modèle* d'une formule propostionnelle $\varphi$ est une validarion $v$ tq $\llbracket \varphi\rrbracket _v = V$. On dit que le modèle *satisfait* $\varphi$. on note $Mod(\varphi)$ l'ensemble des modèles de $\varphi$.
 - Une formule $\varphi$ est dite *satisfiable* si $Mod(\varphi) \neq \emptyset$
 - Une formule $\varphi$ est une *antilogie* si $Mod(\varphi) = \emptyset$
 - Une formule $\varphi$ est une *tautologie* si toute valuation est un modèle de $\varphi$. On note $\vDash \varphi$.
@@ -296,7 +297,8 @@ $\underline{Exemple}$: $\mathcal{V} = \{x, y\}$. Montrer que $x \land y \vDash x
 
 $$
 \begin{vmatrix}
-  v(x) && v(y) && [\![x \land y]\!]_v && [\![x \rightarrow y]\!]_v \\ \hline
+  v(x) && v(y) && \llbracket x \land y\rrbracket _v && \llbracket x \rightarrow y\rrbracket _v \\
+  \hline
   F && F && F && V \\
   F && V && F && V \\
   V && F && F && F \\
