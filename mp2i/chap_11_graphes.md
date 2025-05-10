@@ -9,7 +9,7 @@ $\to$ structure ralationnelle crée pour résoudre le pb du pont de konigsberg.
 
 > __Def__ : un graphe est un couple $(S, A)$:
 >
->- $S$ est un enseble non vide do$s_1$ est accessible depuis $s_2$ nt les élément sont appelés sommets.
+>- $S$ est un enseble non vide dont les élément sont appelés sommets.
 >- $A$ est un enseble de paires non ordonnées $\{s_1, s_2\}$ avec $s_1 \in S$ et $s_2 \in S$ et $s_1 \neq s_2$, dont les éléments sont appelés arrêtes.
 
 Ex : ![image](ressources/chap_11/non_oriente.png)
@@ -20,7 +20,7 @@ $\to$ multi-arrête
 
 $\to$ boucles
 
-- Notation: $\{s_1, s_2\} = s_1 -  s_2$
+- Notation: $\ s_1, s_2 = s_1 -  s_2$
 
 __Voc__ : Une arrête est *incidente* à un sommet et $s_1$ et $s_2$ sont dit *voisins*.
 
@@ -253,7 +253,7 @@ $\underline{\text{graphes eulériens :}}$
 
 __Vocabulaire :__
 
-- Un __chemin eulérien__ est un chemin simple qui passe par toutes les arrêtes du graphe (i.e. de longueur $card(A)$).
+- Un __chemin eulérien__ est un chemin simple qui passe par toutes les arrêtes du graphe (i.e. de longueur $card(A)$ ).
 - Un __cycle eulérien__ est un chemin eulérien où les deux extrémités sont le même sommet.
 
 > Un __graphe eulérien__ est un graphe qui possède un cycle eulérien.
@@ -306,7 +306,7 @@ __Caractérisation des arrbres__:
 
      - Montrons que $3 \implies 1$. Par l'absurde, supposons un graphe $G=(S, A)$ connexe avec $card(A) = card(S) -1$ possède un cycle. $G$ privé de cette arrête est tonjours connexe et possède $card(S) - 2$ arrêtes. Impossible.
 
-     - Mq $2 \implies 1$ Prenons un graphe $G=(S,A)$ acyclique tel que $card(A) = card(S) -1$. Montrons que $G$ possde 1 seule composante connexe. Notons $c$ le nombre de composantes connexes de $G$. et $n_1, n_2, \dots , n_c$ les nb de sommets de ces composantes connexes. Les composantes connexes sont des arbres. (connexes par définition et acyclique car G est acyclique.) Donc une composante connexe à $n_i$ sommets possède $n_i -1$ arrêtes.Le nb d'arrêtes de G est $\sum_{i=1}^{c}(n_i -1) = card(S) - c$ comme $card(A) = card(S) -1$ alors $ c=1$ donc $G$ connexe.
+     - Mq $2 \implies 1$ Prenons un graphe $G=(S,A)$ acyclique tel que $card(A) = card(S) -1$. Montrons que $G$ possde 1 seule composante connexe. Notons $c$ le nombre de composantes connexes de $G$. et $n_1, n_2, \dots , n_c$ les nb de sommets de ces composantes connexes. Les composantes connexes sont des arbres. (connexes par définition et acyclique car G est acyclique.) Donc une composante connexe à $n_i$ sommets possède $n_i -1$ arrêtes.Le nb d'arrêtes de G est $\sum_{i=1}^{c}(n_i -1) = card(S) - c$ comme $card(A) = card(S) -1$ alors $c=1$ donc $G$ connexe.
 
      - Mq $1 \iff 4$ Si $G$ est un arbre alors il est acyclique et connexe. Soit $s_1$ et $s_2$ des sommets de $G$. Donc $s_2$ est accessible depuis $s_1$. Si ce chemin n'est pas unique alors il existe un cycle dans $G$. Réciproquement, si pour tout sommets il existe un unique chemin, il y a l'accessibilité, donc la connexité et l'unicité du chemin implique l'acyclicité. D'où l'équivalence.
 
@@ -361,7 +361,8 @@ Un pb classique sur les graphes pondérés consiste à trouver le plus petit poi
 
 $\to$ Sommets sont numérotés $0, 1, 2, \dots, |S|-1$.
 
-> Les matrices d'adjacence $M$ d'un graphe $G = (S, A)$ est une matrice de dimension $|S| \times |S|$ telle que le coeff lige $i$ colonne $j \in \llbracket1, |S|\rrbracket$ vaut
+> Les matrices d'adjacence $M$ d'un graphe $G = (S, A)$ est une matrice de dimension $|S| \times |S|$ telle que le coeff lige $i$ colonne $j \in \llbracket 1, |S|\rrbracket$ vaut
+>
 > $$M_{ij} = \begin{cases} 1 \space \text{si il y a une arrête / arc} \\ 0 \space \text{sinon} \end{cases}$$
 
 Ex: ![image](ressources/chap_11/matrice_adjacence.png)
@@ -390,10 +391,13 @@ Pour les graphes denses, c'est adapté mais pour les graphes creux, cette repr e
 
 - Complexité temporelle des op principales :
 
-  - 2 sommets sont-ils $\begin{cases} \text{voisins} \\ \text{précedent/successeurs} \end{cases}$ On est en $O(1)$, un seul coeff à regarder.
-  - récupérer tous les $\begin{cases} \text{voisins} \\ \text{successeurs} \end{cases}$ d'un sommet. O(|S|), on regarde toute la ligne.
+  - 2 sommets sont-ils reliés. On est en $O(1)$, un seul coeff à regarder.
+  
+  - récupérer tous les voisins/sucesseurs d'un sommet. O(|S|), on regarde toute la ligne.
+  
   - pour les GO, récupérer les prédécesseurs est en $O(|S|)$ car on regarde toutes lec colonnes.
-  - ajouter/enlever $\begin{cases} \text{une arrête} \\ \text{un arc} \end{cases}$ $O(1)$, un seul coeff à modifier dans la matrice.
+  
+  - ajouter/enlever une arrête/un arc $O(1)$, un seul coeff à modifier dans la matrice.
 
 __En OCaml__ :
 
@@ -413,19 +417,25 @@ struct mat_adj_s {
 
 ### 2. Liste d'adjacence
 
-Pour chaque sommet on lui associe la liste de ses $\begin{cases} \text{voisins} \\ \text{successeurs} \end{cases}$.
+Pour chaque sommet on lui associe la liste de ses voisins/successeurs.
 
 __Avantages / Inconvénients__ :
 
 - Complexité spatiale : $O(|S| + |A|)$. Très adapté pour les graphes creux.
 
 - Complexité temporelle des opérations principales :
-  - Tester si 2 sommets $i$ et $j$ sont $\begin{cases} \text{voisins} \\ \text{predecesseurs/successeurs} \end{cases}$. $O(d_+(i))$
-  - Récupérer les $\begin{cases} \text{voisins} \\ \text{successeurs} \end{cases}$ d'un sommet. $O(1)$.
+  
+  - Tester si 2 sommets $i$ et $j$ sont reliés. $O(d_+(i))$
+  
+  - Récupérer les voisins/successeurs d'un sommet. $O(1)$.
+  
   - Pour les GO, récupérer les prédecesseurs. $O(|S| + |A|)$ car on regarde tout.
-  - ajouter/supprimer $\begin{cases} \text{une arrête} \\ \text{un arc} \end{cases}$ :
+  
+  - ajouter/supprimer une arrête/un arc :
+
     - ajouter en tête d'une liste : $O(1)$
-    - enlever $\begin{cases} \text{arc} \space i \to j : O(d_+(i)) \\ \text{une arrête} \space i-j: O(d(i) + d(j))  \end{cases}$
+
+    - enlever un arc: $i \to j : O(d_+(i))$ / une arrête $i-j: O(d(i) + d(j))$.
 
 __En OCaml__ :
 
@@ -452,7 +462,7 @@ Quand les sommets ne sont pas dans $\mathbb{N}$.
 
 $\to$ On associe à chaque sommet un entier unique entre $0$ et $|S| - 1$ en stockant les correspondances dans un tableaux puis on utilise liste/matrice d'adjacence comme avant.
 
-$\to$ Pour une liste d'adj on peut la stocjer dans un tableau sssociatif dont les clés sont les sommets et les valeurs les listes de $\begin{cases} \text{successeurs} \\ \text{voisins} \end{cases}$.
+$\to$ Pour une liste d'adj on peut la stocjer dans un tableau sssociatif dont les clés sont les sommets et les valeurs les listes de voisins/successeurs.
 
 ⚠️ impose que les noms de sommets appartiennent à un ensemble totalement ordonné.
 
@@ -499,30 +509,16 @@ FIN FONCTION
 
 Ex : ![image](ressources/chap_11/parcours_profondeur.png)
 
-$$
-\begin{vmatrix}
-  \text{vus}  &  \text{Ordre de traitement} \\
-  \{\}  & \\ \hline
-  \{0\}  &  0 \\
-  \{0, 1\}  &  1 \\
-  \{0, 1 ,2\}  &  2 \\
-  \{0, 1, 2, 3\}  &  3 \\
-  \{0, 1, 2, 3, 7\}  & 7 \\
-  \{0, 1, 2, 3, 7, 8\}  & 8 \\
-  \{0, 1, 2, 3, 7, 8, 4\} &  4
-\end{vmatrix}
-$$
-
-|vus | Ordre de traitement |
+|`vus` | Ordre de traitement |
 | :-: | :-: |
-|\{\}  | |
-|\{0\}  |  0 |
-|\{0, 1\}  |  1 |
-|\{0, 1 ,2\}  |  2 |
-|\{0, 1, 2, 3\}  |  3 |
-|\{0, 1, 2, 3, 7\}  | 7 |
-|\{0, 1, 2, 3, 7, 8\}  | 8 |
-|\{0, 1, 2, 3, 7, 8, 4\} |  4|
+|{}  | |
+|{0}  |  0 |
+|{0, 1}  |  1 |
+|{0, 1 ,2}  |  2 |
+|{0, 1, 2, 3}  |  3 |
+|{0, 1, 2, 3, 7}  | 7 |
+|{0, 1, 2, 3, 7, 8}  | 8 |
+|{0, 1, 2, 3, 7, 8, 4} |  4|
 
 __Arborescence__ du parcours de graphe tel que $(s_1,s_2) \in A$ si le traitrment de $s_2$ a été lancé pour sont voisin.predecesseur $s_1$. Les sommets sont ceux traités.
 
@@ -552,19 +548,16 @@ FIN FONCTION
 
 Exemple (même graphe que la partie précédente) :
 
-$$
-\begin{vmatrix}
-  \text{vus} &&&  \text{a-traiter}  &&&  \text{ordre} \\\hline
-  \{\}  &&&  \leftarrow\underline{\overline{0 \space  \space \space \space \space \space \space }}  &&&   \\
-  \{\}  &&&  \leftarrow\underline{\overline{1 \space  \space \space \space \space \space \space }}  &&&  0 \\
-  \{\}  &&&  \leftarrow\underline{\overline{2-3}}  &&&  1 \\
-  \{\}  &&&  \leftarrow\underline{\overline{3-4}}  &&&  2 \\
-  \{\}  &&&  \leftarrow\underline{\overline{4-7}}  &&&  3 \\
-  \{\}  &&&  \leftarrow\underline{\overline{7 \space  \space \space \space \space \space \space }}  &&&  4 \\
-  \{\}  &&&  \leftarrow\underline{\overline{8 \space  \space \space \space \space \space \space }}  &&&  7 \\
-  \{\}  &&&  \emptyset  &&&  8
-\end{vmatrix}
-$$
+| `vus` |  `a_traiter`  |  ordre|
+| :-: | :-: | :-: |
+| {}  |  $\bra 0$    |   |
+| {0}  |  $\bra {1}$    |  0 |
+| {0, 1}  |  $\bra {2-3}$  |  1 |
+| {0, 1, 2}  |  $\bra {3-4}$  |  2 |
+| {0, 1, 2, 3}  |  $\bra {4-7}$  |  3 |
+| {0, 1, 2, 3, 4}  |  $\bra 7$    |  4 |
+| {0, 1, 2, 3, 4, 7}  |  $\bra 8$    |  7 |
+| {0, 1, 2, 3, 4, 7, 8}  |  $\emptyset$  |  8|
 
 On peut aussi faire l'arborescence pour le parcours en largeur.
 
