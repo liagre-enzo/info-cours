@@ -254,7 +254,14 @@ ___
 >   - $[\![ \varphi \diamond \psi]\!] {\scriptstyle v}$ $=$ $f_{\diamond} ([\![ \varphi]\!] {\scriptstyle v},$ $[\![ \psi]\!] {\scriptstyle v})$
 
 $\underline{Exemple}$ : $\mathcal = \{x, y\}$ et $\varphi = ((x \rightarrow y) \lor (x \land \neg y)) \land (x \lor \neg y)$
-Soit $v$ la validation défnie par $\begin{cases} v(x) = F \\ v(y) = F \end{cases}$.
+Soit $v$ la validation défnie par :
+
+$$
+\begin{cases}
+  v(x) = F \\
+  v(y) = F
+\end{cases}
+$$
 
 Alors:
 
