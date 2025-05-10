@@ -20,7 +20,7 @@ $\to$ multi-arrête
 
 $\to$ boucles
 
-- Notation: $\{s_1, s_2\} = s_1-s_2$
+- Notation: $\{s_1, s_2\} = s_1 \!- \! s_2$
 
 __Voc__ : Une arrête est *incidente* à un sommet et $s_1$ et $s_2$ sont dit *voisins*.
 
@@ -43,7 +43,7 @@ $\to$ multi-arrête
 
 $\to$ boucles
 
-- __Notation__: $(s_1, s_2) = s_1\to s_2$
+- __Notation__: $(s_1, s_2) = s_1 \! \to \! s_2$
 
 __Voc__ : $s_1$ est appelé *prédécesseur* de $s_2$ et $s_2$ est le successeur de $s_1$.
 
@@ -97,6 +97,19 @@ Autrement dit, en renommant les sommets, les deux graphes ont exactement les mê
 
 Exemple : ![image](ressources/chap_11/isomorphes.png)
 
+$$
+\varphi : \begin{cases}
+  [\![ 1, 5 ]\!] \longmapsto \{a, b, c, d, e\} \\
+  n \longrightarrow \begin{cases}
+    a \space \text{si n = 1}\\
+    b \space \text{si n = 2}\\
+    c \space \text{si n = 3}\\
+    d \space \text{si n = 4}\\
+    e \space \text{sinon}
+  \end{cases}
+\end{cases}
+$$
+
 ### 4. Chemins
 
 >Un chemin de longueur $n$ dans un graphe $G = (S, A)$ est une suite de $n + 1$ sommets $s_0, s_1, s_2,\dots,s_n$ telle que $\forall i \in [\![0, n-1]\!], \{s_i, s_{i+1}\} \in A$.
@@ -109,11 +122,11 @@ Un chemin est dit __élémentaire__ s'il ne passe pas 2 deux fois par le même s
 
 Un chemin est dit __simple__ s'il ne passe pas deux fois par la/le même arrête/arc.
 
-- __Prop :__ Tout chemin est un chemin élémentaire est simple (se prouve trivialement par l'absurde).
+- __Prop :__ Tout chemin élémentaire est simple (se prouve trivialement par l'absurde).
 
 ___
 
->Un __cycle__ est un chemin simple, dans un GNO, de longueur non nulle dont les extrémotés sontle même sommet. Un cycle élémentaire est un cycle où la seule répétition est l'extrémité. On l'appelle __circuit__ dans les GO.
+>Un __cycle__ (__circuit__ dans les GO) est un chemin simple, dans un GNO, de longueur non nulle dont les extrémités sont le même sommet. Un cycle élémentaire est un cycle où la seule répétition est l'extrémité.
 
 Dans un GNO, les cycles sont au moins de longueur $3$.
 
@@ -126,7 +139,7 @@ Dans un GO, les circuit dont au moins de longueur $2$.
 
 ### 5. Accessibilité
 
-> Un sommet $s_2$ est dit __accessible__ depuis un sommet $s_1$ s'il existe un chemin allant de $s_1$ à $s_2$. On note $s_1 \leadsto s_2$.
+> Un sommet $s_2$ est dit __accessible__ depuis un sommet $s_1$ s'il existe un chemin allant de $s_1$ à $s_2$. On note $s_1 \! \leadsto \! s_2$.
 
 - __Prop:__ Dans un GNO la relation d'accessibilité est une relation d'équivalence. (Preuve triviale.) Cependant dans un GO la symétrie n'est pas vérifiée.
 
@@ -141,15 +154,15 @@ Un graphe est connexe $\iff$ il possède une seule composante connexe.
 - __Prop:__ Soit $G = (S, A)$ un GNO, et soient $s_1 \in S$ et $s_2 \in S$ deux sommets non voisins. (i.e. $\{s_1, s_2\} \notin A$).
 Alors si $\tilde G = (S, A \cup \{s_1, s_2\})$, il y a 2 cas possibles:
   1. Si $s_1$ et $s_2$ appartiennent à la même composante connexe dans $G$ alors $\tilde G$ possède le même nombre de composantes connexes que G. Cependant on crée forcément un nouveau cycle.
-  2. Sinon $\tilde G$ possède une composante connexe de moins que $G$. Tout chemin reliant les 2 composantes connexes passe forcément par $s_1-s_2$.
+  2. Sinon $\tilde G$ possède une composante connexe de moins que $G$. Tout chemin reliant les 2 composantes connexes passe forcément par $s_1 \! - \! s_2$.
 
 Cette propriété se montre avec une récurrence sur les arrêtes.
 
 $\underline{\text{Dans un GO.}}$
 
->- Un GO est dit __fortement connexe__ si, pour tout sommet $s_1$ et $s_2$ d graphe, il existe un chemin reliant $s_1$ à $s_2$.
+>- Un GO est dit __fortement connexe__ si, pour tout sommet $s_1$ et $s_2$ du graphe, il existe un chemin reliant $s_1$ à $s_2$.
 >- Un GO est dit __faiblement connexe__ si, l'oublie de l'orientation donne un graphe connexe.
->- Un GO est dit __connexe__ si, pour tout sommet $s_1$ et $s_2$ d graphe, il existe un chemin reliant $s_1$ à $s_2$ ou un chemin reliant $s_2$ à $s_1$.
+>- Un GO est dit __connexe__ si, pour tout sommet $s_1$ et $s_2$ du graphe, il existe un chemin reliant $s_1$ à $s_2$ ou un chemin reliant $s_2$ à $s_1$.
 
 Exemples (un graphe fortement connexe et un non fortement connexe (sommet noir non accessible depuis le sommet gris)) :
 
@@ -171,7 +184,7 @@ Il y a aussi existance de la notion de composante faiblement connexe.
 
 > __Def :__
 >
-> - Une __K-coloration__ dans un graphe $G = (S, A)$ est une fonction $\varphi: k \mapsto [\![0;k-1]\!]$ tq $\forall (s_1, s_2) \in  S², s_1-s_2 \in A \implies \varphi(s_1) \neq \varphi(s_2)$.
+> - Une __K-coloration__ dans un graphe $G = (S, A)$ est une fonction $\varphi: S \mapsto [\![0;k-1]\!]$ tq $\forall (s_1, s_2) \in  S², s_1 \! - \! s_2 \in A \implies \varphi(s_1) \neq \varphi(s_2)$.
 > - Un graphe est dit __K-colorable__ quand il possède une K-coloration.
 > - Le __nombre chromatique__ d'un graphe $G$, noté $\chi(G)$, est le plus petit entier $k$ tel que $G$ est K-colorable.
 
@@ -194,7 +207,7 @@ ___
 
 >- Graphes __Complets__ :
 >
->$G = (S, A)$ tel que $\forall (s_1, s_2) \in S², s_1-s_2 \in A$, un GNO complet a $\frac{card(S)\times (card(S)-1)}{2}$ arrêtes. Un GO complet a $card(S)\times (card(S) - 1)$ arcs.
+>$G = (S, A)$ tel que $\forall (s_1, s_2) \in S², s_1 \! - \! s_2 \in A$, un GNO complet a $\frac{card(S)\times (card(S)-1)}{2}$ arrêtes. Un GO complet a $card(S)\times (card(S) - 1)$ arcs.
 
 ___
 
@@ -220,7 +233,7 @@ Aide à choisir la repr du graphe.
 
 >__biparti__ :
 >
-> Un graphe $G = (S, A)$ est dit biparti si on peut séparer S en deux sous ensembles disjoints $S_A$ et $S_B$ tels que $\forall(s_1,s_2)\in S², s_1-s_2 \implies s_1 \in S_A \land s_2 \in S_B$ ou inversement.
+> Un graphe $G = (S, A)$ est dit biparti si on peut séparer S en deux sous ensembles disjoints $S_A$ et $S_B$ tels que $\forall(s_1,s_2)\in S², s_1 \! - \! s_2 \implies s_1 \in S_A \land s_2 \in S_B$ ou inversement.
 
 Les graphes biparti sont 2-colorables.
 
@@ -234,7 +247,7 @@ ___
 >
 >On peut trouver une repr grarphique sur un plan tel qu'aucun arc/arrête se croise.
 
-- __Prop:__ Le graphe complet à $5$ sommets et biparti-complet à $3 + 3$ sommets sont les plus petits graphes planaires. Tout graphe qui contient un de ces deux sous graphes n'est pas planaire.
+- __Prop:__ Le graphe complet à $5$ sommets et biparti-complet à $3 + 3$ sommets sont les plus petits graphes non planaires. Tout graphe qui contient un de ces deux sous graphes n'est pas planaire.
 
 $\underline{\text{graphes eulériens :}}$
 
@@ -249,7 +262,7 @@ $\underline{\text{graphes hamiltonniens :}}$
 
 __Vocabulaire :__
 
-- Un __chemin hamiltonien__ est un chemin élémentaire qui passe par toutes les arrêtes du graphe (i.e. de longueur $card(S) -1 $).
+- Un __chemin hamiltonien__ est un chemin élémentaire qui passe par toutes les arrêtes du graphe (i.e. de longueur $card(S) -1$).
 - Un __cycle hamiltonien__ est un chemin hamiltonien où la seule répétition de sommet est e départ et l'arrivée.
 
 > Un __graphe hamiltonien__ est un graphe qui possède un cycle hamiltonien.
@@ -301,7 +314,7 @@ __Caractérisation des arrbres__:
 >
 > - Une __forêt__ est un GNO acyclique. Ses composantes connexes sont donc des arbres.
 >
-> - Un __arbre enraciné__ est un arbre (connexe et acyclique) dont on a distinguer un sommet particulier comme étant la racine.
+> - Un __arbre enraciné__ est un graphe (connexe et acyclique) dont on a distinguer un sommet particulier comme étant la racine.
 
 -> Ex:
 
@@ -312,7 +325,7 @@ et si on l'enracine en 0 on a : ![image](ressources/chap_11/arbre%20enraciné%20
 
 > __Def__:
 >
-> un __arbre couvrant__ est un graphe $G = (S,A)$ est un sous-graphe $\tilde G = (\tilde S, \tilde A)$ tel que $\tilde S = S$ (même sommets) et $\tilde A \subset A$ tel que $\tilde G $ est un arbre (connexe acyclique).
+> un __arbre couvrant__ est un graphe $G = (S,A)$ est un sous-graphe $\tilde G = (\tilde S, \tilde A)$ tel que $\tilde S = S$ (même sommets) et $\tilde A \subset A$ tel que $\tilde G$ est un arbre (connexe acyclique).
 
 - __Théorème__ : Tout GNO connexe admet un arbre couvrant.
   - Considérons l'algo suivant:
@@ -325,7 +338,7 @@ et si on l'enracine en 0 on a : ![image](ressources/chap_11/arbre%20enraciné%20
         on prend a appartenant à A' telle que G' privé de a est connexe
         A' <- A'\{a}
       FIN TANT QUE
-      RENVOYER G' ```
+      RENVOYER G' 
   - Variant: $card(A')$; et invariant: $G'$ est connexe.
 
 ### 4. Graphes pondérés
@@ -333,7 +346,7 @@ et si on l'enracine en 0 on a : ![image](ressources/chap_11/arbre%20enraciné%20
 > __Def__:
 >
 > - un graphe podéré est un graphe $G = (S, A, \omega)$ avec $S$ l'ensemble des sommets, $A$ l'ensemble des arcs/arrêtes, et $\omega : A \mapsto \R$ une __fonction de pondération__ qui à un arc aussocie son __poids__
-> - On étend usuéellement $\omega$ pour que $s_1-s_2 \notin A \implies \omega(s_1-s_2) = +\infty$.
+> - On étend usuéellement $\omega$ pour que $s_1 \! - \! s_2 \notin A \implies \omega(s_1 \! - \! s_2) = +\infty$.
 
 $\to$ Application: les gaphes pondérés représentent bien tous les tyes de réseaux.
 
@@ -391,7 +404,7 @@ type mat_adj = int array array
 __En C__ :
 
 ```c
-tyoedef int mat[100]; // 10 sommets max dans la matrice.
+typedef int mat[100]; // 10 sommets max dans la matrice.
 struct mat_adj_s {
   int nb_sommets;     // compris entre 1 et 10
   mat matrice;        // matrice linéarisée
@@ -542,6 +555,7 @@ $$
   \{\}  &&&  \emptyset  &&&  8
 \end{vmatrix}
 $$
+
 On peut aussi faire l'arborescence pour le parcours en largeur.
 
 - __Prop__ : Le parcours en latgeur visite exactement les sommets accessible depuis le sommet de départ.
@@ -617,7 +631,7 @@ trouver les distances de départ à tous les autres sommets
   
 Determiner si un graphe est biparti
 
-- On choisit un sommet de départ, on le place dans une partition. Quand on explore un sommet, on essaie de places ses voisins dans la partitin opposée. Si un des voisins avait d"jà été placé et que les partitions ne correspondent pas $\implies$ pas biparti.
+- On choisit un sommet de départ, on le place dans une partition. Quand on explore un sommet, on essaie de places ses voisins dans la partition opposée. Si un des voisins avait déjà été placé et que les partitions ne correspondent pas $\implies$ pas biparti.
 - On repète ces étapes jusqu'à avoir vu tous les sommets.
 
 Rechercher un cycle dont le départ fait partie.
@@ -630,7 +644,7 @@ $\leadsto$ ne s'applique que sur les GO.
 
 > __Def__ :
 >
-> - Un *ordre topologique* est une relation d'ordre totale $\prec$ talle que si $s_1 \to s_2 \in A$ alors $s_1 \prec s_2$
+> - Un *ordre topologique* est une relation d'ordre totale $\prec$ talle que si $s_1 \! \to \! s_2 \in A$ alors $s_1 \prec s_2$
 > - Un *tri topologique* est une énumération de tous les sommets qui respecte l'ordre topologique.
 
 - __Prop__ : Un graphe orienté admet un ordre topologique si et seulement s'il est acyclique.
