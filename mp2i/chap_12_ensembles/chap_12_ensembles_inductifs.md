@@ -128,7 +128,7 @@ Exercice laissé au soin du lecteur.
 
 *Q2.*
 
-$\Z^*$
+$\mathbb{Z}^*$
 
 *Q3.*
 

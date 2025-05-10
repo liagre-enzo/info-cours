@@ -20,7 +20,7 @@ $\to$ multi-arrête
 
 $\to$ boucles
 
-- Notation: $\{s_1, s_2\} = s_1 \!- \! s_2$
+- Notation: $\{s_1, s_2\} = s_1 -  s_2$
 
 __Voc__ : Une arrête est *incidente* à un sommet et $s_1$ et $s_2$ sont dit *voisins*.
 
@@ -43,7 +43,7 @@ $\to$ multi-arrête
 
 $\to$ boucles
 
-- __Notation__: $(s_1, s_2) = s_1 \! \to \! s_2$
+- __Notation__: $(s_1, s_2) = s_1  \to  s_2$
 
 __Voc__ : $s_1$ est appelé *prédécesseur* de $s_2$ et $s_2$ est le successeur de $s_1$.
 
@@ -99,7 +99,7 @@ Exemple : ![image](ressources/chap_11/isomorphes.png)
 
 $$
 \varphi : \begin{cases}
-  [\![ 1, 5 ]\!] \longmapsto \{a, b, c, d, e\} \\
+  \llbracket 1, 5 \rrbracket \longmapsto \{a, b, c, d, e\} \\
   n \longrightarrow \begin{cases}
     a \space \text{si n = 1}\\
     b \space \text{si n = 2}\\
@@ -112,7 +112,7 @@ $$
 
 ### 4. Chemins
 
->Un chemin de longueur $n$ dans un graphe $G = (S, A)$ est une suite de $n + 1$ sommets $s_0, s_1, s_2,\dots,s_n$ telle que $\forall i \in [\![0, n-1]\!], \{s_i, s_{i+1}\} \in A$.
+>Un chemin de longueur $n$ dans un graphe $G = (S, A)$ est une suite de $n + 1$ sommets $s_0, s_1, s_2,\dots,s_n$ telle que $\forall i \in \llbracket0, n-1\rrbracket, \{s_i, s_{i+1}\} \in A$.
 
 - Un chemin de longueur $n$ a $n$ arrêtes/arcs.
 
@@ -139,7 +139,7 @@ Dans un GO, les circuit dont au moins de longueur $2$.
 
 ### 5. Accessibilité
 
-> Un sommet $s_2$ est dit __accessible__ depuis un sommet $s_1$ s'il existe un chemin allant de $s_1$ à $s_2$. On note $s_1 \! \leadsto \! s_2$.
+> Un sommet $s_2$ est dit __accessible__ depuis un sommet $s_1$ s'il existe un chemin allant de $s_1$ à $s_2$. On note $s_1  \leadsto  s_2$.
 
 - __Prop:__ Dans un GNO la relation d'accessibilité est une relation d'équivalence. (Preuve triviale.) Cependant dans un GO la symétrie n'est pas vérifiée.
 
@@ -154,7 +154,7 @@ Un graphe est connexe $\iff$ il possède une seule composante connexe.
 - __Prop:__ Soit $G = (S, A)$ un GNO, et soient $s_1 \in S$ et $s_2 \in S$ deux sommets non voisins. (i.e. $\{s_1, s_2\} \notin A$).
 Alors si $\tilde G = (S, A \cup \{s_1, s_2\})$, il y a 2 cas possibles:
   1. Si $s_1$ et $s_2$ appartiennent à la même composante connexe dans $G$ alors $\tilde G$ possède le même nombre de composantes connexes que G. Cependant on crée forcément un nouveau cycle.
-  2. Sinon $\tilde G$ possède une composante connexe de moins que $G$. Tout chemin reliant les 2 composantes connexes passe forcément par $s_1 \! - \! s_2$.
+  2. Sinon $\tilde G$ possède une composante connexe de moins que $G$. Tout chemin reliant les 2 composantes connexes passe forcément par $s_1  -  s_2$.
 
 Cette propriété se montre avec une récurrence sur les arrêtes.
 
@@ -184,7 +184,7 @@ Il y a aussi existance de la notion de composante faiblement connexe.
 
 > __Def :__
 >
-> - Une __K-coloration__ dans un graphe $G = (S, A)$ est une fonction $\varphi: S \mapsto [\![0;k-1]\!]$ tq $\forall (s_1, s_2) \in  S², s_1 \! - \! s_2 \in A \implies \varphi(s_1) \neq \varphi(s_2)$.
+> - Une __K-coloration__ dans un graphe $G = (S, A)$ est une fonction $\varphi: S \mapsto \llbracket0;k-1\rrbracket$ tq $\forall (s_1, s_2) \in  S², s_1  -  s_2 \in A \implies \varphi(s_1) \neq \varphi(s_2)$.
 > - Un graphe est dit __K-colorable__ quand il possède une K-coloration.
 > - Le __nombre chromatique__ d'un graphe $G$, noté $\chi(G)$, est le plus petit entier $k$ tel que $G$ est K-colorable.
 
@@ -207,7 +207,7 @@ ___
 
 >- Graphes __Complets__ :
 >
->$G = (S, A)$ tel que $\forall (s_1, s_2) \in S², s_1 \! - \! s_2 \in A$, un GNO complet a $\frac{card(S)\times (card(S)-1)}{2}$ arrêtes. Un GO complet a $card(S)\times (card(S) - 1)$ arcs.
+>$G = (S, A)$ tel que $\forall (s_1, s_2) \in S², s_1  -  s_2 \in A$, un GNO complet a $\frac{card(S)\times (card(S)-1)}{2}$ arrêtes. Un GO complet a $card(S)\times (card(S) - 1)$ arcs.
 
 ___
 
@@ -233,7 +233,7 @@ Aide à choisir la repr du graphe.
 
 >__biparti__ :
 >
-> Un graphe $G = (S, A)$ est dit biparti si on peut séparer S en deux sous ensembles disjoints $S_A$ et $S_B$ tels que $\forall(s_1,s_2)\in S², s_1 \! - \! s_2 \implies s_1 \in S_A \land s_2 \in S_B$ ou inversement.
+> Un graphe $G = (S, A)$ est dit biparti si on peut séparer S en deux sous ensembles disjoints $S_A$ et $S_B$ tels que $\forall(s_1,s_2)\in S², s_1  -  s_2 \implies s_1 \in S_A \land s_2 \in S_B$ ou inversement.
 
 Les graphes biparti sont 2-colorables.
 
@@ -302,13 +302,13 @@ __Caractérisation des arrbres__:
   5. $G$ est minimalement connexe.
   6. $G$ est maximalement acyclique.
 
-     - Preuve: Les th précedents donne $1. \implies 2.$ et $1 \implies 3.$.
+     - Preuve: Les th précedents donne $1.\implies 2$ et $1 \implies 3$.
 
-     - Montrons que $3. \implies 1.$. Par l'absurde, supposons un graphe $G=(S, A)$ connexe avec $card(A) = card(S) -1$ possède un cycle. $G$ privé de cette arrête est tonjours connexe et possède $card(S) - 2$ arrêtes. Impossible.
+     - Montrons que $3 \implies 1$. Par l'absurde, supposons un graphe $G=(S, A)$ connexe avec $card(A) = card(S) -1$ possède un cycle. $G$ privé de cette arrête est tonjours connexe et possède $card(S) - 2$ arrêtes. Impossible.
 
-     - Mq $2. \implies 1.$ Prenons un graphe $G=(S,A)$ acyclique tel que $card(A) = card(S) -1$. Montrons que $G$ possde 1 seule composante connexe. Notons $c$ le nombre de composantes connexes de $G$. et $n_1, n_2, \dots , n_c$ les nb de sommets de ces composantes connexes. Les composantes connexes sont des arbres. (connexes par définition et acyclique car G est acyclique.) Donc une composante connexe à $n_i$ sommets possède $n_i -1$ arrêtes.Le nb d'arrêtes de G est $\sum_{i=1}^{c}(n_i -1) = card(S) - c$ comme $card(A) = card(S) -1$ alors $ c=1$ donc $G$ connexe.
+     - Mq $2 \implies 1$ Prenons un graphe $G=(S,A)$ acyclique tel que $card(A) = card(S) -1$. Montrons que $G$ possde 1 seule composante connexe. Notons $c$ le nombre de composantes connexes de $G$. et $n_1, n_2, \dots , n_c$ les nb de sommets de ces composantes connexes. Les composantes connexes sont des arbres. (connexes par définition et acyclique car G est acyclique.) Donc une composante connexe à $n_i$ sommets possède $n_i -1$ arrêtes.Le nb d'arrêtes de G est $\sum_{i=1}^{c}(n_i -1) = card(S) - c$ comme $card(A) = card(S) -1$ alors $ c=1$ donc $G$ connexe.
 
-     - Mq $1 \iff 4.$ Si $G$ est un arbre alors il est acyclique et connexe. Soit $s_1$ et $s_2$ des sommets de $G$. Donc $s_2$ est accessible depuis $s_1$. Si ce chemin n'est pas unique alors il existe un cycle dans $G$. Réciproquement, si pour tout sommets il existe un unique chemin, il y a l'accessibilité, donc la connexité et l'unicité du chemin implique l'acyclicité. D'où l'équivalence.
+     - Mq $1 \iff 4$ Si $G$ est un arbre alors il est acyclique et connexe. Soit $s_1$ et $s_2$ des sommets de $G$. Donc $s_2$ est accessible depuis $s_1$. Si ce chemin n'est pas unique alors il existe un cycle dans $G$. Réciproquement, si pour tout sommets il existe un unique chemin, il y a l'accessibilité, donc la connexité et l'unicité du chemin implique l'acyclicité. D'où l'équivalence.
 
 > __Retour sur le vocabulaire des arbres__
 >
@@ -345,8 +345,8 @@ et si on l'enracine en 0 on a : ![image](ressources/chap_11/arbre%20enraciné%20
 
 > __Def__:
 >
-> - un graphe podéré est un graphe $G = (S, A, \omega)$ avec $S$ l'ensemble des sommets, $A$ l'ensemble des arcs/arrêtes, et $\omega : A \mapsto \R$ une __fonction de pondération__ qui à un arc aussocie son __poids__
-> - On étend usuéellement $\omega$ pour que $s_1 \! - \! s_2 \notin A \implies \omega(s_1 \! - \! s_2) = +\infty$.
+> - un graphe podéré est un graphe $G = (S, A, \omega)$ avec $S$ l'ensemble des sommets, $A$ l'ensemble des arcs/arrêtes, et $\omega : A \mapsto \mathbb{R}$ une __fonction de pondération__ qui à un arc aussocie son __poids__
+> - On étend usuéellement $\omega$ pour que $s_1  -  s_2 \notin A \implies \omega(s_1  -  s_2) = +\infty$.
 
 $\to$ Application: les gaphes pondérés représentent bien tous les tyes de réseaux.
 
@@ -361,7 +361,7 @@ Un pb classique sur les graphes pondérés consiste à trouver le plus petit poi
 
 $\to$ Sommets sont numérotés $0, 1, 2, \dots, |S|-1$.
 
-> Les matrices d'adjacence $M$ d'un graphe $G = (S, A)$ est une matrice de dimension $|S| \times |S|$ telle que le coeff lige $i$ colonne $j \in [\![1, |S|]\!]$ vaut
+> Les matrices d'adjacence $M$ d'un graphe $G = (S, A)$ est une matrice de dimension $|S| \times |S|$ telle que le coeff lige $i$ colonne $j \in \llbracket1, |S|\rrbracket$ vaut
 > $$M_{ij} = \begin{cases} 1 \space \text{si il y a une arrête / arc} \\ 0 \space \text{sinon} \end{cases}$$
 
 Ex: ![image](ressources/chap_11/matrice_adjacence.png)
@@ -372,7 +372,7 @@ __Prop :__
 
 - La diagonale d'une matrice d'adjacence est remplie de 0 (sauf si les boucles sont autorisées).
 
-- Si $M$ est la mat d'adjacence d'un graphe. Soit $k \in \N$. $M^k$ donne la ligne $i$ colonne $j$, le nombre de chemins de longueur $k$ allant de $i$ à $j$.
+- Si $M$ est la mat d'adjacence d'un graphe. Soit $k \in \mathbb{N}$. $M^k$ donne la ligne $i$ colonne $j$, le nombre de chemins de longueur $k$ allant de $i$ à $j$.
   - Preuve par récurrence sur $k$.
     - *Initialisation* :
       - Pour $k = 0$, $M⁰$ est l'identité, ce qui est correct car les seulrs chemins de longueur $0$ sont seux reliant un sommet à lui même.
@@ -448,7 +448,7 @@ struct list_asj_s {
 
 ### 3. Autre représentations
 
-Quand les sommets ne sont pas dans $\N$.
+Quand les sommets ne sont pas dans $\mathbb{N}$.
 
 $\to$ On associe à chaque sommet un entier unique entre $0$ et $|S| - 1$ en stockant les correspondances dans un tableaux puis on utilise liste/matrice d'adjacence comme avant.
 
@@ -502,7 +502,7 @@ Ex : ![image](ressources/chap_11/parcours_profondeur.png)
 $$
 \begin{vmatrix}
   \text{vus}  &  \text{Ordre de traitement} \\
-  \text{\{\}}  & \\ \hline
+  \{\}  & \\ \hline
   \{0\}  &  0 \\
   \{0, 1\}  &  1 \\
   \{0, 1 ,2\}  &  2 \\
@@ -510,9 +510,19 @@ $$
   \{0, 1, 2, 3, 7\}  & 7 \\
   \{0, 1, 2, 3, 7, 8\}  & 8 \\
   \{0, 1, 2, 3, 7, 8, 4\} &  4
-
 \end{vmatrix}
 $$
+
+|vus | Ordre de traitement |
+| :-: | :-: |
+|\{\}  | |
+|\{0\}  |  0 |
+|\{0, 1\}  |  1 |
+|\{0, 1 ,2\}  |  2 |
+|\{0, 1, 2, 3\}  |  3 |
+|\{0, 1, 2, 3, 7\}  | 7 |
+|\{0, 1, 2, 3, 7, 8\}  | 8 |
+|\{0, 1, 2, 3, 7, 8, 4\} |  4|
 
 __Arborescence__ du parcours de graphe tel que $(s_1,s_2) \in A$ si le traitrment de $s_2$ a été lancé pour sont voisin.predecesseur $s_1$. Les sommets sont ceux traités.
 
@@ -544,7 +554,7 @@ Exemple (même graphe que la partie précédente) :
 
 $$
 \begin{vmatrix}
-  \text{vus} &&&  \text{a\_traiter}  &&&  \text{ordre} \\\hline
+  \text{vus} &&&  \text{a-traiter}  &&&  \text{ordre} \\\hline
   \{\}  &&&  \leftarrow\underline{\overline{0 \space  \space \space \space \space \space \space }}  &&&   \\
   \{\}  &&&  \leftarrow\underline{\overline{1 \space  \space \space \space \space \space \space }}  &&&  0 \\
   \{\}  &&&  \leftarrow\underline{\overline{2-3}}  &&&  1 \\
@@ -644,7 +654,7 @@ $\leadsto$ ne s'applique que sur les GO.
 
 > __Def__ :
 >
-> - Un *ordre topologique* est une relation d'ordre totale $\prec$ talle que si $s_1 \! \to \! s_2 \in A$ alors $s_1 \prec s_2$
+> - Un *ordre topologique* est une relation d'ordre totale $\prec$ talle que si $s_1  \to  s_2 \in A$ alors $s_1 \prec s_2$
 > - Un *tri topologique* est une énumération de tous les sommets qui respecte l'ordre topologique.
 
 - __Prop__ : Un graphe orienté admet un ordre topologique si et seulement s'il est acyclique.
