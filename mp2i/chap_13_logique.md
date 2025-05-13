@@ -331,3 +331,108 @@ __Propriétés :__
 - (impact de la substitution) Si $\varphi \equiv \nu$. Soit $x \in V$ et $\psi \in P {\scriptstyle V}$.
   - $\varphi[\psi/x] \equiv \nu[\psi/x]$
   - $\psi[\varphi/x] \equiv \psi[\nu/x]$ ces deux propriétés se montre par induction structurelle.
+
+#### Éqivalences sémentiques fondamentales (se prouvent toutes par table de vérité)
+
+- Tiers exclus
+  - $\varphi \land \neg \varphi \equiv \bot$
+  - $\varphi \lor \neg \varphi \equiv \top$
+
+- Element neutre
+  - $\varphi \land \top \equiv \varphi$
+  - $\varphi \lor \bot \equiv \varphi$
+  
+- Élément absorbant
+  - $\varphi \land \bot \equiv \bot$
+  - $\varphi \lor \top \equiv \top$
+
+- Lois de Morgan
+  - $\neg (\varphi \land \psi) \equiv \neg \varphi \lor \neg \psi$
+  - $\neg (\varphi \lor \psi) \equiv \neg \varphi \land \neg \psi$
+
+- Décomposition de l'implication
+  - $\varphi \rightarrow \psi \equiv \neg \varphi \lor \psi$
+
+- Associativité
+  - $(\varphi \land \psi) \land \theta \equiv \varphi \land (\psi \land \theta)$
+  - $(\varphi \lor \psi) \lor \theta \equiv \varphi \lor (\psi \lor \theta)$
+
+- Distributivité
+  - $\varphi \land (\psi \lor \theta) \equiv (\varphi \land \psi) \lor (\varphi \land \theta)$
+  - $\varphi \lor (\psi \land \theta) \equiv (\varphi \lor \psi) \land (\varphi \lor \theta)$
+
+- Commutativité
+  - $\varphi \land \psi \equiv \psi \land \varphi$
+  - $\varphi \lor \psi \equiv \psi \lor \varphi$
+
+- Contraposition
+  - $\varphi \rightarrow \psi \equiv \neg \psi \rightarrow \neg \varphi$
+
+- Double implication
+  - $\varphi \leftrightarrow \psi \equiv (\varphi \rightarrow \psi) \land (\psi \rightarrow \varphi)$
+
+- Disjonction de cas
+  - $(\varphi \rightarrow \psi) \land (\neg \varphi \rightarrow \psi) \equiv \psi$
+
+- Absurde
+  - $\neg \varphi \rightarrow \bot \equiv \varphi$
+
+- Idempotence
+  - $\varphi \land \varphi \equiv \varphi$
+  - $\varphi \lor \varphi \equiv \varphi$
+
+Preuve pour décomposition de l'implication
+
+| $[\![\varphi]\!] {\scriptsize v}$ | $[\![\psi]\!] {\scriptsize v}$ | $[\![\varphi \rightarrow \psi]\!] {\scriptsize v}$ | $[\![\neg \varphi \lor \psi]\!] {\scriptsize v}$ |
+| :-: | :-: | :-: | :-: |
+| $F$ | $F$ | $V$ | $V$ |
+| $F$ | $V$ | $V$ | $V$ |
+| $V$ | $F$ | $F$ | $F$ |
+| $V$ | $V$ | $V$ | $V$ |
+
+$\underline{\text{Exemple}}$ 3 personnes mangent ensemble $A$, $B$ et $C$ . Quelques infos
+
+- Si $A$ prend un dessert alors $B$ aussi.
+- Soir $B$ soit $C$ prennent un dessert mais pas les deux.
+- $A$ ou $C$ prend un dessert
+- Si $C$ prend un dessert alors $A$ aussi
+
+*Problème* : qui prend un dessert ?
+
+On introduit les variables propositionnelles:
+
+- $a$ signifie " $A$ prend un dessert"
+- $b$ signifie " $B$ prend un dessert"
+- $c$ signifie " $C$ prend un dessert"
+
+Les quatres contraintes sont représentés par les formules suivantes.
+
+1. $a \rightarrow b$
+2. $(b \lor c) \land \neg (b \land c)$
+3. $a \lor c$
+4. $c \rightarrow a$
+
+La formule respectant les problèmes:
+
+$$
+\begin{align*}
+  \varphi &= (a \rightarrow b) \land ((b \lor c) \land \underline{\neg (b \land c)}) \land (a \lor c) \land (c \rightarrow a) \\
+  & \equiv \underline{(a \rightarrow b)} \land ((b \lor c) \land (\neg b \lor \neg c)) \land (a \lor c) \land \underline{(c \rightarrow a)} && | \space \text{d'après les lois de Moargan} \\
+  & \equiv (\neg a \lor b) \land (b \lor c) \land (\neg b \lor \neg c) \land \underline{(a \lor c) \land (\neg c \lor a)} && | \space \text{Décomposition de l'implication}\\
+  & \equiv (\neg a \lor b) \land (b \lor c) \land (\neg b \lor \neg c) \land (a \lor \underline{(c \land \neg c)}) &&| \space \text{distributivité} \\
+  & \equiv (\neg a \lor b) \land (b \lor c) \land (\neg b \lor \neg c) \land \underline{(a \lor \bot)} &&| \space \text{Tiers exclus} \\
+  & \equiv \underline{(\neg a \lor b)} \land (b \lor c) \land (\neg b \lor \neg c) \land \underline{a} &&| \space \text{élement neutre} \\
+  & \equiv (\underline{(\neg a \land a) \lor (b \land a)}) \land (b \lor c) \land (\neg b \lor \neg c) &&| \space \text{distributivité} \\
+  & \equiv (\underline{b} \land a) \land (b \lor c) \land \underline{(\neg b \lor \neg c)} &&| \space \text{élement neutre} \\
+  & \equiv a \land (b \lor c) \land (\underline{(\neg b \land b) \lor (b \land c)}) && | \space \text{distributivité} \\
+  & \equiv \underline{(b \lor c)} \land a  \land b \land \underline{\neg c}  && | \space \text{tiers exclu puis element neutre}\\
+  & \equiv a \land \underline{b} \land \neg c \land \underline{b}   && | \space \text{Même justification qu'au dessus}\\
+  & \equiv a \land b \land \neg c && | \space \text{idempotence}
+\end{align*}
+$$
+
+### 3. Systémes complets de connecteurs
+
+> __Def__
+>
+> Un systéme complet de connecteurs est un ensemble de connecteurs avec lesquels toute formule (donc toute table de vérité) peut être construite
