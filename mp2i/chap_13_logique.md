@@ -104,7 +104,7 @@ ___
 
 #### __Sous-formule__ d'une formule prop
 
-Idée $=$ une sous-formule est une partie de la formule qui est syntaciquement une formule prop.
+Idée $=$ une sous-formule est une partie de la formule qui est syntaxiquement une formule prop.
 
 *Définition inductive* de $\mathcal{S_F}$ l'ensemble des sous formules.:
 
@@ -115,21 +115,15 @@ Idée $=$ une sous-formule est une partie de la formule qui est syntaciquement u
 
 ___
 
-#### __Sous-formule__ d'une variable par une formule prop
+#### __Substitution__ d'une variable par une formule prop
 
 Idée $=$ remplacer la variable à chaque endroit où la variable est présente dans la formule.
 
 *Définition inductive* de $\varphi[\psi/x]$ substitution de $x$ par $\psi$ dans la formule $\varphi$:
 
 - Assertions : $\top[\psi/x] = \top$ et $\bot[\psi/x] = \bot$. Soit $v \in V$ alors:
-
-$$
-\begin{cases}
-  v[\psi/x] = \psi \space \text{si} \space v = x \\
-  v[\psi/x] = v \space \text{sinon}  
-\end{cases}
-$$
-
+  - $v[\psi/x] = \psi$ si $v = x$
+  - $v[\psi/x] = v$ sinon  
 - Règles d'inférence :
   - Soit $\varphi \in P {\scriptstyle V}$ alors $(\neg \varphi) [\psi/x] = \neg (\varphi[\psi/x])$.
   - Soient $\varphi, \varphi' \in P {\scriptstyle V}$ alors $(\varphi \diamond \varphi') [\psi/x] = (\varphi[\psi/x] \diamond \varphi'[\psi/x])$
@@ -266,7 +260,7 @@ $$
 Alors:
 
 $$
-\begin{align}
+\begin{align*}
   [\![ \varphi]\!]  {\scriptstyle v} &= f {\scriptstyle \land} ([\![ (x \rightarrow y) \lor (x \land \neg y)]\!]  {\scriptstyle v}, [\![ x \lor \neg y]\!]  {\scriptstyle v}) \\
     &= f {\scriptstyle \land} (f {\scriptstyle \lor} ([\![ x \rightarrow y]\!]  {\scriptstyle v},[\![ x \land \neg y]\!]  {\scriptstyle v}) , f {\scriptstyle \lor} ([\![ x, \neg y]\!]  {\scriptstyle v})) \\
     & = f {\scriptstyle \land} (f {\scriptstyle \lor} (f {\scriptstyle \rightarrow}([\![ x]\!]  {\scriptstyle v}, [\![ y]\!]  {\scriptstyle v}),f {\scriptstyle \land}([\![ x]\!]  {\scriptstyle v}, f {\scriptstyle \neg}([\![ y]\!]  {\scriptstyle v}))) , f {\scriptstyle \lor} ([\![ x]\!]  {\scriptstyle v}, f {\scriptstyle \neg}( [\![ y]\!]  {\scriptstyle v}))) \\
@@ -275,7 +269,7 @@ $$
     &= f {\scriptstyle \land} (f {\scriptstyle \lor} (V,F) , V) \\
     &= f {\scriptstyle \land} (V , V) \\
     &= V
-\end{align}
+\end{align*}
 $$
 
 $\to$ Une *table de vérité* d'ube formule $\varphi$ permet de résumer $[\![ \varphi]\!]  {\scriptstyle v}$ pour chque valuation $v$ existante.
