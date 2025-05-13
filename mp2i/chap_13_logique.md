@@ -138,7 +138,7 @@ $$
 
 Objectif : pouvoir manipuler des objets qui ne sont pas justes "vrai ou faux".
 
-$\underline{Exemple}$ : $2 \leq x + 1 < 3y$.
+$\underline{\text{Exemple}}$ : $2 \leq x + 1 < 3y$.
 
 >__Def__ (domaine): un domaine est composé
 >
@@ -165,7 +165,7 @@ Retour sur l'exemple : $2 \leq x + 1 < 3y$
   - $S_f⁰ = \{1, 2, 3\}$
   - $S_p¹ = \{\leq\}$
 
-$\underline{Exemple}$ 2 : "Tous les hommes sont mortels. Socrate est un homme. Donc Socrate est mortel." Pour transformer cette phrase il nous faut les quantificateur.
+$\underline{\text{Exemple}}$ 2 : "Tous les hommes sont mortels. Socrate est un homme. Donc Socrate est mortel." Pour transformer cette phrase il nous faut les quantificateur.
 
 >__Def__ (quantificateurs):
 >
@@ -253,7 +253,7 @@ ___
 >   - $[\![ \neg \varphi]\!] {\scriptstyle v}$ $=$ $f_{\neg} ([\![ \varphi]\!] {\scriptstyle v})$
 >   - $[\![ \varphi \diamond \psi]\!] {\scriptstyle v}$ $=$ $f_{\diamond} ([\![ \varphi]\!] {\scriptstyle v},$ $[\![ \psi]\!] {\scriptstyle v})$
 
-$\underline{Exemple}$ : $\mathcal = \{x, y\}$ et $\varphi = ((x \rightarrow y) \lor (x \land \neg y)) \land (x \lor \neg y)$
+$\underline{\text{Exemple}}$ : $\mathcal = \{x, y\}$ et $\varphi = ((x \rightarrow y) \lor (x \land \neg y)) \land (x \lor \neg y)$
 Soit $v$ la validation défnie par :
 
 $$
@@ -313,7 +313,7 @@ $\underline{Généralisation :}$ Une formule $\psi$ est une conséquence sémant
 
 $\to$ Pour étudier la conséquence sémantique on fait les tables de vérité de toutes les formules impliquées.
 
-$\underline{Exemple}$: $V = \{x, y\}$. Montrer que $x \land y \vDash x \rightarrow y$
+$\underline{\text{Exemple}}$: $V = \{x, y\}$. Montrer que $x \land y \vDash x \rightarrow y$
 
 | $v(x)$ | $v(y)$ | $[\![ x \land y]\!]  {\scriptstyle v}$ | $[\![ x \rightarrow y]\!]  {\scriptstyle v}$ |
 | :-: | :-: | :-: | :-: |
@@ -436,3 +436,53 @@ $$
 > __Def__
 >
 > Un systéme complet de connecteurs est un ensemble de connecteurs avec lesquels toute formule (donc toute table de vérité) peut être construite
+
+- __Théorème :__ Le système $\{\neg, \land, \lor\}$ est complet.
+  - *Preuve*:
+    - Montrons quetoute table de vérité correspond à une formule écrite avec uniquement $\{\neg, \land, \lor\}$ .
+  - Il y a $2^{2^2}$ tables à étudier.
+
+| $[\![x]\!] {\scriptsize v}$ | $[\![y]\!] {\scriptsize v}$ | $?$ |
+| :-: | :-: | :-: |
+| $F$ | $F$ | $V^{[1]}$ |
+| $F$ | $V$ | $V^{[2]}$ |
+| $V$ | $F$ | $F$ |
+| $V$ | $V$ | $V^{[3]}$ |
+
+1. $\neg x \land \neg y$
+2. $\neg x \land y$
+3. $x \land y$
+
+Une formule ayant cette table de vérité est $(\neg x \land \neg y) \lor (\neg x \land y) \lor (x \land y)$ . Cette méthode peut s'appliquer pour trouver une formule pour les $2^{2^2}$ tables de vérités.
+
+> __Méthode__ : 2 manières de montrer q'un système de connecteurs est complet:
+>
+> - Dresser toute les tables de vérité et trouver une formule corresmondante.
+> - Utiliser le théorème et montrer que toute formule utilisant $\{\neg, \land, \lor\}$ est équivalent sémantiquement à une formule utilisant les connnecteurs de notre système.
+
+$\underline{\text{Exemple}}$ Montrer que $\{\neg, \land\}$ est complet.
+
+- Il suffit de montrer que toute formule utilisant un $\lor$ est équivalent à une formule utilisant seulement $\neg$ et $\land$ .
+  - si $\varphi, \psi \in P{\scriptsize V}$ alors $(\varphi \lor \psi) \equiv \neg (\neg \varphi \land \neg \psi)$ avec les lois de Morgan.
+
+La définition inductive de l'ensemble $P {\scriptsize V}$ peut en réalité utiliser n'importe quel system complet de connnecteur.
+
+- Autres connnecteurs usuels
+  - $\oplus$ ou exclusif : $\varphi \oplus \psi \equiv (\varphi \lor \psi) \land \neg (\varphi \land \psi)$
+  - $\uparrow$ nand : $\varphi \uparrow \psi \equiv \neg (\varphi \land \psi)$
+  - $\downarrow$ nor : $\varphi \downarrow \psi \equiv \neg (\varphi \lor \psi)$
+  - $\leftarrow$ implicarion réciproque
+
+On peut aussi définit les quantificateurs dans l'ensemble $P {\scriptsize V}$
+
+- Avec $x \in V$ et $\varphi \in P {\scriptsize V}$ alors $\forall x \cdot \varphi \equiv \varphi [\top / x] \land \varphi [\bot / x]$
+- Avec $x \in V$ et $\varphi \in P {\scriptsize V}$ alors $\exist x \cdot \varphi \equiv \varphi [\top / x] \lor \varphi [\bot / x]$
+
+## III. Un problème SAT
+
+> __Definition__
+>
+> Un problème SAT est un pb de décision qui prend en entrée une formule prop $\varphi$ et renvoie
+>
+> - Vrai si $\varphi$ est satisfiable
+> - Faux sinon
