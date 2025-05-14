@@ -375,6 +375,9 @@ __Propriétés :__
   - $\varphi \land \varphi \equiv \varphi$
   - $\varphi \lor \varphi \equiv \varphi$
 
+- Double négation
+  - $\neg \neg \varphi \equiv \varphi$
+
 Preuve pour décomposition de l'implication
 
 | $[\![\varphi]\!] {\scriptsize v}$ | $[\![\psi]\!] {\scriptsize v}$ | $[\![\varphi \rightarrow \psi]\!] {\scriptsize v}$ | $[\![\neg \varphi \lor \psi]\!] {\scriptsize v}$ |
@@ -480,3 +483,156 @@ On peut aussi définit les quantificateurs dans l'ensemble $P {\scriptsize V}$
 >
 > - Vrai si $\varphi$ est satisfiable
 > - Faux sinon
+
+### 1. Formes normales
+
+*Objectif* : Uniformiser les formuls pour le probleme SAT
+
+> __Definition__
+>
+> Un __littéral__ est une variable propositionnnelle ou la négation d'une variable
+>
+> - La formule __normale négative__ d'une formule $\varphi$ est une formule equivalente sémantiquement à $\varphi$ qui ne contient que des conjonction, disjonction et littéraux.
+
+$\underline{\text{Exemple}} \space V = \{a, b, c, d\}$
+
+- [x] $(\neg a \land b)$
+- [x] $(a \lor c) \land \neg d$
+- [ ] $\neg(a \land b) \lor d$ car $\neg(a \land b)$ n'est pas un littéral
+- [ ] $(a \land \neg c) \rightarrow \neg b$ à cause de $\rightarrow$
+
+__Prop :__ Toute formule possède une forme normale négative. Pour ça il faut
+
+- éliminer les connnecteurs $\leftrightarrow$ et $\rightarrow$ .
+- appliquer les lois de Morgan pour éliminer les négations sur les formules.
+- enlever les doubles négations.
+
+$\underline{\text{Exemple}} \space V = \{x, y, z\}$
+
+$$
+\begin{align*}
+  \varphi &= (x \land \neg z) \underline{\rightarrow} (\neg x \land \neg (y \land \neg z)) \\
+  & \equiv \underline{\neg (x \land \neg z)} \lor (\neg x \land \underline{\neg (y \land \neg z)}) &&| \space \text{décomposition de l'implication} \\
+  & \equiv (\neg x \lor \underline{\neg \neg z}) \lor (\neg x \land (\neg y \lor \underline{\neg \neg z)}) &&| \space \text{Lois de Morgan} \\
+  & \equiv (\neg x \lor z) \lor (\neg x \land (\neg y \lor z)) &&| \space \text{Double négation} \\
+\end{align*}
+$$
+
+> __Définition__ (clause)
+>
+> Une clause disjonctive / conjonctive est une formule ne contenant que des disjonctions / conjonctions de littéraux.
+>
+> - Une formule normale conjonctive d'une formule $\varphi$ est une formule équivalente ne contenant que des conjonctions "de clauses disjonctives"
+> - Une formule normale disjonctive d'une formule $\varphi$ est une formule équivalente ne contenant que des disjonctions "de clause conjonctives"
+
+$\underline{\text{Exemple}} \space V = \{a, b, c, d\}$
+
+- [x] $\underline{(a \lor b)} \land \underline{(a \lor c \lor \neg d)} \land  \underline{\neg a}$ sont des clauses disjonctives donc forme normale conjonctive
+- [x] $\underline{(\underline{a} \land \underline{\neg b} \land \underline{c})}$
+  - une clause conjonctive $\rightarrow$ forme normale disjonctive
+  - trois clauses disjonctives $\rightarrow$ forme normale conjonctive
+- [ ] $(a \land b \land \neg c) \lor (\neg c \land d) \lor \underline{\neg (b \land a)}$ Aucune fes formes normales
+
+$\to$ Toute forme normale disjonctive et forme normale conjonctive est une forme normale négative.
+
+> __Méthode :__ Trouver une FND / FNC
+>
+> - trouver une forme normale négative
+> - utiliser équivalences fondamentales de distributivité
+
+$\underline{\text{Exemple}} \space V = \{x, y, z\}$
+
+$$
+\begin{align*}
+  \varphi &= (x \land \neg z) \rightarrow (\neg x \land \neg (y \land \neg z)) \\
+  & \equiv (\neg x \lor z) \lor \underline{(\neg x \land (\neg y \lor z))}\\
+  & \equiv \underline{(\neg x \lor z)} \lor (\neg x \land \neg y) \lor (\neg x \land z) &&| \space \text{Distributivité}\\
+  & \equiv \neg x \lor z \lor (\neg x \land \neg y) \lor (\neg x \land z) &&| \space \text{Associativité}\\
+  & \equiv \neg x \lor z \lor (\neg x \land \neg y) \lor (\neg x \land z) &&| \leftarrow \text{FND} \\
+  & \equiv (\neg x \lor z) \land (\neg x \lor z \lor \neg y) &&| \leftarrow \text{FNC}
+\end{align*}
+$$
+
+Pour encore uniformiser les formules on cherche les FNC/FND __canoniques__.
+
+$\underline{\text{Exemple}} \space V = \{x, y, z\}$ table de vérité de $\varphi = (x \land \neg z) \rightarrow (\neg x \land \neg (y \land \neg z))$
+
+| $[\![x]\!] {\scriptsize v}$ | $[\![y]\!] {\scriptsize v}$ | $[\![z]\!] {\scriptsize v}$ | $[\![(x \land \neg z)]\!] {\scriptsize v}$ | $[\![\neg (y \land \neg z)]\!] {\scriptsize v}$ | $[\![(\neg x \land \neg (y \land \neg z)]\!] {\scriptsize v}$ | $[\![\varphi]\!] {\scriptsize v}$ |
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| $F$ | $F$ | $F$ | $F$ | $V$ | $V$ | $V \equiv (\neg x \land \neg y \land \neg z)$ |
+| $F$ | $F$ | $V$ | $F$ | $V$ | $V$ | $V \equiv (\neg x \land \neg y \land z)$ |
+| $F$ | $V$ | $F$ | $F$ | $F$ | $F$ | $V \equiv (\neg x \land y \land \neg z)$ |
+| $F$ | $V$ | $V$ | $F$ | $V$ | $V$ | $V$ |
+| $V$ | $F$ | $F$ | $V$ | $V$ | $F$ | $F$ |
+| $V$ | $F$ | $V$ | $F$ | $V$ | $F$ | $V$ |
+| $V$ | $V$ | $F$ | $V$ | $F$ | $F$ | $F$ |
+| $V$ | $V$ | $V$ | $F$ | $V$ | $F$ | $V$ |
+
+Ainsi la FND canonique s'obtient en effectuant des disjonction entre les équivalences des lignes évaluées à vrai. Ici la FND canonnique est:
+
+$$
+\varphi \equiv (\neg x \land \neg y \land \neg z) \lor (\neg x \land \neg y \land z) \lor (\neg x \land y \land \neg z) \lor (\neg x \land y \land z) \lor (x \land \neg y \land \neg z) \lor (x \land y \land z)
+$$
+
+la FNC canonique s'obtient en effectuant des conjonction entre les négations des équivalences des lignes évaluées à faux. Ici la FNC canonnique est:
+
+$$
+\begin{align*}
+  \varphi & \equiv \neg (x \land \neg y \land \neg z) \land \neg (x \land y \land \neg z) \\
+  & \equiv (\neg x \lor y \lor z) \land (\neg x \lor \neg y \lor \neg z)  &&| \space \text{FNC canonique}
+\end{align*}
+$$
+
+> __Définition__
+>
+> - Une min-terme sur un ensemble $V$ ee variables propositionnelles est une clause conjonctive qui contient chaque variable de $V$ une unique fois
+> - Une max-terme sur un ensemble $V$ ee variables propositionnelles est une clause disjonctive qui contient chaque variable de $V$ une unique fois
+>
+> __Corollaire__
+>
+> - Une FND canonique est une disjonction de min-termes différents
+> - Une FNC canonique est une conjonction de max-termes différents
+
+- __Théorème__ Toute formule possède une unique FND et FNC canonique à l'odre près.
+  - Admis
+
+- __Propriété__ Il y a $2^{|V|}$ (min-termes $+$ max-termes) dans les formes normales canoniques.
+
+$\underline{\text{Avantage}}$ des formules canonique: on peut conclure sur la formule (satisfiables, antilogique, tautologique).
+
+$\underline{\text{Inconvénient}}$ La taille.
+
+### 2. Résolution du problème SAT
+
+Les meileurs algos pour résoudre SAT ont une complexité exponentielle.
+
+#### a) Problume $k$-SAT
+
+Ce problème est ne restriction de SAT aux FNC dont les clauses contiennent au plus $k$ littéraux.
+
+$\underline{\text{Exemple}}$ Formule des desserts $(\neg a \lor b) \land (b \lor c) \land (\neg b \lor \neg c) \land (a \lor c) \land (\neg c \lor a)$ est une instance de $2$-SAT.
+
+- Pour $k \geq 3$, même complexité de résolution que SAT.
+
+- Cas où $k=1$
+  - Pour déterminer si une instance de $1$-SAT est satisfiable, il suffit de vérifier qu'elle ne contient pas à la fois une variable et sa négation.
+  - Complexité linéaire en la taille de la formule.
+
+- Cas où $k = 2$
+  - Les clauses ont la forme $(l {\scriptsize 1} \lor l {\scriptsize 2})$ avec $l {\scriptsize 1}$ et $l {\scriptsize 2} des littéraux$
+    - $(l {\scriptsize 1} \lor l {\scriptsize 2}) \equiv \neg l {\scriptsize 1} \rightarrow l {\scriptsize 2} \equiv \neg l {\scriptsize 2} \rightarrow l {\scriptsize 1}$
+  - On construit un graphe où les sommets sont les littéraux et on obtient 2 arcs par chaque clause.
+
+$\underline{\text{Exemple}} \space (\neg a \lor b) \land (b \lor c) \land (\neg b \lor \neg c) \land (a \lor c) \land (\neg c \lor a) \space :$
+
+![image](ressources/chap_13/2_sat.png)
+
+Composantes fortement connexes:
+
+- Sous graphes induits par
+  - $\{a, b , \neg c\}$
+  - $\{\neg a, \neg b, c\}$
+
+Aucune composante ne contient une variable et sa négation donc la fonction est satisfiable.
+
+$\to$ Complexité : linéaire en la taille de la formule.
