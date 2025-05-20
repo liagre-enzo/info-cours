@@ -6,7 +6,7 @@ $\leadsto$ __Syntaxe__: règles, outils permettant d'écrire des formules.
 
 $\leadsto$ __Sémantique__: sens, interprétation des formules.
 
-## I. Syntace des formules
+## I. Syntaxe des formules
 
 ### 1. Formules propositionnelles
 
@@ -20,11 +20,11 @@ ___
 
 ___
 
->__Def__: Soit $V$ l'ensemble des variables propositionnnelles on définit uninductivemment l'ensemble $P {\scriptstyle V}$ des formules propositionnnelles.
+>__Def__: Soit $V$ l'ensemble des variables propositionnnelles on définit inductivemment l'ensemble $P {\scriptstyle V}$ des formules propositionnnelles.
 >
 >- __Assetions__ :
->   - une vatiable est une formule: $V \subset P {\scriptstyle V}$ .
->   - les consantes logiques sont des formules i.e. $\top \in P {\scriptstyle V}$ et $\bot \in P {\scriptstyle V}$ .
+>   - une variable est une formule: $V \subset P {\scriptstyle V}$ .
+>   - les constantes logiques sont des formules i.e. $\top \in P {\scriptstyle V}$ et $\bot \in P {\scriptstyle V}$ .
 >
 >- __Règles d'inférences__ :
 >   - Soit $\neg$ le connecteur de négation et $\varphi \in P {\scriptstyle V}$ . Alors $\neg \varphi \in P {\scriptstyle V}$ .
@@ -173,7 +173,7 @@ ___
 >- Assertion: un atome est une formule du premier ordre.
 >- Règles d'inférence:
 >   - Si $\varphi$ est une formle du permier ordre et $\neg$ le connecteur de négation alors $\neg \varphi$ est une formule du permier ordre.
->   - Si $\varphi$ et $\psi$ sont des formles du permier ordre alors $(\varphi \diamond \psi)$ est une formule du premier ordre et $\diamond \in \{\lor, \land, \rightarrow, \leftrightarrow\}$ connecteur d'arité 2.
+>   - Si $\varphi$ et $\psi$ sont des formles du permier ordre alors $(\varphi \diamond \psi)$ est une formule du premier ordre.
 >   - Si $\varphi$ est une formule du permier ordre et $x$ une variable de $X$ alors $\forall x \cdot \varphi / \exists x \cdot \varphi$ sont des formules du permier ordre.
 
 On peut représenter les formules par un arbre.
@@ -181,7 +181,7 @@ On peut représenter les formules par un arbre.
 Ex : Formule du premier ordre $((\forall A, \space \forall B, \space A \cap B \subseteq A) \land (\emptyset \subseteq A))$.
 
 - Domaine :
-  - $X = \{1, B\}$
+  - $X = \{A, B\}$
   - $S_f⁰ = \{\emptyset\}$
   - $S_f² = \{\cap\}$
   - $S_p² = \{\subseteq\}$
@@ -199,7 +199,7 @@ Ex: Dans la formule précédente $A$ libre et liée et $B$ liée.
 $\mapsto$ Les fonctions inductives sur l'ensemble des formules propositionnnelles pourraient être définies sur les formules du premier ordre.
 Attention pour la substitution, on ne peut pas substituer les variables liées.
 
-## II. Sémentique
+## II. Sémantique
 
 __Vocabulaire__ :
 
@@ -209,7 +209,7 @@ __Vocabulaire__ :
 
 - Une *fonction booléenne* associé à un connnecteur $\diamond$ donne la valeur de vérité de $\psi \diamond \varphi$ en fonction des valeurs de vérité de $\psi$ et $\varphi$.
 
-$\underline{Exemples}$ :
+$\underline{\text{Exemples}}$ :
 
 - Soit $f {\scriptstyle \neg}$ la fonction booléénne qui associe au connecteur la négation on a:
 
@@ -297,13 +297,13 @@ __Vocabulaire :__
 
 $\to$ Pour étudier ces trois caractéristiques, on peut simplement dresser la table de vérité de la formule.
 
-$\underline{Remarque}$ $\top$ est une tautologie et $\bot$ est une antilogie.
+$\underline{\text{Remarque}}$ $\top$ est une tautologie et $\bot$ est une antilogie.
 
 ### 2. Equivalence et conséquence sémantique
 
-> __Def:__ Une formule $\psi$ est une conséquence sémantique d'une formule $\varphi$ quand toute valuation qui satisfait $\varphi$ satidfait $\psi$. Autrement dit quand $Mod(\varphi) \subset Mod(\psi)$. On note $\varphi \vDash \psi$
+> __Def:__ Une formule $\psi$ est une conséquence sémantique d'une formule $\varphi$ quand toute valuation qui satisfait $\varphi$ satisfait $\psi$ . Autrement dit quand $Mod(\varphi) \subset Mod(\psi)$ . On note $\varphi \vDash \psi$
 
-$\underline{Généralisation :}$ Une formule $\psi$ est une conséquence sémantique *d'un ensemble* de formules $\Gamma$ quand toute valuation qui satisfait toute formule de $\Gamma$ satisfait aussi $\psi$. On le note aussi $\Gamma \vDash \psi$.
+$\underline{\text{Généralisation :}}$ Une formule $\psi$ est une conséquence sémantique *d'un ensemble* de formules $\Gamma$ quand toute valuation qui satisfait toute formule de $\Gamma$ satisfait aussi $\psi$. On le note aussi $\Gamma \vDash \psi$.
 
 $\to$ Pour étudier la conséquence sémantique on fait les tables de vérité de toutes les formules impliquées.
 
@@ -326,7 +326,7 @@ __Propriétés :__
   - $\varphi[\psi/x] \equiv \nu[\psi/x]$
   - $\psi[\varphi/x] \equiv \psi[\nu/x]$ ces deux propriétés se montre par induction structurelle.
 
-#### Éqivalences sémentiques fondamentales (se prouvent toutes par table de vérité)
+#### Équivalences sémantiques fondamentales (se prouvent toutes par table de vérité)
 
 - Tiers exclus
   - $\varphi \land \neg \varphi \equiv \bot$
@@ -358,6 +358,9 @@ __Propriétés :__
 - Commutativité
   - $\varphi \land \psi \equiv \psi \land \varphi$
   - $\varphi \lor \psi \equiv \psi \lor \varphi$
+
+- Curryfication
+  - $(\varphi \land \psi) \rightarrow \theta \equiv \varphi \rightarrow (\psi \rightarrow \theta)$
 
 - Contraposition
   - $\varphi \rightarrow \psi \equiv \neg \psi \rightarrow \neg \varphi$
@@ -473,7 +476,7 @@ La définition inductive de l'ensemble $P {\scriptsize V}$ peut en réalité uti
 On peut aussi définit les quantificateurs dans l'ensemble $P {\scriptsize V}$
 
 - Avec $x \in V$ et $\varphi \in P {\scriptsize V}$ alors $\forall x \cdot \varphi \equiv \varphi [\top / x] \land \varphi [\bot / x]$
-- Avec $x \in V$ et $\varphi \in P {\scriptsize V}$ alors $\exist x \cdot \varphi \equiv \varphi [\top / x] \lor \varphi [\bot / x]$
+- Avec $x \in V$ et $\varphi \in P {\scriptsize V}$ alors $\exists x \cdot \varphi \equiv \varphi [\top / x] \lor \varphi [\bot / x]$
 
 ## III. Un problème SAT
 
@@ -619,7 +622,7 @@ $\underline{\text{Exemple}}$ Formule des desserts $(\neg a \lor b) \land (b \lor
   - Complexité linéaire en la taille de la formule.
 
 - Cas où $k = 2$
-  - Les clauses ont la forme $(l {\scriptsize 1} \lor l {\scriptsize 2})$ avec $l {\scriptsize 1}$ et $l {\scriptsize 2} des littéraux$
+  - Les clauses ont la forme $(l {\scriptsize 1} \lor l {\scriptsize 2})$ avec $l {\scriptsize 1}$ et $l {\scriptsize 2}$ des littéraux.
     - $(l {\scriptsize 1} \lor l {\scriptsize 2}) \equiv \neg l {\scriptsize 1} \rightarrow l {\scriptsize 2} \equiv \neg l {\scriptsize 2} \rightarrow l {\scriptsize 1}$
   - On construit un graphe où les sommets sont les littéraux et on obtient 2 arcs par chaque clause.
 
@@ -636,3 +639,52 @@ Composantes fortement connexes:
 Aucune composante ne contient une variable et sa négation donc la fonction est satisfiable.
 
 $\to$ Complexité : linéaire en la taille de la formule.
+
+- __Théorème__
+  - Une formule $\varphi$ instance de $2$-SAT est satisfiable si et seulement si ldans le graphe associé aucune composante fortement connnece ne contient une varuavke et sa négation.
+  - Preuve:
+    - sens : $\implies$
+      - Par la contraposé, supposons qu'il existe une composante fortement connexe contenant une variable $x$ et sa négation $\neg x$. Par la définition, il y a un chemin du sommet $x$ au sommet $\neg x$ .  Donc par construction du graphe on a $x \rightarrow \dots \rightarrow \neg x$ . Donc $\varphi \vDash x \rightarrow \neg x$ . Avec le même raisonnement, $\varphi \vDash \neg x \rightarrow x$ avec l'équivalence fondamentalede double implication, $\varphi \vDash x \leftrightarrow \neg x$ . Or $(x \leftrightarrow \neg x) \equiv \bot$ donc $\varphi$ est antilogique.
+    - sens : $\impliedby$
+      - Supposons qu'aucune composante fortement connnexe ne contiennet une variable et sa négation. On note $C {\scriptsize x}$ la composante fortement connexe du sommet $x$ . On construit le graphe des composante fortement connexes (les sommets sont les composantes et $(C {\scriptsize 1}, C{\scriptsize 2})$) est un arc s'il existe $s {\scriptsize 1} \in C {\scriptsize 1}$ et $s {\scriptsize 2} \in C {\scriptsize 2}$ tels que $(s {\scriptsize 1}, s {\scriptsize 2})$ est un arc dans le graphe de $\varphi$). On montre par l'absurde que ce graphe est acyclique. On peut donc définir un ordre topologique sur ce graphe noté $\prec$ . Il suffit qu'une valuation $v$ est un module de $\varphi$ . Considérons la valuation $v$ suivante :
+
+        - $$\begin{cases} v(x) = V \space \text{si} \space C{\scriptsize \neg x} \prec C {\scriptsize x} \\ v(x) = F \space \text{sinon (i.e. si} \space C {\scriptsize x} \prec C {\scriptsize \neg x} \space \text{)} \end{cases} \text{pourt tout} \space x \in V$$
+
+      - Chaque clause de $\varphi$ est de la forme $(l \lor l')$ avec $l$ et $l'$ deux littéraux. Il faut montre que $v$ satisfait $l$ ou satisfait $l'$ . Supposons par l'absurde que $[\![l]\!] {\scriptsize v} = [\![l']\!] {\scriptsize v} = F$ .  Ceci impose $C {\scriptsize l} \prec C {\scriptsize \neg l}$ et $C {\scriptsize l'} \prec C {\scriptsize \neg l'}$ . De plus $(l \lor l')$ est une clause donc le graphe de $\varphi$ contient deux arcs $(\neg l' \rightarrow l)$ et $(\neg l \rightarrow l')$. On a alors $C {\scriptsize \neg l} \preceq C {\scriptsize l'}$ ET $C {\scriptsize \neg l'} \preceq C {\scriptsize l}$ . En combinant les quatres éléments de l'ordre topologique, on obtient une contradiction donc $v$ satisfait chaque clause $(l \lor l')$ donc $\varphi$ satisfiable.
+
+#### b) Algo de Quine
+
+$\to$ résolution de SAT dans le cas général.
+
+Pb de décision se résout
+
+- soit par force brute, c'est à dire tester toutre les valuations, autrement dit faire la table de vérité.
+- soit par backtracking appelé *Algorithme de Quine*.
+
+> __Idée de l'Algorithme de Quine__
+>
+> - Choisir une variable $x$ de la formule $\varphi$
+> - tester récursivement si $\varphi [\top / x]$ est satisfiable et si $\varphi [\bot / x]$ est satisfiable.
+> - On simplifie les formules à chaque appel (élague l'abre)
+
+$\underline{\text{Règles d'éliminations de Quine}}$ (pour l'élagage)
+
+- $\neg \bot \equiv \top$
+- $\neg \top \equiv \bot$
+- $\top \land \varphi \equiv \varphi$
+- $\varphi \land \top \equiv \varphi$
+- $\bot \land \varphi \equiv \bot$
+- $\varphi \land \bot \equiv \bot$
+
+(reste des règles dans le tp du 13/05)
+
+$\underline{\text{Exemple}} \space \psi = (a \lor \neg b) \land (\neg c \rightarrow b)$
+
+![image](ressources/chap_13/algo_quine.png)
+
+- __Prop__ : Si l'abre de l'algorithme de Quine de $\varphi$ possède :
+  - au moins une feuille $\top$ alors $\varphi$ est satisfiable
+  - toutes ses feuilles à $\top$ alors $\varphi$ est totologique
+  - toutes ses feuilles à $\bot$ alors $\varphi$ est antilogique
+
+(se montre par induction structurelle)
