@@ -79,3 +79,9 @@ $\to$ manière classique de définir un ensemble en info.
 >
 > - des *assertions* : éléments "de base" appartenant à $E$
 > - des *règles d'inférence* : "constructeurs", fonctions $\varphi E \mapsto E$ telles que si $e {\scriptsize 1}, \dots e {\scriptsize n} \in E$ alors $\varphi(e {\scriptsize 1}, \dots e {\scriptsize n}) \in E$
+
+$\underline{\text{Exemple}}$
+
+- L'ensemble `'a list` des liste chaînés en OCaml peut être défini inductivement par
+  - Assertion : `[]` est une `'a list`
+  - Règle d'inférence : si `t` est de type `'a` et `q` de type `'a list` alors avec $\varphi =$ `::`, alors `t::q` est une `'a list`

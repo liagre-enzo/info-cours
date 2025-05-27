@@ -160,3 +160,185 @@ id)
 - Livre (__isbn__, titre , annee, id_auteur $\rightarrow$ Auteur.id)
 
 - Inventaire (__id__, nb_exemplaires, isbn_livre $\rightarrow$ Livre.isbn, id_biblio $\rightarrow$ Bibliotheque.id)
+
+## II. Requêtes SQL
+
+*Bonnes pratiques* de syntaxe:
+
+- Commentaires : `--`
+- MOTS-CLEFS
+- Relation
+- attribut
+- retour à la ligne fréquent
+
+On introduit :
+
+$\underline{\text{Relation 1}}$
+
+|$\underline{\textbf{a}}$|b|c $\to \text{Relation2.d}$|
+|:-:|:-:|:-:|
+|x|1|rouge|
+|y|5|bleu|
+|z|3|rouge|
+|t|4|vert|
+|u|1|turquoise|
+
+$\underline{\text{Relation 2}}$
+
+|$\underline{\textbf{d}}$|e|
+|:-:|:-:|
+|rouge|s|
+|bleu|t|
+|vert|t|
+
+Les mots clefs en SQL sont alors :
+
+### 1. Projection
+
+```SQL
+SELECT ...
+FROM ...
+```
+
+- `DISTINCT()`
+- tous les attributs : `*`
+- Opérateurs arithmétiques (sur INTEGER ou REAL) `+`, `-`, `/`, `*`, `%` et `ABS()`
+- Opérateurs sur TEXT `||` (concaténation), `UPPER()`, `LOWER()` et `LENGTH()`
+
+$\underline{\text{Ex}}$
+
+![image](ressources/chap_14/distinct.png)
+
+### 2. Formatage
+
+- `ORDER BY` avec `ASC` pour l'ordre croissant et `DESC` pour décroissant
+- `AS` ou alias
+- `LIMIT n` n'a aucun sens sans utiliser `ORDER BY`
+- `OFFSET m` n'est utilisable qu'avec `LIMIT`
+
+$\underline{\text{Ex}}$
+
+![image](ressources/chap_14/offset.png)
+
+### 3. Opérations ensemblistes
+
+- `.. UNION ..`
+- `.. INTERSECT ..`
+- `.. EXCEPT ..`
+- ⚠️ mêmes nb de colonnes et même domaines pour les colonnes correspondantes pour les 2 requêtes
+
+$\to$ le résultat n'a jamais de doublons (c'est un ensemble).
+
+$\underline{\text{Ex}}$
+
+![image](ressources/chap_14/except.png)
+
+- Produit cartésien :
+
+```SQL
+SELECT ...
+FROM Relation1, Relation2, ...
+```
+
+$\underline{\text{Ex}}$
+
+![image](ressources/chap_14/produit_cartesien.png)
+(il y a 15 lignes dans le résultat de cette requête)
+
+### 4. Les séléction (ou filtrer les enregistrement)
+
+- `WHERE`
+- Opérateur de comparaison, `=`, `<>`, `<`, `>`, `<=` et `>=`
+- `IS NULL` / `IS NOT NULL`
+- `LIKE` avec `%` pour n'importe quoi et `_` pour un seul caractère
+- `AND`, `OR` et `NOT`
+
+$\underline{\text{Ex}}$
+
+![image](ressources/chap_14/where.png)
+
+### 5. Jointures
+
+- Permettent de récupérer des données répaties dans plusieurs relations. Dans ce cas on utilise les clés étrangères. Les jointures peuvent s'enchainer.
+
+```SQL
+SELECT ...
+FROM Relation1
+JOIN Relation2
+  ON Relation1.cle_etrangere = Relation2.cle_primaire
+```
+
+$\underline{\text{Ex}}$
+
+![image](ressources/chap_14/join.png)
+
+- Jointures externes `LEFT JOIN` / `RIGHT JOIN`
+
+$\underline{\text{Ex}}$
+
+![image](ressources/chap_14/left_join.png)
+
+- Autojointures
+
+$\underline{\text{Ex}}$
+
+![image](ressources/chap_14/autojointure.png)
+
+### 6. Fonctions d'agrégation
+
+- La requête est effectuée comme s'il n'y avait pas la fonction, puis toutes les lignes sont rassemblées pour faire le calcul demandé.
+- `MIN()`
+- `MAX()`
+- `SUM()`
+- `AVG()`
+- `COUNT()`
+
+$\underline{\text{Exemples :}}$
+
+![image](ressources/chap_14/count.png)
+
+### 7. Regroupement et filtrage des agrégats
+
+```SQL
+GROUP BY attribut1, attribut2, ..
+HAVING condition sur le groupe
+-- WHERE agit avant que les groupes ne soient faits et HAVING après
+```
+
+-Les fonctions d'agrégation s'apppliquent à tous les enregistrement d'un même groupe.
+
+$\underline{\text{Exemples}}$
+
+![image](ressources/chap_14/group_by.png)
+
+![image](ressources/chap_14/having.png)
+
+```SQL
+-- Une requête du style :
+SELECT a
+FROM Relation1
+GROUP BY b
+-- n'a aucun sens
+-- en effet on a regrouper selon les valeur de b
+-- donc on ne sait pas quelle valeur de a on va avoir 
+-- (en particulier pour b = 1)
+```
+
+$\underline{\text{Ex}}$
+
+![image](ressources/chap_14/where_et_having.png)
+
+### 8. Requêtes imbriquées
+
+- s'écrit avec des `()`
+- permet de trouver des données intérmédiaires et les utiliser dans la requête principale.
+
+$\underline{\text{Exemples}}$
+
+![image](ressources/chap_14/imbrique_where.png)
+
+![image](ressources/chap_14/imbrique_from.png)
+
+### Conclusion
+
+![image](ressources/chap_14/memento_sql.png)
