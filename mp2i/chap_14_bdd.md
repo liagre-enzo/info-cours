@@ -87,10 +87,10 @@ $\underline{\text{Exemple}}$
 
 - Cardinalités usuelles:
   1) $1-1$ (one to one)
-  2) $1-*$ (one to many)
-  3) $*-*$ (many to many)
+  2) $1- \star$ (one to many)
+  3) $\star - \star$ (many to many)
 
-⚠️ Les types-associations de cardinalité $*-*$ doivent être transformés en 2 types-associations $1-*$ en transformant le type-association en type-entité.
+⚠️ Les types-associations de cardinalité $\star - \star$ doivent être transformés en 2 types-associations $1- \star$ en transformant le type-association en type-entité.
 
 $\underline{\text{Exemple}}$
 
@@ -100,7 +100,7 @@ $\underline{\text{Exemple}}$
   - dessiner les types-entités et leurs propriétés.
   - dessiner les types-association et leurs propriétés.
   - binariser les types-associations si nécessaire.
-  - transformer les types-associations $*-*$ en 2 $(1-*)$ .
+  - transformer les types-associations $\star - \star$ en 2 $(1- \star)$ .
 
 $\to$ Modèle entité-association = point de vue utilisateur.
 

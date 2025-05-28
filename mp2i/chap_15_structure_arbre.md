@@ -52,10 +52,10 @@ et on a : ![image](ressources/chap_15/ex_rech_12.png)
 > - Assertion : $rec(x, \bot) = \text{Faux}$
 > - régle d'inférence
 >
-> $$ rec(x, N(e,g,d)) = \begin{cases} \text{Vrai} \space \text{si} \space e = x \\ rec(x, g) \space \text{si} \space x<e \\ rex(x, d) \space \text{sinon} \end{cases}$$
+> $$ rec(x, N(e,g,d)) = \begin{align*} &\text{Vrai} \space \text{si} \space e = x \\ &rec(x, g) \space \text{si} \space x<e \\ &rec(x, d) \space \text{sinon} \end{align*}$$
 
 - Complexité: $C {\scriptsize a}$ complexité de $rec(x, a)$ dans le pire des cas.
-  - $$\begin{cases} C {\scriptsize \bot} = O(1) \\ C {\scriptsize N(e, g, d)} = \begin{cases} O(1) + C {\scriptsize g} \space \text{si} \space x<e \\ O(1) + C {\scriptsize d} \space \text{si} \space x>e \end{cases} \end{cases}$$
+  - $$\begin{align*} &C {\scriptsize \bot} = O(1) \\ &C {\scriptsize N(e, g, d)} = \begin{align*} &O(1) + C {\scriptsize g} \space \text{si} \space x<e \\ &O(1) + C {\scriptsize d} \space \text{si} \space x>e \end{align*} \end{align*}$$
   - donc $C {\scriptsize N(e, g, d)} \leq O(1) + max(C {\scriptsize g}, C {\scriptsize d})$ . Donc $C {\scriptsize a} = O(\text{hauteur de a})$  en supposant les comparaisons en $O(1)$ (on fera toujours cette supposition).
   - Rappel : dans le meilleur des cas (ABR complet) cette complexité revient à $\log (\text{taille de a})$ et dans le pire des cas (filiforme) elle revient à linéaire en la taille de a.
 
@@ -70,10 +70,10 @@ $\underline{\text{Exemple}}$
 > - Assertion : $min(\bot) = \text{non défini}$
 > - régle d'inférence
 >
-> $$ min(N(e,g,d)) = \begin{cases} e \space \text{si} \space g = \bot \\ min(g) \space \text{sinon} \end{cases}$$
+> $$ min(N(e,g,d)) = \begin{align*} &e \space \text{si} \space g = \bot \\ &min(g) \space \text{sinon} \end{align*}$$
 
 - Complexité: $C {\scriptsize a}$ complexité de $min(a)$ dans le pire des cas.
-  - $$\begin{cases} C {\scriptsize \bot} = O(1) \\ C {\scriptsize N(e, g, d)} = O(1) + C {\scriptsize g} \end{cases}$$
+  - $$\begin{align*} &C {\scriptsize \bot} = O(1) \\ &C {\scriptsize N(e, g, d)} = O(1) + C {\scriptsize g} \end{align*}$$
   - donc $C {\scriptsize N(e, g, d)} \leq O(1) + max(C {\scriptsize g}, C {\scriptsize d})$ . Donc $C {\scriptsize a} = O(\text{hauteur de a})$ .
 
 $\underline{\textbf{Insetion dans un ABR}}$
@@ -89,7 +89,7 @@ $\underline{\text{Exemple}}$
 > - Assertion : $ins(x, \bot) = N(x, \bot,  \bot)$
 > - régle d'inférence
 >
-> $$ ins(x, N(e,g,d)) = \begin{cases} N(e, g, d) \space \text{si} \space e = x \\ N(e, ins(x,g), d) \space \text{si} \space x < e \\ N(e, g, ins(x,d)) \space \text{sinon} \end{cases}$$
+> $$ ins(x, N(e,g,d)) = \begin{align*} &N(e, g, d) \space \text{si} \space e = x \\ &N(e, ins(x,g), d) \space \text{si} \space x < e \\ &N(e, g, ins(x,d)) \space \text{sinon} \end{align*}$$
 
 - Complexité: $C {\scriptsize a} = O(\text{hauteur de a})$ .
 
@@ -117,7 +117,7 @@ la fusion du sous-arbre gauche et du sous-arbre droit du noeud supprimé va donn
 > - Assertion : $supp(x, \bot) = \bot$
 > - régle d'inférence
 >
-> $$ supp(x, N(e,g,d)) = \begin{cases} Fusion(g, d) \space \text{si} \space e = x \\ N(e, supp(x,g), d) \space \text{si} \space x < e \\ N(e, g, supp(x,d)) \space \text{sinon} \end{cases}$$
+> $$ supp(x, N(e,g,d)) = \begin{align*} &Fusion(g, d) \space \text{si} \space e = x \\ &N(e, supp(x,g), d) \space \text{si} \space x < e \\ &N(e, g, supp(x,d)) \space \text{sinon} \end{align*}$$
 
 - __2. Méthode de remontée d'un extremum__
 
@@ -140,4 +140,4 @@ $\underline{\text{Principe}}$ recherche du noeud à supprimer puis recherche du 
 > - Assertion : $supp(x, \bot) = \bot$
 > - régle d'inférence
 >
-> $$ supp(x, N(e,g,d)) = \begin{cases} \bot \space \text{si} \space e = x \space \text{et} \space g = d = \bot \\ g \space \text{si} \space e = x \space \text{et} \space d = \bot \\ d \space \text{si} \space e = x \space \text{et} \space g = \bot \\ N(mini(d), g, supp(mini(d), d)) \space \text{si} \space e = x  \space \text{et} \space g \neq \bot \space \text{et} \space d \neq \bot \\ N(e, supp(x,g), d) \space \text{si} \space x < e \\ N(e, g, supp(x,d)) \space \text{sinon} \end{cases}$$
+> $$ supp(x, N(e,g,d)) = \begin{align*} &\bot \space \text{si} \space e = x \space \text{et} \space g = d = \bot \\ &g \space \text{si} \space e = x \space \text{et} \space d = \bot \\ &d \space \text{si} \space e = x \space \text{et} \space g = \bot \\ &N(mini(d), g, supp(mini(d), d)) \space \text{si} \space e = x  \space \text{et} \space g \neq \bot \space \text{et} \space d \neq \bot \\ &N(e, supp(x,g), d) \space \text{si} \space x < e \\ &N(e, g, supp(x,d)) \space \text{sinon} \end{align*}$$

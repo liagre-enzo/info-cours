@@ -99,7 +99,7 @@ Exemple : ![image](ressources/chap_11/isomorphes.png)
 
 $$
 \varphi : \begin{cases}
-  \llbracket 1, 5 \rrbracket \longmapsto \{a, b, c, d, e\} \\
+  [\![ 1, 5 ]\!] \longmapsto \{a, b, c, d, e\} \\
   n \longrightarrow \begin{cases}
     a \space \text{si n = 1}\\
     b \space \text{si n = 2}\\
@@ -112,7 +112,7 @@ $$
 
 ### 4. Chemins
 
->Un chemin de longueur $n$ dans un graphe $G = (S, A)$ est une suite de $n + 1$ sommets $s_0, s_1, s_2,\dots,s_n$ telle que $\forall i \in \llbracket0, n-1\rrbracket, \{s_i, s_{i+1}\} \in A$.
+>Un chemin de longueur $n$ dans un graphe $G = (S, A)$ est une suite de $n + 1$ sommets $s_0, s_1, s_2,\dots,s_n$ telle que $\forall i \in [\![0, n-1]\!], \{s_i, s_{i+1}\} \in A$.
 
 - Un chemin de longueur $n$ a $n$ arrêtes/arcs.
 
@@ -184,7 +184,7 @@ Il y a aussi existance de la notion de composante faiblement connexe.
 
 > __Def :__
 >
-> - Une __K-coloration__ dans un graphe $G = (S, A)$ est une fonction $\varphi: S \mapsto \llbracket0;k-1\rrbracket$ tq $\forall (s_1, s_2) \in  S², s_1  -  s_2 \in A \implies \varphi(s_1) \neq \varphi(s_2)$.
+> - Une __K-coloration__ dans un graphe $G = (S, A)$ est une fonction $\varphi: S \mapsto [\![0;k-1]\!]$ tq $\forall (s_1, s_2) \in  S², s_1  -  s_2 \in A \implies \varphi(s_1) \neq \varphi(s_2)$.
 > - Un graphe est dit __K-colorable__ quand il possède une K-coloration.
 > - Le __nombre chromatique__ d'un graphe $G$, noté $\chi(G)$, est le plus petit entier $k$ tel que $G$ est K-colorable.
 
@@ -361,7 +361,7 @@ Un pb classique sur les graphes pondérés consiste à trouver le plus petit poi
 
 $\to$ Sommets sont numérotés $0, 1, 2, \dots, |S|-1$.
 
-> Les matrices d'adjacence $M$ d'un graphe $G = (S, A)$ est une matrice de dimension $|S| \times |S|$ telle que le coeff lige $i$ colonne $j \in \llbracket 1, |S|\rrbracket$ vaut
+> Les matrices d'adjacence $M$ d'un graphe $G = (S, A)$ est une matrice de dimension $|S| \times |S|$ telle que le coeff lige $i$ colonne $j \in [\![ 1, |S|]\!]$ vaut
 >
 > $$M_{ij} = \begin{cases} 1 \space \text{si il y a une arrête / arc} \\ 0 \space \text{sinon} \end{cases}$$
 
