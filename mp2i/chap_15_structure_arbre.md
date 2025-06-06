@@ -8,11 +8,11 @@
 
 ### 1. ABR simples
 
-#### a) Définition
+#### a) Définition ABR
 
 $\underline{\text{Idée :}}$ l'étiquette de chaque noeud de l'abre binaire doit être supérieur à toutes celles de son sous-arbre gauche et inférieur à toutes celles du droit.
 
-$\underline{\text{Exemples}}$
+$\underline{\text{Exemple}}$
 
 ![image](ressources/chap_15/ABR.png) est un ABR
 
@@ -35,7 +35,7 @@ $\underline{\text{Exemples}}$
       - De plus, d'après la définition : $sup\{\text{étiquettes de g}\} \leq e \leq inf\{\text{étiquettes de d}\}$ donc le parcours de $N(e, g, d)$ est croissant.
       - sens $\impliedby$: Soit $\text{P{\scriptsize g} e P{\scriptsize d}}$ le parcours infixe d'un arbre binaire, avec $P{\scriptsize g}$ le parcours de son sous arbre gauche $g$ et $P{\scriptsize d}$ le parcours de son sous arbre droit $d$, tel que $\text{P{\scriptsize g} e P{\scriptsize d}}$ soit croissant. L'arbre $g$ de parcours $P{\scriptsize g}$ est un ABR par hypothèse d'induction. De même pour $d$. Et comme $\text{P{\scriptsize g} e P{\scriptsize d}}$ est croissant on a bien l'inégalité de la définition. Donc $N(e, g, d)$ est un ABR
 
-#### b) opération élémentaires
+#### b) Opération élémentaires
 
 $\underline{\textbf{Recherche d'un étiquette dans un ABR}}$
 
@@ -52,7 +52,7 @@ et on a : ![image](ressources/chap_15/ex_rech_12.png)
 > - Assertion : $rec(x, \bot) = \text{Faux}$
 > - régle d'inférence
 >
-> $$ rec(x, N(e,g,d)) = \begin{align*} &\text{Vrai} \space \text{si} \space e = x \\ &rec(x, g) \space \text{si} \space x<e \\ &rec(x, d) \space \text{sinon} \end{align*}$$
+> $$rec(x, N(e,g,d)) = \begin{align*} &\text{Vrai} \space \text{si} \space e = x \\ &rec(x, g) \space \text{si} \space x<e \\ &rec(x, d) \space \text{sinon} \end{align*}$$
 
 - Complexité: $C {\scriptsize a}$ complexité de $rec(x, a)$ dans le pire des cas.
   - $$\begin{align*} &C {\scriptsize \bot} = O(1) \\ &C {\scriptsize N(e, g, d)} = \begin{align*} &O(1) + C {\scriptsize g} \space \text{si} \space x<e \\ &O(1) + C {\scriptsize d} \space \text{si} \space x>e \end{align*} \end{align*}$$
@@ -141,3 +141,168 @@ $\underline{\text{Principe}}$ recherche du noeud à supprimer puis recherche du 
 > - régle d'inférence
 >
 > $$ supp(x, N(e,g,d)) = \begin{align*} &\bot \space \text{si} \space e = x \space \text{et} \space g = d = \bot \\ &g \space \text{si} \space e = x \space \text{et} \space d = \bot \\ &d \space \text{si} \space e = x \space \text{et} \space g = \bot \\ &N(mini(d), g, supp(mini(d), d)) \space \text{si} \space e = x  \space \text{et} \space g \neq \bot \space \text{et} \space d \neq \bot \\ &N(e, supp(x,g), d) \space \text{si} \space x < e \\ &N(e, g, supp(x,d)) \space \text{sinon} \end{align*}$$
+
+#### c) Interêt des ABR
+
+- Structure abstraite qu'on peut implémenter via un ABR:
+  - ensemble
+    - création : renvoie $\bot$ donc $O(1)$
+    - ajout d'un élement : insertion dans l'ABR donc $O(\text{hauteur de l'ABR})$
+    - suppression d'un élement : suppression d'un noeud $O(\text{hauteur de l'ABR})$
+    - recherche de présence d'un élement : recherche dans un ABR $O(\text{hauteur de l'ABR})$
+  
+  - tableaux associatifs : on stocke les associations dans un ABR les clés vérifient les propriétes des ABR. On retrouve les opérations :
+    - création : renvoie $\bot$ donc $O(1)$
+    - ajout d'une association : insertion dans l'ABR donc $O(\text{hauteur de l'ABR})$
+    - suppression d'une association : suppression d'un noeud $O(\text{hauteur de l'ABR})$
+    - recherche d'une valeur depuis la clé : recherche dans un ABR $O(\text{hauteur de l'ABR})$
+    - test de présence (idem qu'au dessus)
+
+$\underline{\text{Rmq :}}$
+
+- L'autre implémentation possible d'un TA par une table de hachage donnait des complexités en $O(1)$ amortie à condition que plusieurs contraintes soient respectées. Parfois si ces contraintes sont difficiles à respecter une implémentation via un ABR peut être préférable.
+
+> Un arbre est dit __équilibré__ si $h(A) = O(\log(T(A)))$ avec $h$ la hauteur et $t$ la taille.
+
+Pour être efficace les ABR devrait être équilibrés.
+
+### 2. Arbres bicolores
+
+#### a) Définition ARN
+
+> Un __arbre bicolore__ (ARN) est un ABR dont chaque noeud est rouge ou noir en respectant :
+>
+> - racine noire
+> - tout noeud rouge n'a pas de fils rouge
+> - tout les chemins de la racine à un $\bot$ ont le même nombre de nouds noirs
+
+$\underline{\text{Exemple}}$
+
+![image](ressources/chap_15/arn.png)
+
+> __Définition__ La hauteure noire $h{\scriptsize N}(a)$ d'un arbre bicolore $a$ est le nombre de noeuds noirs sur le chemin de la racine de a aux $\bot$ .
+
+- __Proposition__ Soit $a$ un arbre bicolore $h(a) \leq 2 \times h{\scriptsize N}(a)$
+  - Preuve : Le plus long chemin de la racine a un $\bot$ contient au pire une fois sur 2 un noeud noir et une fois sur 2 un noeud rouge, donc on a $h{\scriptsize N}(a)$ noeuds noirs et $h{\scriptsize N}(a)$ noeuds rouges.
+
+- __Proposition__ Soit $a$ une arbre bicolore $t(a) \geq 2^{h{\scriptsize N}(a)} - 1$
+  - Preuve : Par récurrence forte sur la taille.
+    - Initialisation : Un arbre à $0$ noeud est de hauteur noire $0$ or $0 \geq 2^0 - 1$
+    - Héredité : Prenons $a = N(e, g, d)$ un arbre bicolore avec $t(a) \geq 1$ en supposant la proposition vraie pour les arbres bicolores de taille $< t(a)$. On a $t(a) = 1 + t(g) + t(d)$ . Considérons $g$ :
+      - Si $g$ est un arbre bicolore par HR $t(g) \geq 2^{h{\scriptsize N}(g)} -1$
+      - Sinon le seul critère non respecté est la couleur de la racine. Considérons $g'$ copie de $g$ mais de racine noire. par HR. $t(g) = t(g') \geq 2^{h{\scriptsize N}(g')} -1$ donc $t(g) \geq 2^{h{\scriptsize N}(g) + 1} -1 \geq 2^{h{\scriptsize N}(g)} -1$
+    - De même pour l'arbre $d$. Donc dans tous les cas $t(a) \geq 1 + 2^{h{\scriptsize N}(d)} -1 + 2^{h{\scriptsize N}(g)} -1$ or $2^{h{\scriptsize N}(d)} + 2^{h{\scriptsize N}(g)} -1 = 2\times 2^{h{\scriptsize N}(d)} -1 = 2^{h{\scriptsize N}(a)} -1$ car ${h{\scriptsize N}(d)} = {h{\scriptsize N}(g)}$ .
+
+- __Théorème__ Les arbres bicolores sont toujours équilibrés.
+  - Preuve : Soit $a$ un arbre bicolore
+    - $t(a) \geq 2^{h{\scriptsize N}(a)} - 1$
+    - $\frac{1}{2} h(a) \leq h{\scriptsize N}(a)$
+  - En combinant les 2 propriétés cela donne $h(a) \leq 2 \times \log{\scriptsize 2}(t(a) + 1)$ donc $h(a) = O(\log (t(a)))$ .
+
+#### b) Opérations sur les ARN
+
+$\underline{\textbf{Recherche}}$ : exactement la même chose que les ABR.
+
+- Complexité en $O(\text{hauteur}) = O(\log(\text{taille}))$
+
+$\underline{\textbf{Rotations}}$ : les insertions et suppressions sont basées sur les rotations
+
+![image](ressources/chap_15/rotation_arn.png)
+
+Une rotation préserve les prop des ABR.
+
+- Complexité en $O(1)$ .
+
+$\underline{\textbf{Insertion}}$ : On insère une feuille comme pour les ABR, de couleur __rouge__.
+
+On peut avoir crée un conflit rouge/rouge. Dans ce cas le père de la feuille est rouge et son père à lui est noir.
+
+![image](ressources/chap_15/confilt_rouge_rouge.png)
+
+On corrige récursivement tous les conflits rouge/rouge. Si nécessaire à la fin on remet la racine en noir.
+
+- Complexité : $O(\text{hauteur}) = O(\log(\text{taille}))$
+
+$\underline{\textbf{Suppression}}$
+
+S'effectue de la même manière que dans un ABR avec la méthode de remonté d'un maximum
+
+Soit $n$ le noeud à supprimer.
+
+- Si $n$ a $0$ fils
+
+![image](ressources/chap_15/suppression_zero_fils.png)
+
+- Si $n$ a $1$ fils
+
+![image](ressources/chap_15/suppression_un_fils.png)
+
+- Si $n$ a $2$ fils l'étiquette est remplacé par le max du SAG ou le min du SAD. Ce max ou ce min a $0$ ou $1$ fils donc on es dans le cas précedent.
+
+On procède alors dans cette ordre :
+
+1. Suppression sans s'occuper es couleurs (comme un ABR)
+2. correction des pb de hauteur noire
+3. correction des conflits rouge/rouge (comme dans l'insertion)
+4. on remet la racine à noire si nécessaire
+
+Si on a un pb de hauteure noire, le noeud $d$ déséquilibré a un SAG de $h {\scriptsize N}$ supérieure/inférieure de $1$ par rapport à la $h {\scriptsize N}$ du SAD. Considérons le cas où $h {\scriptsize N}(SAG)$ est supérieure d'un par rapport à $h {\scriptsize N}(SAD)$. Toutes les corrections sont basées sur une rotation droite et recolotation de certains noeuds.
+
+Si $a {\scriptsize 1}$, $a {\scriptsize 2}$ et $a {\scriptsize 3}$ ont la même hauteur noire.
+
+- 1er cas possible
+
+![image](ressources/chap_15/correction_hn_noeud_rouge.png)
+
+- 2eme cas possible
+
+![image](ressources/chap_15/correction_hn_noeud_noire.png)
+
+- 3eme cas possible
+
+![image](ressources/chap_15/correction_hn_sag_rouge.png)
+
+- Complexité de la suppression : $O(\text{hauteur}) = O(\log(\text{taille}))$ .
+
+## II. Tas
+
+### 1. Definition
+
+> Soit $(E, \prec)$ un ensemble totalement ordonné.
+>
+> Un tas est un arbre binaire __complet à gauche__ et qui respecte __la relation d'ordre des tas__, c'est à dire c'est-à-dire que tout noeud $y$ de fils $x$ doit respecter $x \preceq y$ .
+
+$\underline{\text{Exemple}}$
+
+![image](ressources/chap_15/tas_min.png) est un tas dont les étiquettes sont dans $(\mathbb{N}, \leq)$
+
+On obsèrve 2 types de tas particuliers
+
+1. Tas-min sont des tas sur $(\mathbb{N}, \leq)$
+2. Tas-max sont des tas sur $(\mathbb{N}, \geq)$
+
+- __Propriétés imméduates__
+  - Les tas sont équilibrés ($\text{hauteur} = O(\log(\text{taille}))$)
+  - La racine d'un tas-min est le minimum des étiquettes.
+  - La racine d'un tas-max est le maximum des étiquettes.
+  - chaque ancêtre $a$ d'un noeud $n$ respecte $a \preceq n$ et chaque descendant $d$ d'un noeud respecte $d \succeq n$
+
+$\to$ les tas sont stockés dans des tableaux. Quelques rappels.
+
+- la racine est d'indice 0.
+- un noeud à l'indice $i$,
+  - son fils gauche est à l'indice $2i + 1$
+  - son fils droit est à l'indice $2i + 2$
+  - son père est à l'indice $\lfloor \frac{i-1}{2} \rfloor$
+- l'ordre est celui du parcours en largeur.
+
+### 2. Opérations sur les tas (tas-max seulement)
+
+$\underline{\textbf{Percolation}}$
+
+Opération qui prend entrée un arbre binaire complet à gauche avecun noeud seulement qui respecte pas la propriété d'ordre des tas.
+
+- Si la relation n'est pas respectée avec son père, on percole vers le haut.
+- Si la relation n'est pas respecrée avec le fils, on percole vers le bas.
+
+Une percolation est en $O(\text{hauteur du tas}) = O(\log(\text{taille du tas}))$
