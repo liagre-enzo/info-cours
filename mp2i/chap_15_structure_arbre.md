@@ -306,3 +306,147 @@ Opération qui prend entrée un arbre binaire complet à gauche avecun noeud seu
 - Si la relation n'est pas respecrée avec le fils, on percole vers le bas.
 
 Une percolation est en $O(\text{hauteur du tas}) = O(\log(\text{taille du tas}))$
+
+```algo
+// Percolation sur un tas-max
+FONCTION perco_haut(tas T, indice i)
+  i_pere = partie_entière((i-1)/2)
+  SI i != 0 ET T_{i_pere} < T_{i} ALORS
+    ECHANGER (i, i_pere)
+    PERCO_HAUT (T, i_pere)
+  FIN SI
+FIN FCT
+```
+
+Soit $p$ la profondeur du oeud d'indice $i$ et $C {\scriptsize p}$ la complexité dans le pire des cas.
+$$
+\begin{align*}
+  C {\scriptsize 0} &= O(1) \\
+  C {\scriptsize p} &= O(1) + C {\scriptsize p-1}
+\end{align*}
+$$
+
+donc $C {\scriptsize p} = O(p)$ . Or
+
+$$
+\begin{align*}
+  p &= O(\text{hauteur du tas}) \\
+  &= O(\log (\text{taille}))
+\end{align*}
+$$
+
+```algo
+// Percolation sur un tas-max
+FONCTION perco_bas(tas T, indice i, nb_elts_T)
+  i_gauche <- 2i + 1
+  i_droit <- 2i + 2
+
+  SI i_droit < nb_elts_T ALORS
+    i_max <- indice du max entre T_{i_gauche} et T_{idroite}
+    SI T_{i} < T_{i_max} ALORS
+      ECHANGER (i, i_max, nb_elts_T)
+      PERCO_HAUT (T, i_max, nb_elts_T)
+    FIN SI
+
+  SINON SI i_gauche < nb_elts_T ET T_{i} < T_{i_gauche} ALORS
+    ECHANGER (i, i_gauche, nb_elts_T)
+  FIN SI
+FIN FCT
+```
+
+$\underline{\textbf{Insertion}}$
+
+Étapes :
+
+1. Ajouter un feuille au seul endroit possible au seul endroit possible pour que l'arbre soit complet à gauche.
+2. percoler cette feuille vers le haut.
+
+(cf. tri par tas pour un exemple.)
+
+$\underline{\textbf{Extraction de la racine}}$
+
+- Complexité : $O(\log(\text{taille du tas}))$ avec raisonnement similaire.
+
+Étapes :
+
+1. Échanger l'étiquette de la racine avec celle de la dernière feuille, et retirer cette feuille.
+2. percoler la racine vers le bas.
+
+(cf. tri par tas pour un exemple.)
+
+- Complexité : $O(\log(\text{taille du tas}))$ avec raisonnement similaire.
+
+### 3. Intérêt des tas
+
+#### a) Tri par tas
+
+Idée:
+
+1. transformer le tableaux en tas-max
+2. extractions successives du maximum
+
+> __Méthode pour l'étape 1:__
+>
+> regarder les noeuds un par un du dernier au premier et les percoler vers le bas si nécessaire.
+
+![image](ressources/chap_15/tri_par_tas.gif)
+
+```ALGO
+TRI_PAR_TAS(tableau T de taille n) :
+  POUR i ALLANT DE ⌊(n-2)/2⌋ À 0 FAIRE
+    PERCOLER_BAS(T, i, n)
+  FIN POUR
+  POUR i ALLANT DE n-1 À 0 FAIRE
+    tmp <- T[0]
+    T[0] <- T[i]
+    T[i] <- tmp
+    PERCOLER_BAS(T, 0, i+1)
+  FIN POUR
+FIN FCT
+```
+
+- Varriants : $i$ pour les 2 boucles
+- Invariants :
+  1. Tous les arbres entacinées en un indice plus grand que $i$ sont des tas-max
+  2. Les éléments du tableaux de $i$ à $n-1$ sont les plus grand éléments triées
+
+- Complexité :
+  - Spatiale :
+    - $O(1)$
+  - Temporelle :
+    - Boucle 1:
+      - Pour une profondeur $p$ (avec $0 \leq p \leq \text{hauteur(arbre)}$ ), il y a au plus $2^p$ à percoler, et la percolation sera au pire en $O(\text{hauteur(arbre)}-p)$ . En nottant $h = \text{hauteur(arbre)}$ . Donc au total, la complexité est
+
+$$
+\begin{align*}
+  \sum_{p=0}^{h-1} & 2^p \times O(h-p) \\
+  &= O(\sum_{i=1}^{h} 2^{h-i} \times i) \\
+  &= O(2^{h}\sum_{i=1}^{h} \frac{i}{2^{i}}) \\
+  &= O(2^{h})
+\end{align*}
+$$
+
+- Continuité de la complexité :
+  - Temporelle :
+    - Boucle 2 :
+
+$$
+\begin{align*}
+  \sum_{i=0}^{n-1} & O(1) + O(\log(n)) \\
+  &= O(n \log(n))
+\end{align*}
+$$
+
+- Total : $O(n) + O(n\log(n)) = O(n \log(n))$
+
+#### b) Implémentation des files de priorités
+
+Structure qui stocke des éléments associés à une __priorité__. L'extraction d'un elt renvoie celui le plus prioritaire.
+
+- Opérations
+  - créer : $\star \to$ file de priorité vide : $O(1)$
+  - test_vacuité : file de priorité $\to$ booléen : $O(1)$
+  - enfiler : file de priorité + elt + priorité $\to$ ajoute : $O(\log (taille))$
+  - défiler : file de priorité $\to$ revoie & supprime elt le plus prioritaire : $O(\log (taille))$
+
+Pour implementer efficacement cette structure, onstocke les élements dans un ts organisé selon les priorités.
