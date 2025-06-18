@@ -10,7 +10,7 @@
 On étend naturellement $\omega$ à tout couplede sommets. Soit $s {\scriptsize 1}, s {\scriptsize 2} \in S$ .
 
 $$
-\omega (s {\scriptsize 1), s {\scriptsize 2} ) =
+\omega (s {\scriptsize 1}, s {\scriptsize 2} ) =
 \begin{align*}
     & \omega (s {\scriptsize 1} - s {\scriptsize 2}) \space \text{si} \space  s {\scriptsize 1} - s {\scriptsize 2} \in A\\
     &O \space \text{si} \space s {\scriptsize 1} = s {\scriptsize 2} \\
@@ -235,20 +235,46 @@ On explore les sommets par distances croissantes.
 
 Exemples:
 
-### Exemple 1
+### Exemple d'application 1
 
 ![image](ressources/chap_16/dijkstra_exemple.png)
 
 |0|1|2|3|4|5||
 |:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |$0$|$+ \infty$|$+ \infty$|$+ \infty$|$+ \infty$|$+ \infty$|Initialisation|
-||$0 + 2 = 2$|$0 + 1 = 1$|$+ \infty$|$+ \infty$|$+ \infty$|Etape 1: On fiwe le sommet 0|
+||$0 + 2 = 2$|$0 + 1 = 1$|$+ \infty$|$+ \infty$|$+ \infty$|Etape 1: On fixe le sommet 0|
 ||2||$+ \infty$|$1 + 5 = 6$|$+ \infty$|On fixe 2|
 ||||$2 + 6 = 8$|$2 + 2 = 4$|$+ \infty$|On fixe 1|
 ||||$8$||$+ \infty$|On fixe 4|
 ||||$5 + 2 = 7$||$4 + 1 = 5$|On fixe 5|
 |||||||On fixe 3|
 
-### Exemple 2
+### Exemple d'application 2
 
 ![image](ressources/chap_16/Dijkstra_Animation.gif)
+
+$\underline{\text{Algo}}$
+
+```Algo
+Entrée : * liste d'adjacence d'un graphe G
+         * sommet dep de G
+
+    vus <- {}
+    a_traiter <- file de priorité 0
+    a_traiter <- enfiler dep de priorité 0
+    distances <- structure qui associe à dep 0 et aux autres sommets +oo
+    TANT QUE a_traiter est non vide :
+        s <- defiler d'a_traiter le sommet de priorité minimale
+        SI s not in vus ALORS :
+            vus <- vus U {s}
+            POUR chaque voisin v de s dans G FAIRE :
+                SI distances[v] > distances[s] + w(s, v) ALORS :
+                    distance[v] <- distances [s] + w(s, v)
+                    a_traiter <- enfiler v
+                FIN SI
+            FIN POUR
+        FIN SI
+    FIN TANT QUE
+```
+
+- Complexité : $O((|S| + |A|)\times \log(|S))$ cf complexité enfiler et défiler.
