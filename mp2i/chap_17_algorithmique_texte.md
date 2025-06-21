@@ -154,7 +154,7 @@ Donne un code préfixe (de compression sans perte)
 
   2. Construction de l'arbre de Huffman
      - Chaque caractère devient une feuille de poids son nombre d'occurence.
-     - Tant qu'il reste plus d'un arbre, on sélectionne $2$ arbres de poids minimaux $a_1 \space \& \space a_2$ de poids respectifs $p_1 \space \& \space p_2$
+     - Tant qu'il reste plus d'un arbre, on sélectionne $2$ arbres de poids minimaux $a{\scriptsize 1}$ et $a{\scriptsize 2}$ de poids respectifs $p{\scriptsize 1}$ et $p{\scriptsize 2}$
 
   3. Construction du code : $\newline$
       À chaque caractère, on associe une suite bits construite en prenant le chemin de la racine au caractère et en $0$ pour un sous arbre gauche et $1$ pour un sous arbre droit.
@@ -253,4 +253,4 @@ $\underline{\small{\text{Exemple}}}$
 
 ![image](ressources/chap_17/lzw_decompression/Imaged10_lzw.png)
 
-Quand on a un code que l'on ne connait pas, on prend la précédente lecture $\cdot$ premier caractère de ka orécédente lecture.
+Quand on a un code que l'on ne connait pas, on prend la précédente lecture $\cdot$ premier caractère de la précédente lecture.
