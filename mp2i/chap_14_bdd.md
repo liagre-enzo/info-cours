@@ -37,7 +37,7 @@ $\underline{\text{Objectif}}$ : visualiser les données à stocker dans la base.
 >
 > Un __type entité__ regroupe des entités ayant le même type de propiétés.
 
-$\underline{\text{Représentation Graphique d'un type entité}}$
+$\underline{\text{Représentation graphique d'un type entité}}$
 
 ![image](ressources/chap_14/type_entite.png)
 
@@ -55,7 +55,7 @@ Si nécessaire on peut ajouter une propriété à cet effet.
 > Une association peut aussi avoir des propriétés.
 > - Un __type assiciation__ regroupe des associations reliant des entités appartenant au même type-entité et ayant les même propriétés.
 
-$\underline{\text{Représentation Graphique d'un type entité}}$
+$\underline{\text{Représentation graphique d'un type association}}$
 
 ![image](ressources/chap_14/repr_type_association.png)
 
